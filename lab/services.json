@@ -40,6 +40,14 @@
     "vpn": false
   },
   {
+    "name": "n8n",
+    "desc_en": "Workflow automation platform — integrations, triggers, pipelines.",
+    "desc_fr": "Plateforme d'automatisation de workflows — intégrations, déclencheurs, pipelines.",
+    "url": "https://n8n.yatoub.dev",
+    "tags": ["Automation", "Workflows", "Self-hosted"],
+    "vpn": false
+  },
+  {
     "name": "Proxmox",
     "desc_en": "Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.",
     "desc_fr": "Interface de gestion de l'hyperviseur — VMs, conteneurs, stockage. Nécessite le tunnel WireGuard.",

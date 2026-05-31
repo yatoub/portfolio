@@ -5,7 +5,7 @@
 /* ── i18n ── */
 const translations = {
     en: {
-        nav: { home: 'HOME', about: 'ABOUT', exp: 'EXP', projects: 'PROJECTS', contact: 'CONTACT' },
+        nav: { home: 'HOME', about: 'ABOUT', exp: 'EXP', projects: 'PROJECTS', contact: 'CONTACT', lab: 'LAB' },
         hero: { bootok: 'BOOT OK', status: 'AVAILABLE', cta: 'VIEW_PROJECTS' },
         about: {
             title: 'ABOUT',
@@ -54,12 +54,19 @@ const translations = {
             h1: "LET'S BUILD", h2: 'SOMETHING', h3: 'REAL.',
             sub: 'Interested in systems, infrastructure, or security? Open to new opportunities and collaborations.',
         },
+        lab: {
+            title: 'PRIVATE SERVICES',
+            ha:    { name: 'Home Assistant', desc: 'Home automation dashboard — lights, sensors, automations.' },
+            vault: { name: 'Vaultwarden',    desc: 'Self-hosted password manager, Bitwarden-compatible.' },
+            open:   'OPEN',
+            status: 'ONLINE',
+        },
         roles: ['Systems Administrator', 'Infrastructure Engineer', 'Linux Enthusiast', 'DevOps', 'CTF Player'],
         status: ['ONLINE', 'READY', 'AVAILABLE', 'SYS:OK'],
     },
 
     fr: {
-        nav: { home: 'ACCUEIL', about: 'À PROPOS', exp: 'EXP', projects: 'PROJETS', contact: 'CONTACT' },
+        nav: { home: 'ACCUEIL', about: 'À PROPOS', exp: 'EXP', projects: 'PROJETS', contact: 'CONTACT', lab: 'LAB' },
         hero: { bootok: 'DÉMARRAGE OK', status: 'DISPONIBLE', cta: 'VOIR_PROJETS' },
         about: {
             title: 'À PROPOS',
@@ -107,6 +114,13 @@ const translations = {
             title: 'CONTACT',
             h1: 'CONSTRUISONS', h2: 'QUELQUE CHOSE', h3: 'DE RÉEL.',
             sub: "Intéressé par les systèmes, l'infrastructure ou la sécurité ? Ouvert aux nouvelles opportunités et collaborations.",
+        },
+        lab: {
+            title: 'SERVICES PRIVÉS',
+            ha:    { name: 'Home Assistant', desc: "Tableau de bord domotique — lumières, capteurs, automatisations." },
+            vault: { name: 'Vaultwarden',    desc: "Gestionnaire de mots de passe auto-hébergé, compatible Bitwarden." },
+            open:   'OUVRIR',
+            status: 'EN LIGNE',
         },
         roles: ['Administrateur Systèmes', 'Ingénieur Infrastructure', 'Passionné Linux', 'DevOps', 'CTF Player'],
         status: ['EN LIGNE', 'PRÊT', 'DISPONIBLE', 'SYS:OK'],

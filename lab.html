@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // LAB</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 600px) {
+            .lab-grid { grid-template-columns: 1fr; }
+        }
+        .lab-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .lab-card:hover {
+            border-color: var(--green);
+            box-shadow: 0 0 16px var(--green-glow);
+        }
+        .lab-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .lab-card-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--text-1);
+            letter-spacing: 0.05em;
+        }
+        .lab-card-status {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            color: var(--green);
+        }
+        .lab-card-status .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite;
+        }
+        .lab-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            line-height: 1.6;
+            flex: 1;
+        }
+        .lab-section-intro {
+            font-size: 0.85rem;
+            color: var(--text-3);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span class="status-text">AUTHENTICATED</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/#home"       class="nav-link" data-index="00" data-i18n="nav.home">HOME</a></li>
+                <li><a href="/#about"      class="nav-link" data-index="01" data-i18n="nav.about">ABOUT</a></li>
+                <li><a href="/#experience" class="nav-link" data-index="02" data-i18n="nav.exp">EXP</a></li>
+                <li><a href="/#projects"   class="nav-link" data-index="03" data-i18n="nav.projects">PROJECTS</a></li>
+                <li><a href="/#contact"    class="nav-link" data-index="04" data-i18n="nav.contact">CONTACT</a></li>
+                <li><a href="/lab"         class="nav-link active" data-index="05" data-i18n="nav.lab">LAB</a></li>
+            </ul>
+            <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                <span id="langLabel">FR</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="lab" class="section reveal" style="min-height: 100vh; padding-top: calc(var(--nav-h) + 4rem);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="lab.title">PRIVATE SERVICES</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <p class="lab-section-intro">// access granted — internal services</p>
+
+                <div class="lab-grid">
+
+                    <!-- Home Assistant -->
+                    <div class="lab-card reveal-child">
+                        <div class="lab-card-header">
+                            <span class="lab-card-title" data-i18n="lab.ha.name">Home Assistant</span>
+                            <span class="lab-card-status">
+                                <span class="status-dot"></span>
+                                <span data-i18n="lab.status">ONLINE</span>
+                            </span>
+                        </div>
+                        <p class="lab-card-desc" data-i18n="lab.ha.desc">Home automation dashboard — lights, sensors, automations.</p>
+                        <div>
+                            <span class="stag highlight">Domotique</span>
+                            <span class="stag">MQTT</span>
+                            <span class="stag">Zigbee</span>
+                        </div>
+                        <a href="https://ha.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
+                            <span data-i18n="lab.open">OPEN</span> →
+                        </a>
+                    </div>
+
+                    <!-- Vaultwarden -->
+                    <div class="lab-card reveal-child">
+                        <div class="lab-card-header">
+                            <span class="lab-card-title" data-i18n="lab.vault.name">Vaultwarden</span>
+                            <span class="lab-card-status">
+                                <span class="status-dot"></span>
+                                <span data-i18n="lab.status">ONLINE</span>
+                            </span>
+                        </div>
+                        <p class="lab-card-desc" data-i18n="lab.vault.desc">Self-hosted password manager, Bitwarden-compatible.</p>
+                        <div>
+                            <span class="stag highlight">Passwords</span>
+                            <span class="stag">Rust</span>
+                            <span class="stag">Self-hosted</span>
+                        </div>
+                        <a href="https://vault.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
+                            <span data-i18n="lab.open">OPEN</span> →
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-logo">[YTB]</span>
+                <span class="footer-copy">© 2025 Yatoub</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

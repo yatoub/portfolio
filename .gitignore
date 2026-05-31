@@ -1,0 +1,8 @@
+# Claude Code instructions — local only, not served publicly
+CLAUDE.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // Systems & Infrastructure</title>
+    <meta name="description" content="Systems Administrator — Linux, Infrastructure, DevOps">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+</head>
+<body>
+    <!-- Scanline overlay -->
+    <div class="scanlines" aria-hidden="true"></div>
+    <!-- CRT flicker overlay -->
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <!-- Noise texture -->
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span class="status-text" id="statusText">ONLINE</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home"       class="nav-link" data-index="00" data-i18n="nav.home">HOME</a></li>
+                <li><a href="#about"      class="nav-link" data-index="01" data-i18n="nav.about">ABOUT</a></li>
+                <li><a href="#experience" class="nav-link" data-index="02" data-i18n="nav.exp">EXP</a></li>
+                <li><a href="#projects"   class="nav-link" data-index="03" data-i18n="nav.projects">PROJECTS</a></li>
+                <li><a href="#contact"    class="nav-link" data-index="04" data-i18n="nav.contact">CONTACT</a></li>
+            </ul>
+            <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                <span id="langLabel">FR</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ═══ HERO ═══ -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-top-bar">
+                    <span class="top-bar-label">SYS://PORTFOLIO_v2.1</span>
+                    <span class="top-bar-label" data-i18n="hero.bootok">BOOT OK</span>
+                </div>
+
+                <div class="hero-content">
+                    <div class="hero-prefix">
+                        <span class="prefix-line">$ whoami</span>
+                    </div>
+                    <h1 class="hero-name">
+                        <span class="name-line" id="heroName"></span>
+                        <span class="cursor-blink">█</span>
+                    </h1>
+                    <div class="hero-role">
+                        <span class="role-label">// ROLE &nbsp;&nbsp;&gt;&gt;</span>
+                        <span class="hero-typewriter" id="typewriter"></span>
+                        <span class="type-cursor">|</span>
+                    </div>
+
+                    <div class="hero-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-key">LOC</span>
+                            <span class="meta-sep">:</span>
+                            <span class="meta-val">Dijon, France</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">STATUS</span>
+                            <span class="meta-sep">:</span>
+                            <span class="meta-val status-green" data-i18n="hero.status">AVAILABLE</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-callout">
+                        <div class="tc-bar">
+                            <div class="tc-dots">
+                                <span class="tcd red"></span>
+                                <span class="tcd yellow"></span>
+                                <span class="tcd green"></span>
+                            </div>
+                            <span class="tc-title">terminal — bash</span>
+                        </div>
+                        <div class="tc-body">
+                            <span class="tc-prompt">$</span>
+                            <code class="tc-cmd">curl yatoub.dev/curl.txt</code>
+                            <button class="copy-btn" data-copy="curl yatoub.dev/curl.txt | less" title="Copy command">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            <span data-i18n="hero.cta">VIEW_PROJECTS</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <a href="https://github.com/yatoub" target="_blank" class="btn btn-ghost">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            <span>GITHUB</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-ascii" aria-hidden="true">
+                    <pre class="ascii-art">
+ ██╗   ██╗████████╗██████╗
+ ╚██╗ ██╔╝╚══██╔══╝██╔══██╗
+  ╚████╔╝    ██║   ██████╔╝
+   ╚██╔╝     ██║   ██╔══██╗
+    ██║      ██║   ██████╔╝
+    ╚═╝      ╚═╝   ╚═════╝ </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ABOUT ═══ -->
+        <section id="about" class="section reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="about.title">ABOUT</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-bio">
+                        <div class="bio-block">
+                            <p class="bio-text" data-i18n="about.bio1">
+                                Systems integrator with a long-standing passion for technology and infrastructure. Currently working as a Systems Administrator for the French National Education Ministry, managing production environments across the full application stack.
+                            </p>
+                            <p class="bio-text" data-i18n="about.bio2">
+                                When not keeping servers alive, I play CTFs on TryHackMe and HackTheBox — with a focus on OSINT and web exploitation. I also contribute to open source Linux tools, shoot photos, and do sound engineering for live events.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="skills-block">
+                        <div class="skills-category reveal-child">
+                            <h3 class="sk-cat-title" data-i18n="about.skills.systems">// SYSTEMS & INFRA</h3>
+                            <div class="skill-tags">
+                                <span class="stag highlight">Linux</span>
+                                <span class="stag highlight">Ansible</span>
+                                <span class="stag highlight">Docker</span>
+                                <span class="stag highlight">Proxmox</span>
+                                <span class="stag highlight">Debian</span>
+                                <span class="stag highlight">Arch</span>
+                                <span class="stag">VMware</span>
+                                <span class="stag">PfSense</span>
+                                <span class="stag">RedHat</span>
+                            </div>
+                        </div>
+                        <div class="skills-category reveal-child">
+                            <h3 class="sk-cat-title" data-i18n="about.skills.scripting">// SCRIPTING & DEV</h3>
+                            <div class="skill-tags">
+                                <span class="stag highlight">Bash</span>
+                                <span class="stag highlight">Python</span>
+                                <span class="stag highlight">Golang</span>
+                                <span class="stag">Node.js</span>
+                            </div>
+                        </div>
+                        <div class="skills-category reveal-child">
+                            <h3 class="sk-cat-title" data-i18n="about.skills.services">// SERVICES & WEB</h3>
+                            <div class="skill-tags">
+                                <span class="stag highlight">Nginx</span>
+                                <span class="stag highlight">HAProxy</span>
+                                <span class="stag highlight">Traefik</span>
+                                <span class="stag">Apache</span>
+                                <span class="stag">JBoss</span>
+                                <span class="stag">uWSGI</span>
+                            </div>
+                        </div>
+                        <div class="skills-category reveal-child">
+                            <h3 class="sk-cat-title" data-i18n="about.skills.monitoring">// MONITORING</h3>
+                            <div class="skill-tags">
+                                <span class="stag highlight">Grafana</span>
+                                <span class="stag highlight">Prometheus</span>
+                                <span class="stag highlight">ELK Stack</span>
+                                <span class="stag">Nagios</span>
+                                <span class="stag">CheckMK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat strip -->
+                <div class="stat-strip reveal">
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="7">0</span>
+                        <span class="stat-label" data-i18n="about.stats.years">YEARS EXP</span>
+                    </div>
+                    <div class="stat-div">//</div>
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-label" data-i18n="about.stats.companies">COMPANIES</span>
+                    </div>
+                    <div class="stat-div">//</div>
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="5">0</span>
+                        <span class="stat-label" data-i18n="about.stats.distros">DISTROS DAILY DRIVEN</span>
+                    </div>
+                    <div class="stat-div">//</div>
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="2">0</span>
+                        <span class="stat-label" data-i18n="about.stats.languages">LANGUAGES SPOKEN</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ EXPERIENCE ═══ -->
+        <section id="experience" class="section section-alt reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="exp.title">EXPERIENCE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="timeline">
+                    <div class="tl-item reveal-child">
+                        <div class="tl-left">
+                            <span class="tl-year">2021</span>
+                            <div class="tl-node"></div>
+                        </div>
+                        <div class="tl-card">
+                            <div class="tl-card-header">
+                                <div>
+                                    <h3 class="tl-role" data-i18n="exp.en.role">Systems Administrator</h3>
+                                    <p class="tl-company" data-i18n="exp.en.company">French National Education Ministry</p>
+                                </div>
+                                <span class="tl-badge" data-i18n="exp.en.dates">DEC 2021 – PRESENT</span>
+                            </div>
+                            <ul class="tl-points">
+                                <li data-i18n="exp.en.p1">Manages production chain across OSI layers 5–7</li>
+                                <li><span data-i18n="exp.en.p2a">Handles </span><mark data-i18n="exp.en.p2b">configuration, application deployment</mark><span data-i18n="exp.en.p2c"> and monitoring</span></li>
+                                <li data-i18n="exp.en.p3">Incident response and data security management</li>
+                            </ul>
+                            <div class="tl-tags">
+                                <span>Linux</span><span>Ansible</span><span>Docker</span><span>Monitoring</span><span>Security</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tl-item reveal-child">
+                        <div class="tl-left">
+                            <span class="tl-year">2020</span>
+                            <div class="tl-node"></div>
+                        </div>
+                        <div class="tl-card">
+                            <div class="tl-card-header">
+                                <div>
+                                    <h3 class="tl-role" data-i18n="exp.lp.role">Operations Analyst</h3>
+                                    <p class="tl-company">La Poste</p>
+                                </div>
+                                <span class="tl-badge" data-i18n="exp.lp.dates">NOV 2020 – NOV 2021</span>
+                            </div>
+                            <ul class="tl-points">
+                                <li><span data-i18n="exp.lp.p1a">Consulting role supporting </span><mark data-i18n="exp.lp.p1b">national IT operations</mark><span data-i18n="exp.lp.p1c"> for mail and parcel services</span></li>
+                                <li data-i18n="exp.lp.p2">Maintained critical applications with 24/7 supervision</li>
+                            </ul>
+                            <div class="tl-tags">
+                                <span>Operations</span><span>Supervision</span><span>Linux</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tl-item reveal-child">
+                        <div class="tl-left">
+                            <span class="tl-year">2018</span>
+                            <div class="tl-node"></div>
+                        </div>
+                        <div class="tl-card">
+                            <div class="tl-card-header">
+                                <div>
+                                    <h3 class="tl-role" data-i18n="exp.mc.role">Linux Technician</h3>
+                                    <p class="tl-company">Maincare Solutions</p>
+                                </div>
+                                <span class="tl-badge" data-i18n="exp.mc.dates">JAN 2018 – APR 2020</span>
+                            </div>
+                            <ul class="tl-points">
+                                <li><span data-i18n="exp.mc.p1a">Deployed </span><mark data-i18n="exp.mc.p1b">application infrastructure</mark><span data-i18n="exp.mc.p1c"> and maintained medical data systems</span></li>
+                                <li data-i18n="exp.mc.p2">Managed security updates and feature rollouts</li>
+                            </ul>
+                            <div class="tl-tags">
+                                <span>Linux</span><span>Deployment</span><span>Security</span><span>Healthcare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROJECTS ═══ -->
+        <section id="projects" class="section reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">03</span>
+                    <h2 class="sh-title"><span data-i18n="projects.title">PROJECTS</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="swiper projects-swiper">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/susshi" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.01</span><span class="proj-badge">Rust / CLI</span></div>
+                                <h3 class="proj-title">susshi</h3>
+                                <p class="proj-desc" data-i18n="projects.susshi.desc">Terminal SSH manager with YAML inventories, jump hosts, Wallix bastion support, tunnels and SCP. Built for sysadmins who live in the terminal.</p>
+                                <div class="proj-tags"><span>Rust</span><span>SSH</span><span>CLI</span><span>YAML</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/Tych" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.02</span><span class="proj-badge">Python / Math</span></div>
+                                <h3 class="proj-title">Tych</h3>
+                                <p class="proj-desc" data-i18n="projects.tych.desc">Random number generator based on chaos theory — uses the double pendulum system as an entropy source to produce unpredictable sequences.</p>
+                                <div class="proj-tags"><span>Python</span><span>Chaos Theory</span><span>RNG</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/loki" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.03</span><span class="proj-badge">Go / Security</span></div>
+                                <h3 class="proj-title">loki</h3>
+                                <p class="proj-desc" data-i18n="projects.loki.desc">Local file encryptor using AES-256. Simple CLI tool to encrypt and decrypt files on disk.</p>
+                                <div class="proj-tags"><span>Go</span><span>AES-256</span><span>Encryption</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/PrometheusWithGrafana" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.04</span><span class="proj-badge">Ansible / Monitoring</span></div>
+                                <h3 class="proj-title">PrometheusWithGrafana</h3>
+                                <p class="proj-desc" data-i18n="projects.prometheus.desc">Ansible playbook to deploy a full Prometheus + Grafana monitoring stack. Ready-to-use dashboards, ideal for POCs.</p>
+                                <div class="proj-tags"><span>Ansible</span><span>Prometheus</span><span>Grafana</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/check3TierEnv" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.05</span><span class="proj-badge">Ansible / Infra</span></div>
+                                <h3 class="proj-title">check3TierEnv</h3>
+                                <p class="proj-desc" data-i18n="projects.check3tier.desc">Ansible playbook to audit multiple RedHat Linux machines against a technical specification sheet.</p>
+                                <div class="proj-tags"><span>Ansible</span><span>RedHat</span><span>Audit</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/Log4jVulnChecker" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.06</span><span class="proj-badge">Shell / Security</span></div>
+                                <h3 class="proj-title">Log4jVulnChecker</h3>
+                                <p class="proj-desc" data-i18n="projects.log4j.desc">Shell script to detect Log4Shell (CVE-2021-44228) exposure on a server by checking installed package versions.</p>
+                                <div class="proj-tags"><span>Bash</span><span>CVE</span><span>Log4Shell</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/opensiren" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.07</span><span class="proj-badge">JS / OSINT</span></div>
+                                <h3 class="proj-title">opensiren</h3>
+                                <p class="proj-desc" data-i18n="projects.opensiren.desc">OSINT tool for gathering public information on French companies using the SIRENE open data API.</p>
+                                <div class="proj-tags"><span>JavaScript</span><span>OSINT</span><span>SIRENE</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                        <a href="https://github.com/yatoub/resume-terminal" target="_blank" class="proj-card featured">
+                            <div class="proj-card-inner">
+                                <div class="proj-top"><span class="proj-index">P.08</span><span class="proj-badge">JS / Fun</span></div>
+                                <h3 class="proj-title">resume-terminal</h3>
+                                <p class="proj-desc" data-i18n="projects.resumeterminal.desc">Resume displayed as an interactive terminal. Type commands to navigate through the CV sections.</p>
+                                <div class="proj-tags"><span>JavaScript</span><span>SCSS</span><span>Terminal</span></div>
+                                <div class="proj-arrow" data-i18n="projects.view">VIEW →</div>
+                            </div>
+                        </a>
+                        </div>
+
+                    </div><!-- /swiper-wrapper -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div><!-- /swiper -->
+            </div>
+        </section>
+
+        <!-- ═══ CONTACT ═══ -->
+        <section id="contact" class="section section-alt reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">04</span>
+                    <h2 class="sh-title"><span data-i18n="contact.title">CONTACT</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="contact-layout">
+                    <div class="contact-left">
+                        <p class="contact-headline">
+                            <span data-i18n="contact.h1">LET'S BUILD</span><br>
+                            <span data-i18n="contact.h2">SOMETHING</span><br>
+                            <span class="hl-green" data-i18n="contact.h3">REAL.</span>
+                        </p>
+                        <p class="contact-sub" data-i18n="contact.sub">Interested in systems, infrastructure, or security? Open to new opportunities and collaborations.</p>
+                    </div>
+
+                    <div class="contact-right">
+                        <div class="contact-terminal">
+                            <div class="ct-bar">
+                                <div class="tc-dots">
+                                    <span class="tcd red"></span>
+                                    <span class="tcd yellow"></span>
+                                    <span class="tcd green"></span>
+                                </div>
+                                <span class="tc-title">contact.sh</span>
+                            </div>
+                            <div class="ct-body">
+                                <div class="ct-line">
+                                    <span class="ct-prompt">$</span>
+                                    <span class="ct-cmd">./reach_out --channel email</span>
+                                </div>
+                                <a href="mailto:yatoub@yatoub.dev" class="ct-result link">yatoub@yatoub.dev</a>
+
+                                <div class="ct-line">
+                                    <span class="ct-prompt">$</span>
+                                    <span class="ct-cmd">./reach_out --channel github</span>
+                                </div>
+                                <a href="https://github.com/yatoub" target="_blank" class="ct-result link">github.com/yatoub</a>
+
+                                <div class="ct-line">
+                                    <span class="ct-prompt">$</span>
+                                    <span class="ct-cmd">./reach_out --channel web</span>
+                                </div>
+                                <a href="https://yatoub.dev" target="_blank" class="ct-result link">yatoub.dev</a>
+
+                                <div class="ct-line blink-line">
+                                    <span class="ct-prompt">$</span>
+                                    <span class="ct-cursor-blink">█</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-logo">[YTB]</span>
+                <span class="footer-copy">© 2025 Yatoub</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+</html>

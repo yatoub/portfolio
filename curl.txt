@@ -1,0 +1,112 @@
+
+  ██╗   ██╗ █████╗ ████████╗ ██████╗ ██╗   ██╗██████╗
+  ╚██╗ ██╔╝██╔══██╗╚══██╔══╝██╔═══██╗██║   ██║██╔══██╗
+   ╚████╔╝ ███████║   ██║   ██║   ██║██║   ██║██████╔╝
+    ╚██╔╝  ██╔══██║   ██║   ██║   ██║██║   ██║██╔══██╗
+     ██║   ██║  ██║   ██║   ╚██████╔╝╚██████╔╝██████╔╝
+     ╚═╝   ╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝ ╚═════╝
+
+  Systems Administrator // Linux // Infrastructure // CTF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ABOUT
+  ─────
+  Systems integrator with a long-standing passion for technology
+  and infrastructure. Currently working as a Systems Administrator
+  for the French National Education Ministry, managing production
+  environments across the full application stack.
+
+  When not keeping servers alive, playing CTFs on TryHackMe and
+  HackTheBox — with a focus on OSINT and web exploitation.
+
+  LOC    : Dijon, France
+  WEB    : yatoub.dev
+  STATUS : Available
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  SKILLS
+  ──────
+  Systems & Infra  : Linux · Ansible · Docker · Proxmox
+                     VMware · PfSense · Debian · RedHat · Arch
+  Scripting & Dev  : Bash · Python · Golang · Node.js
+  Services & Web   : Nginx · HAProxy · Traefik · Apache
+  Monitoring       : Grafana · Prometheus · ELK · Nagios · CheckMK
+  Databases        : MySQL · PostgreSQL · Oracle
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  EXPERIENCE
+  ──────────
+  DEC 2021 – PRESENT  │ Systems Administrator
+                       │ French National Education Ministry
+                       │ Production infra across OSI layers 5-7,
+                       │ deployment, monitoring, incident response.
+
+  NOV 2020 – NOV 2021 │ Operations Analyst
+                       │ La Poste
+                       │ National IT ops for mail/parcel services,
+                       │ 24/7 critical application supervision.
+
+  JAN 2018 – APR 2020 │ Linux Technician
+                       │ Maincare Solutions
+                       │ Application infrastructure deployment,
+                       │ medical data systems, security updates.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  EDUCATION
+  ─────────
+  2014–2016  BTS Systèmes Numériques — Lycée Gustave Eiffel, Dijon
+  2012–2014  Bac STI2D SIN — Lycée Gustave Eiffel, Dijon
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  PROJECTS
+  ────────
+  susshi             [Rust]    Terminal SSH manager — YAML inventories,
+                               jump hosts, Wallix bastion, tunnels, SCP.
+                               github.com/yatoub/susshi             ⭐ 10
+
+  Tych               [Python]  RNG based on chaos theory (double pendulum
+                               as entropy source).
+                               github.com/yatoub/Tych
+
+  loki               [Go]      Local file encryptor using AES-256.
+                               github.com/yatoub/loki
+
+  PrometheusWithGrafana        Ansible playbook — full Prometheus + Grafana
+                     [Ansible] monitoring stack, ready-to-use dashboards.
+                               github.com/yatoub/PrometheusWithGrafana
+
+  check3TierEnv      [Ansible] Audit multiple RedHat machines against a
+                               technical specification sheet.
+                               github.com/yatoub/check3TierEnv       ⭐  1
+
+  Log4jVulnChecker   [Shell]   Detect Log4Shell (CVE-2021-44228) exposure
+                               by checking installed package versions.
+                               github.com/yatoub/Log4jVulnChecker    ⭐  1
+
+  opensiren          [JS]      OSINT tool for French companies via the
+                               SIRENE open data API.
+                               github.com/yatoub/opensiren
+
+  resume-terminal    [JS]      Resume as an interactive terminal —
+                               type commands to navigate the CV.
+                               github.com/yatoub/resume-terminal
+
+  → github.com/yatoub
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  CONTACT
+  ───────
+  Email  : yatoub@yatoub.dev
+  GitHub : github.com/yatoub
+  Web    : yatoub.dev
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  $ curl yatoub.dev/curl.txt | less
+

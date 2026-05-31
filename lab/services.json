@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Home Assistant",
+    "desc_en": "Home automation dashboard — lights, sensors, automations.",
+    "desc_fr": "Tableau de bord domotique — lumières, capteurs, automatisations.",
+    "url": "https://ha.yatoub.dev",
+    "tags": ["Domotique", "MQTT", "Zigbee"],
+    "vpn": false
+  },
+  {
+    "name": "Vaultwarden",
+    "desc_en": "Self-hosted password manager, Bitwarden-compatible.",
+    "desc_fr": "Gestionnaire de mots de passe auto-hébergé, compatible Bitwarden.",
+    "url": "https://vault.yatoub.dev",
+    "tags": ["Passwords", "Rust", "Self-hosted"],
+    "vpn": false
+  },
+  {
+    "name": "WGDashboard",
+    "desc_en": "WireGuard VPN management dashboard — peers, tunnels, traffic monitoring.",
+    "desc_fr": "Interface de gestion WireGuard — pairs, tunnels, supervision du trafic.",
+    "url": "https://wgdashboard.yatoub.dev",
+    "tags": ["VPN", "WireGuard", "Networking"],
+    "vpn": false
+  },
+  {
+    "name": "Grafana",
+    "desc_en": "Metrics and observability dashboards — infrastructure, services, alerts.",
+    "desc_fr": "Dashboards de métriques et d'observabilité — infrastructure, services, alertes.",
+    "url": "https://grafana.yatoub.dev",
+    "tags": ["Monitoring", "Prometheus", "Dashboards"],
+    "vpn": false
+  },
+  {
+    "name": "Arcane",
+    "desc_en": "Docker management frontend — containers, images, volumes, logs.",
+    "desc_fr": "Frontend de gestion Docker — conteneurs, images, volumes, logs.",
+    "url": "https://arcane.yatoub.dev",
+    "tags": ["Docker", "Containers", "Self-hosted"],
+    "vpn": false
+  },
+  {
+    "name": "Proxmox",
+    "desc_en": "Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.",
+    "desc_fr": "Interface de gestion de l'hyperviseur — VMs, conteneurs, stockage. Nécessite le tunnel WireGuard.",
+    "url": "https://proxmox.yatoub.dev",
+    "tags": ["Hypervisor", "KVM", "LXC"],
+    "vpn": true
+  }
+]

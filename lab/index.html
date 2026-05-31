@@ -65,13 +65,8 @@
             line-height: 1.6;
             flex: 1;
         }
-        .status-dot--amber {
-            background: var(--amber);
-            animation: none;
-        }
-        .lab-card-status--tunnel {
-            color: var(--amber);
-        }
+        .lab-card-status--tunnel { color: var(--amber); }
+        .status-dot--amber { background: var(--amber); animation: none; }
         .lab-section-intro {
             font-size: 0.85rem;
             color: var(--text-3);
@@ -140,129 +135,7 @@
 
                 <p class="lab-section-intro">// access granted — internal services</p>
 
-                <div class="lab-grid">
-
-                    <!-- Home Assistant -->
-                    <div class="lab-card reveal-child">
-                        <div class="lab-card-header">
-                            <span class="lab-card-title" data-i18n="lab.ha.name">Home Assistant</span>
-                            <span class="lab-card-status">
-                                <span class="status-dot"></span>
-                                <span data-i18n="lab.status">ONLINE</span>
-                            </span>
-                        </div>
-                        <p class="lab-card-desc" data-i18n="lab.ha.desc">Home automation dashboard — lights, sensors, automations.</p>
-                        <div>
-                            <span class="stag highlight">Domotique</span>
-                            <span class="stag">MQTT</span>
-                            <span class="stag">Zigbee</span>
-                        </div>
-                        <a href="https://ha.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
-                            <span data-i18n="lab.open">OPEN</span> →
-                        </a>
-                    </div>
-
-                    <!-- Vaultwarden -->
-                    <div class="lab-card reveal-child">
-                        <div class="lab-card-header">
-                            <span class="lab-card-title" data-i18n="lab.vault.name">Vaultwarden</span>
-                            <span class="lab-card-status">
-                                <span class="status-dot"></span>
-                                <span data-i18n="lab.status">ONLINE</span>
-                            </span>
-                        </div>
-                        <p class="lab-card-desc" data-i18n="lab.vault.desc">Self-hosted password manager, Bitwarden-compatible.</p>
-                        <div>
-                            <span class="stag highlight">Passwords</span>
-                            <span class="stag">Rust</span>
-                            <span class="stag">Self-hosted</span>
-                        </div>
-                        <a href="https://vault.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
-                            <span data-i18n="lab.open">OPEN</span> →
-                        </a>
-                    </div>
-
-                    <!-- WGDashboard -->
-                    <div class="lab-card reveal-child">
-                        <div class="lab-card-header">
-                            <span class="lab-card-title" data-i18n="lab.wg.name">WGDashboard</span>
-                            <span class="lab-card-status">
-                                <span class="status-dot"></span>
-                                <span data-i18n="lab.status">ONLINE</span>
-                            </span>
-                        </div>
-                        <p class="lab-card-desc" data-i18n="lab.wg.desc">WireGuard VPN management dashboard — peers, tunnels, traffic monitoring.</p>
-                        <div>
-                            <span class="stag highlight">VPN</span>
-                            <span class="stag">WireGuard</span>
-                            <span class="stag">Networking</span>
-                        </div>
-                        <a href="https://wgdashboard.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
-                            <span data-i18n="lab.open">OPEN</span> →
-                        </a>
-                    </div>
-
-                    <!-- Grafana -->
-                    <div class="lab-card reveal-child">
-                        <div class="lab-card-header">
-                            <span class="lab-card-title" data-i18n="lab.grafana.name">Grafana</span>
-                            <span class="lab-card-status">
-                                <span class="status-dot"></span>
-                                <span data-i18n="lab.status">ONLINE</span>
-                            </span>
-                        </div>
-                        <p class="lab-card-desc" data-i18n="lab.grafana.desc">Metrics and observability dashboards — infrastructure, services, alerts.</p>
-                        <div>
-                            <span class="stag highlight">Monitoring</span>
-                            <span class="stag">Prometheus</span>
-                            <span class="stag">Dashboards</span>
-                        </div>
-                        <a href="https://grafana.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
-                            <span data-i18n="lab.open">OPEN</span> →
-                        </a>
-                    </div>
-
-                    <!-- Arcane -->
-                    <div class="lab-card reveal-child">
-                        <div class="lab-card-header">
-                            <span class="lab-card-title" data-i18n="lab.arcane.name">Arcane</span>
-                            <span class="lab-card-status">
-                                <span class="status-dot"></span>
-                                <span data-i18n="lab.status">ONLINE</span>
-                            </span>
-                        </div>
-                        <p class="lab-card-desc" data-i18n="lab.arcane.desc">Docker management frontend — containers, images, volumes, logs.</p>
-                        <div>
-                            <span class="stag highlight">Docker</span>
-                            <span class="stag">Containers</span>
-                            <span class="stag">Self-hosted</span>
-                        </div>
-                        <a href="https://arcane.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
-                            <span data-i18n="lab.open">OPEN</span> →
-                        </a>
-                    </div>
-
-                    <!-- Proxmox -->
-                    <div class="lab-card reveal-child">
-                        <div class="lab-card-header">
-                            <span class="lab-card-title" data-i18n="lab.proxmox.name">Proxmox</span>
-                            <span class="lab-card-status lab-card-status--tunnel">
-                                <span class="status-dot status-dot--amber"></span>
-                                <span data-i18n="lab.tunnelonly">VPN ONLY</span>
-                            </span>
-                        </div>
-                        <p class="lab-card-desc" data-i18n="lab.proxmox.desc">Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.</p>
-                        <div>
-                            <span class="stag highlight">Hypervisor</span>
-                            <span class="stag">KVM</span>
-                            <span class="stag">LXC</span>
-                        </div>
-                        <a href="https://proxmox.yatoub.dev" target="_blank" rel="noopener" class="btn btn-ghost" style="text-align:center;">
-                            <span data-i18n="lab.open">OPEN</span> →
-                        </a>
-                    </div>
-
-                </div>
+                <div class="lab-grid" id="labGrid"></div>
             </div>
         </section>
     </main>
@@ -277,5 +150,79 @@
     </footer>
 
     <script src="/script.js"></script>
+    <script>
+        function esc(str) {
+            const d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
+
+        fetch('/lab/services.json')
+            .then(r => r.json())
+            .then(services => {
+                const lang = localStorage.getItem('lang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+                const labelOpen   = lang === 'fr' ? 'OUVRIR'     : 'OPEN';
+                const labelOnline = lang === 'fr' ? 'EN LIGNE'   : 'ONLINE';
+                const labelVpn    = lang === 'fr' ? 'VPN REQUIS' : 'VPN ONLY';
+
+                const grid = document.getElementById('labGrid');
+
+                services.forEach(s => {
+                    const card = document.createElement('div');
+                    card.className = 'lab-card reveal-child';
+
+                    const desc      = lang === 'fr' ? s.desc_fr : s.desc_en;
+                    const isVpn     = !!s.vpn;
+                    const statusCls = isVpn ? 'lab-card-status lab-card-status--tunnel' : 'lab-card-status';
+                    const dotCls    = isVpn ? 'status-dot status-dot--amber' : 'status-dot';
+                    const statusLbl = isVpn ? labelVpn : labelOnline;
+                    const btnCls    = isVpn ? 'btn btn-ghost' : 'btn btn-primary';
+
+                    // Header
+                    const header = document.createElement('div');
+                    header.className = 'lab-card-header';
+
+                    const title = document.createElement('span');
+                    title.className = 'lab-card-title';
+                    title.textContent = s.name;
+
+                    const status = document.createElement('span');
+                    status.className = statusCls;
+                    const dot = document.createElement('span');
+                    dot.className = dotCls;
+                    const statusText = document.createElement('span');
+                    statusText.textContent = statusLbl;
+                    status.append(dot, statusText);
+
+                    header.append(title, status);
+
+                    // Description
+                    const p = document.createElement('p');
+                    p.className = 'lab-card-desc';
+                    p.textContent = desc;
+
+                    // Tags
+                    const tagsDiv = document.createElement('div');
+                    s.tags.forEach((tag, i) => {
+                        const span = document.createElement('span');
+                        span.className = i === 0 ? 'stag highlight' : 'stag';
+                        span.textContent = tag;
+                        tagsDiv.appendChild(span);
+                    });
+
+                    // Button
+                    const btn = document.createElement('a');
+                    btn.href = s.url;
+                    btn.target = '_blank';
+                    btn.rel = 'noopener';
+                    btn.className = btnCls;
+                    btn.style.textAlign = 'center';
+                    btn.textContent = labelOpen + ' →';
+
+                    card.append(header, p, tagsDiv, btn);
+                    grid.appendChild(card);
+                });
+            });
+    </script>
 </body>
 </html>

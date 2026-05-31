@@ -64,6 +64,13 @@
             line-height: 1.6;
             flex: 1;
         }
+        .status-dot--amber {
+            background: var(--amber);
+            animation: none;
+        }
+        .lab-card-status--tunnel {
+            color: var(--amber);
+        }
         .lab-section-intro {
             font-size: 0.85rem;
             color: var(--text-3);
@@ -170,6 +177,46 @@
                             <span class="stag">Self-hosted</span>
                         </div>
                         <a href="https://vault.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
+                            <span data-i18n="lab.open">OPEN</span> →
+                        </a>
+                    </div>
+
+                    <!-- WGDashboard -->
+                    <div class="lab-card reveal-child">
+                        <div class="lab-card-header">
+                            <span class="lab-card-title" data-i18n="lab.wg.name">WGDashboard</span>
+                            <span class="lab-card-status">
+                                <span class="status-dot"></span>
+                                <span data-i18n="lab.status">ONLINE</span>
+                            </span>
+                        </div>
+                        <p class="lab-card-desc" data-i18n="lab.wg.desc">WireGuard VPN management dashboard — peers, tunnels, traffic monitoring.</p>
+                        <div>
+                            <span class="stag highlight">VPN</span>
+                            <span class="stag">WireGuard</span>
+                            <span class="stag">Networking</span>
+                        </div>
+                        <a href="https://wgdashboard.yatoub.dev" target="_blank" rel="noopener" class="btn btn-primary" style="text-align:center;">
+                            <span data-i18n="lab.open">OPEN</span> →
+                        </a>
+                    </div>
+
+                    <!-- Proxmox -->
+                    <div class="lab-card reveal-child">
+                        <div class="lab-card-header">
+                            <span class="lab-card-title" data-i18n="lab.proxmox.name">Proxmox</span>
+                            <span class="lab-card-status lab-card-status--tunnel">
+                                <span class="status-dot status-dot--amber"></span>
+                                <span data-i18n="lab.tunnelonly">VPN ONLY</span>
+                            </span>
+                        </div>
+                        <p class="lab-card-desc" data-i18n="lab.proxmox.desc">Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.</p>
+                        <div>
+                            <span class="stag highlight">Hypervisor</span>
+                            <span class="stag">KVM</span>
+                            <span class="stag">LXC</span>
+                        </div>
+                        <a href="https://proxmox.yatoub.dev" target="_blank" rel="noopener" class="btn btn-ghost" style="text-align:center;">
                             <span data-i18n="lab.open">OPEN</span> →
                         </a>
                     </div>

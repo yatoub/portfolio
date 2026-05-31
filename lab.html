@@ -70,6 +70,23 @@
             margin-top: 0.5rem;
             font-style: italic;
         }
+        .btn-logout {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.75rem;
+            border: 1px solid var(--amber);
+            color: var(--amber);
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+            white-space: nowrap;
+        }
+        .btn-logout:hover {
+            background: var(--amber);
+            color: var(--text-inv);
+        }
     </style>
 </head>
 <body>
@@ -100,6 +117,7 @@
             <button class="lang-toggle" id="langToggle" aria-label="Switch language">
                 <span id="langLabel">FR</span>
             </button>
+            <a href="https://auth.yatoub.dev/logout?rd=https://yatoub.dev" class="btn-logout" aria-label="Logout">LOGOUT</a>
         </div>
     </nav>
 

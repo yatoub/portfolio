@@ -100,6 +100,24 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+  HOMELAB
+  ───────
+  Self-hosted infrastructure running on Proxmox (KVM + LXC).
+  All services protected by Authelia SSO, 2FA, and VPN/IP filtering.
+
+  Proxmox          HYPERVISOR   VMs, LXC containers, KVM virtualisation
+  Home Assistant   AUTOMATION   Home automation via MQTT and Zigbee
+  Vaultwarden      SECURITY     Self-hosted Bitwarden (Rust)
+  Grafana+Prom.    MONITORING   Metrics stack, dashboards and alerting
+  WGDashboard      VPN          WireGuard VPN management interface
+  n8n              WORKFLOW     Workflow automation and event orchestration
+  Arcane           CONTAINERS   Docker management frontend
+  Authelia         SSO / IAM    Single sign-on + 2FA gateway
+
+  → yatoub.dev/lab
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
   CONTACT
   ───────
   Email  : yatoub@yatoub.dev

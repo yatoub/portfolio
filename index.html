@@ -38,8 +38,9 @@
                 <li><a href="#about"      class="nav-link" data-index="01" data-i18n="nav.about">ABOUT</a></li>
                 <li><a href="#experience" class="nav-link" data-index="02" data-i18n="nav.exp">EXP</a></li>
                 <li><a href="#projects"   class="nav-link" data-index="03" data-i18n="nav.projects">PROJECTS</a></li>
-                <li><a href="#contact"    class="nav-link" data-index="04" data-i18n="nav.contact">CONTACT</a></li>
-                <li><a href="/lab"        class="nav-link" data-index="05" data-i18n="nav.lab">LAB</a></li>
+                <li><a href="#homelab"    class="nav-link" data-index="04" data-i18n="nav.homelab">HOMELAB</a></li>
+                <li><a href="#contact"    class="nav-link" data-index="05" data-i18n="nav.contact">CONTACT</a></li>
+                <li><a href="/lab"        class="nav-link" data-index="06" data-i18n="nav.lab">LAB</a></li>
             </ul>
             <button class="lang-toggle" id="langToggle" aria-label="Switch language">
                 <span id="langLabel">FR</span>
@@ -418,11 +419,95 @@
             </div>
         </section>
 
-        <!-- ═══ CONTACT ═══ -->
-        <section id="contact" class="section section-alt reveal">
+        <!-- ═══ HOMELAB ═══ -->
+        <section id="homelab" class="section section-alt reveal">
             <div class="container">
                 <div class="section-header">
                     <span class="sh-index">04</span>
+                    <h2 class="sh-title">
+                        <span data-i18n="homelab.title">HOMELAB</span>
+                        <span class="title-cursor">_</span>
+                    </h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="homelab-layout">
+                    <div class="homelab-intro">
+                        <p class="homelab-desc" data-i18n="homelab.intro">I run a self-hosted infrastructure at home on a Proxmox hypervisor — VMs, LXC containers, and services I actually use daily.</p>
+                        <a href="/lab" class="btn btn-ghost homelab-cta">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            <span data-i18n="homelab.cta">EXPLORE_LAB</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </a>
+                    </div>
+
+                    <div class="homelab-services">
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">Proxmox</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.proxmox.badge">HYPERVISOR</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.proxmox.desc">VMs, LXC containers, KVM virtualisation layer</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">Home Assistant</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.ha.badge">AUTOMATION</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.ha.desc">Home automation via MQTT and Zigbee</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">Vaultwarden</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.vw.badge">SECURITY</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.vw.desc">Self-hosted Bitwarden password manager in Rust</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">Grafana + Prometheus</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.grafana.badge">MONITORING</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.grafana.desc">Full metrics stack, dashboards and alerting</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">WGDashboard</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.wg.badge">VPN</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.wg.desc">WireGuard VPN management interface</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">n8n</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.n8n.badge">WORKFLOW</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.n8n.desc">Workflow automation and event orchestration</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">Arcane</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.arcane.badge">CONTAINERS</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.arcane.desc">Docker management frontend</p>
+                        </div>
+                        <div class="hl-service reveal-child">
+                            <div class="hl-svc-header">
+                                <span class="hl-svc-name">Authelia</span>
+                                <span class="hl-svc-badge" data-i18n="homelab.svc.authelia.badge">SSO / IAM</span>
+                            </div>
+                            <p class="hl-svc-desc" data-i18n="homelab.svc.authelia.desc">Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONTACT ═══ -->
+        <section id="contact" class="section reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">05</span>
                     <h2 class="sh-title"><span data-i18n="contact.title">CONTACT</span><span class="title-cursor">_</span></h2>
                     <div class="sh-line"></div>
                 </div>
@@ -488,6 +573,7 @@
         </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>

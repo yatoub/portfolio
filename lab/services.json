@@ -48,6 +48,14 @@
     "vpn": false
   },
   {
+    "name": "Wiki.js",
+    "desc_en": "Self-hosted wiki and documentation platform — notes, runbooks, knowledge base.",
+    "desc_fr": "Wiki et plateforme de documentation auto-hébergés — notes, runbooks, base de connaissances.",
+    "url": "https://wiki.yatoub.dev",
+    "tags": ["Wiki", "Documentation", "Self-hosted"],
+    "vpn": false
+  },
+  {
     "name": "Proxmox",
     "desc_en": "Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.",
     "desc_fr": "Interface de gestion de l'hyperviseur — VMs, conteneurs, stockage. Nécessite le tunnel WireGuard.",

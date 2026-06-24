@@ -56,6 +56,14 @@
     "vpn": false
   },
   {
+    "name": "Matomo",
+    "desc_en": "Self-hosted web analytics — visitor tracking, traffic sources, goals, privacy-first.",
+    "desc_fr": "Analytique web auto-hébergée — suivi des visiteurs, sources de trafic, objectifs, respect de la vie privée.",
+    "url": "https://matomo.yatoub.dev",
+    "tags": ["Analytics", "Privacy", "Self-hosted"],
+    "vpn": false
+  },
+  {
     "name": "Proxmox",
     "desc_en": "Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.",
     "desc_fr": "Interface de gestion de l'hyperviseur — VMs, conteneurs, stockage. Nécessite le tunnel WireGuard.",

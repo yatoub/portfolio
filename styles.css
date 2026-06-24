@@ -1149,3 +1149,63 @@ code { font-family: var(--font-mono); }
 @media (max-width: 480px) {
     .homelab-services { grid-template-columns: 1fr; }
 }
+
+/* ── Cookie banner ── */
+.cookie-banner {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: min(680px, calc(100vw - 2rem));
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    animation: slideUp 0.3s ease;
+}
+.cookie-banner[hidden] { display: none; }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(1rem); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.cookie-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem;
+}
+.cookie-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    flex: 1;
+    min-width: 0;
+}
+.cookie-prompt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+}
+.cookie-text span:last-child {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-2);
+    line-height: 1.5;
+}
+.cookie-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+.cookie-btn {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.9rem;
+    white-space: nowrap;
+}
+@media (max-width: 600px) {
+    .cookie-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .cookie-actions { justify-content: flex-end; }
+}

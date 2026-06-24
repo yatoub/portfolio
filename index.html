@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
+    <!-- Cookie banner -->
+    <div class="cookie-banner" id="cookieBanner" hidden>
+        <div class="cookie-inner">
+            <div class="cookie-text">
+                <span class="cookie-prompt">$</span>
+                <span id="cookieMsg">This site uses Matomo analytics cookies to measure traffic. No data is sent to third parties.</span>
+            </div>
+            <div class="cookie-actions">
+                <button class="btn btn-primary cookie-btn" id="cookieAccept"><span id="cookieAcceptLabel">ACCEPT</span></button>
+                <button class="btn btn-ghost cookie-btn" id="cookieDecline"><span id="cookieDeclineLabel">DECLINE</span></button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scanline overlay -->
     <div class="scanlines" aria-hidden="true"></div>
     <!-- CRT flicker overlay -->

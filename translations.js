@@ -82,6 +82,11 @@ const translations = {
             },
         },
         lab: { title: 'PRIVATE SERVICES' },
+        cookie: {
+            msg: 'This site uses Matomo analytics to measure traffic. No data is shared with third parties.',
+            accept: 'ACCEPT',
+            decline: 'DECLINE',
+        },
         roles: ['Systems Administrator / DevOps', 'Infrastructure Engineer', 'Linux Enthusiast', 'Tech Lead', 'CTF Player'],
         status: ['ONLINE', 'READY', 'AVAILABLE', 'SYS:OK'],
     },
@@ -168,6 +173,11 @@ const translations = {
             },
         },
         lab: { title: 'SERVICES PRIVÉS' },
+        cookie: {
+            msg: "Ce site utilise Matomo Analytics pour mesurer le trafic. Aucune donnée n'est transmise à des tiers.",
+            accept: 'ACCEPTER',
+            decline: 'REFUSER',
+        },
         roles: ['Administrateur Systèmes / DevOps', 'Ingénieur Infrastructure', 'Passionné Linux', 'Lead Technique', 'CTF Player'],
         status: ['EN LIGNE', 'PRÊT', 'DISPONIBLE', 'SYS:OK'],
     },

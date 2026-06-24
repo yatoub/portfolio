@@ -27,6 +27,8 @@ function applyLang(lang) {
 
     statusIdx = 0;
     if (statusEl) statusEl.textContent = translations[lang].status[0];
+
+    if (typeof window._cookieUpdateLang === 'function') window._cookieUpdateLang(lang);
 }
 
 function detectLang() {
@@ -245,6 +247,52 @@ window.addEventListener('load', () => {
         },
     });
 });
+
+/* ── Cookie consent ── */
+(function () {
+    const COOKIE_KEY = 'matomo_consent';
+    const banner = document.getElementById('cookieBanner');
+    const consent = localStorage.getItem(COOKIE_KEY);
+
+    function applyConsent(accepted) {
+        if (!accepted) {
+            window._paq = window._paq || [];
+            window._paq.push(['optUserOut']);
+        }
+    }
+
+    function updateBannerLang(lang) {
+        const c = translations[lang].cookie;
+        const msg = document.getElementById('cookieMsg');
+        const acceptLabel = document.getElementById('cookieAcceptLabel');
+        const declineLabel = document.getElementById('cookieDeclineLabel');
+        if (msg) msg.textContent = c.msg;
+        if (acceptLabel) acceptLabel.textContent = c.accept;
+        if (declineLabel) declineLabel.textContent = c.decline;
+    }
+
+    if (consent === null) {
+        banner.hidden = false;
+    } else {
+        applyConsent(consent === 'true');
+    }
+
+    document.getElementById('cookieAccept')?.addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'true');
+        banner.hidden = true;
+    });
+
+    document.getElementById('cookieDecline')?.addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'false');
+        applyConsent(false);
+        banner.hidden = true;
+    });
+
+    const _origApplyLang = applyLang;
+    window._cookieUpdateLang = updateBannerLang;
+
+    updateBannerLang(detectLang());
+})();
 
 /* ── Skill tag hover stagger ── */
 document.querySelectorAll('.skills-category').forEach(cat => {

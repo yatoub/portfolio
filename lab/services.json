@@ -64,6 +64,14 @@
     "vpn": false
   },
   {
+    "name": "Vigie",
+    "desc_en": "Tech watch aggregator — RSS feeds, web search (SearXNG) and Reddit, organized by tag, with dedup, scoring, full-text search and automatic summaries via n8n.",
+    "desc_fr": "Agrégateur de veille techno — sources RSS, recherche web (SearXNG) et Reddit, organisées par tag, avec dédup, scoring, recherche plein texte et résumés automatiques via n8n.",
+    "url": "https://vigie.yatoub.dev",
+    "tags": ["RSS", "n8n", "Self-hosted"],
+    "vpn": false
+  },
+  {
     "name": "Proxmox",
     "desc_en": "Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.",
     "desc_fr": "Interface de gestion de l'hyperviseur — VMs, conteneurs, stockage. Nécessite le tunnel WireGuard.",

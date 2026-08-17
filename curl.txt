@@ -65,6 +65,11 @@
 
   PROJECTS
   ────────
+  Rutile             [Rust]    GNOME-native terminal emulator (GTK4) with
+                               recursive split tiling, synced input —
+                               a from-scratch Tilix rewrite.
+                               github.com/yatoub/Rutile
+
   susshi             [Rust]    Terminal SSH manager — YAML inventories,
                                jump hosts, Wallix bastion, tunnels, SCP.
                                github.com/yatoub/susshi             ⭐ 10
@@ -91,10 +96,6 @@
   opensiren          [JS]      OSINT tool for French companies via the
                                SIRENE open data API.
                                github.com/yatoub/opensiren
-
-  resume-terminal    [JS]      Resume as an interactive terminal —
-                               type commands to navigate the CV.
-                               github.com/yatoub/resume-terminal
 
   → github.com/yatoub
 

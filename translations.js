@@ -52,14 +52,6 @@ const translations = {
         projects: {
             title: 'PROJECTS',
             view: 'VIEW →',
-            susshi: { desc: 'Terminal SSH manager with YAML inventories, jump hosts, Wallix bastion support, tunnels and SCP. Built for sysadmins who live in the terminal.' },
-            tych: { desc: 'Random number generator based on chaos theory — uses the double pendulum system as an entropy source to produce unpredictable sequences.' },
-            loki: { desc: 'Local file encryptor using AES-256. Simple CLI tool to encrypt and decrypt files on disk.' },
-            prometheus: { desc: 'Ansible playbook to deploy a full Prometheus + Grafana monitoring stack. Ready-to-use dashboards, ideal for POCs.' },
-            check3tier: { desc: 'Ansible playbook to audit multiple RedHat Linux machines against a technical specification sheet.' },
-            log4j: { desc: 'Shell script to detect Log4Shell (CVE-2021-44228) exposure on a server by checking installed package versions.' },
-            opensiren: { desc: 'OSINT tool for gathering public information on French companies using the SIRENE open data API.' },
-            resumeterminal: { desc: 'Resume displayed as an interactive terminal. Type commands to navigate through the CV sections.' },
         },
         contact: {
             title: 'CONTACT',
@@ -143,14 +135,6 @@ const translations = {
         projects: {
             title: 'PROJETS',
             view: 'VOIR →',
-            susshi: { desc: 'Gestionnaire SSH en terminal avec inventaires YAML, jump hosts, support bastion Wallix, tunnels et SCP. Conçu pour les sysadmins qui vivent dans le terminal.' },
-            tych: { desc: "Générateur de nombres aléatoires basé sur la théorie du chaos — utilise le pendule double comme source d'entropie pour produire des séquences imprévisibles." },
-            loki: { desc: "Outil de chiffrement de fichiers en AES-256. CLI simple pour chiffrer et déchiffrer des fichiers sur le disque." },
-            prometheus: { desc: "Playbook Ansible pour déployer une stack de supervision Prometheus + Grafana. Dashboards prêts à l'emploi, idéal pour des POCs." },
-            check3tier: { desc: "Playbook Ansible pour auditer plusieurs machines Linux RedHat par rapport à un cahier des charges technique." },
-            log4j: { desc: "Script shell pour détecter l'exposition à Log4Shell (CVE-2021-44228) sur un serveur en vérifiant les versions des paquets installés." },
-            opensiren: { desc: "Outil OSINT pour collecter des informations publiques sur des entreprises françaises via l'API open data SIRENE." },
-            resumeterminal: { desc: "CV présenté sous forme de terminal interactif. Tapez des commandes pour naviguer dans les sections du CV." },
         },
         contact: {
             title: 'CONTACT',

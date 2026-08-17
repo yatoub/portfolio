@@ -233,19 +233,77 @@ setInterval(() => {
     }, 200);
 }, 4000);
 
-/* ── Projects carousel (Swiper) ── */
+/* ── Projects carousel (Swiper, cards from projects.json) ── */
 window.addEventListener('load', () => {
-    new Swiper('.projects-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 24,
-        grabCursor: true,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        breakpoints: {
-            600: { slidesPerView: 2 },
-            960: { slidesPerView: 3 },
-        },
-    });
+    fetch('/projects.json')
+        .then(r => r.json())
+        .then(projects => {
+            const wrapper = document.getElementById('projectsWrapper');
+            const viewLabel = t('projects.view', currentLang);
+
+            projects.forEach((p, i) => {
+                const desc = currentLang === 'fr' ? p.desc_fr : p.desc_en;
+                const index = `P.${String(i + 1).padStart(2, '0')}`;
+
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+
+                const link = document.createElement('a');
+                link.href = p.url;
+                link.target = '_blank';
+                link.className = 'proj-card featured';
+
+                const inner = document.createElement('div');
+                inner.className = 'proj-card-inner';
+
+                const top = document.createElement('div');
+                top.className = 'proj-top';
+                const indexSpan = document.createElement('span');
+                indexSpan.className = 'proj-index';
+                indexSpan.textContent = index;
+                const badgeSpan = document.createElement('span');
+                badgeSpan.className = 'proj-badge';
+                badgeSpan.textContent = p.badge;
+                top.append(indexSpan, badgeSpan);
+
+                const title = document.createElement('h3');
+                title.className = 'proj-title';
+                title.textContent = p.name;
+
+                const descP = document.createElement('p');
+                descP.className = 'proj-desc';
+                descP.textContent = desc;
+
+                const tags = document.createElement('div');
+                tags.className = 'proj-tags';
+                p.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.textContent = tag;
+                    tags.appendChild(span);
+                });
+
+                const arrow = document.createElement('div');
+                arrow.className = 'proj-arrow';
+                arrow.textContent = viewLabel;
+
+                inner.append(top, title, descP, tags, arrow);
+                link.appendChild(inner);
+                slide.appendChild(link);
+                wrapper.appendChild(slide);
+            });
+
+            new Swiper('.projects-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 24,
+                grabCursor: true,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                breakpoints: {
+                    600: { slidesPerView: 2 },
+                    960: { slidesPerView: 3 },
+                },
+            });
+        });
 });
 
 /* ── Cookie consent ── */

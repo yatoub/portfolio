@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Rutile",
+    "url": "https://github.com/yatoub/Rutile",
+    "badge": "Rust / Terminal",
+    "tags": ["Rust", "gnome", "Terminal", "Tiling"],
+    "desc_en": "GNOME-native terminal emulator (Rust/GTK4) with recursive split tiling and synchronized input — a from-scratch Tilix rewrite",
+    "desc_fr": "Émulateur de terminal natif GNOME (Rust/GTK4) avec tiling récursif par division et saisie synchronisée — une réécriture de Tilix repartant de zéro."
+  },
+  {
+    "name": "susshi",
+    "url": "https://github.com/yatoub/susshi",
+    "badge": "Rust / CLI",
+    "tags": ["Rust", "SSH", "CLI", "YAML"],
+    "desc_en": "Terminal SSH manager with YAML inventories, jump hosts, Wallix bastion support, tunnels and SCP. Built for sysadmins who live in the terminal.",
+    "desc_fr": "Gestionnaire SSH en terminal avec inventaires YAML, jump hosts, support bastion Wallix, tunnels et SCP. Conçu pour les sysadmins qui vivent dans le terminal."
+  },
+  {
+    "name": "Tych",
+    "url": "https://github.com/yatoub/Tych",
+    "badge": "Python / Math",
+    "tags": ["Python", "Chaos Theory", "RNG"],
+    "desc_en": "Random number generator based on chaos theory — uses the double pendulum system as an entropy source to produce unpredictable sequences.",
+    "desc_fr": "Générateur de nombres aléatoires basé sur la théorie du chaos — utilise le pendule double comme source d'entropie pour produire des séquences imprévisibles."
+  },
+  {
+    "name": "loki",
+    "url": "https://github.com/yatoub/loki",
+    "badge": "Go / Security",
+    "tags": ["Go", "AES-256", "Encryption"],
+    "desc_en": "Local file encryptor using AES-256. Simple CLI tool to encrypt and decrypt files on disk.",
+    "desc_fr": "Outil de chiffrement de fichiers en AES-256. CLI simple pour chiffrer et déchiffrer des fichiers sur le disque."
+  },
+  {
+    "name": "PrometheusWithGrafana",
+    "url": "https://github.com/yatoub/PrometheusWithGrafana",
+    "badge": "Ansible / Monitoring",
+    "tags": ["Ansible", "Prometheus", "Grafana"],
+    "desc_en": "Ansible playbook to deploy a full Prometheus + Grafana monitoring stack. Ready-to-use dashboards, ideal for POCs.",
+    "desc_fr": "Playbook Ansible pour déployer une stack de supervision Prometheus + Grafana. Dashboards prêts à l'emploi, idéal pour des POCs."
+  },
+  {
+    "name": "check3TierEnv",
+    "url": "https://github.com/yatoub/check3TierEnv",
+    "badge": "Ansible / Infra",
+    "tags": ["Ansible", "RedHat", "Audit"],
+    "desc_en": "Ansible playbook to audit multiple RedHat Linux machines against a technical specification sheet.",
+    "desc_fr": "Playbook Ansible pour auditer plusieurs machines Linux RedHat par rapport à un cahier des charges technique."
+  },
+  {
+    "name": "Log4jVulnChecker",
+    "url": "https://github.com/yatoub/Log4jVulnChecker",
+    "badge": "Shell / Security",
+    "tags": ["Bash", "CVE", "Log4Shell"],
+    "desc_en": "Shell script to detect Log4Shell (CVE-2021-44228) exposure on a server by checking installed package versions.",
+    "desc_fr": "Script shell pour détecter l'exposition à Log4Shell (CVE-2021-44228) sur un serveur en vérifiant les versions des paquets installés."
+  },
+  {
+    "name": "opensiren",
+    "url": "https://github.com/yatoub/opensiren",
+    "badge": "JS / OSINT",
+    "tags": ["JavaScript", "OSINT", "SIRENE"],
+    "desc_en": "OSINT tool for gathering public information on French companies using the SIRENE open data API.",
+    "desc_fr": "Outil OSINT pour collecter des informations publiques sur des entreprises françaises via l'API open data SIRENE."
+  }
+]

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // WHOAMI</title>
+    <meta name="description" content="Tout ce qu'un site web peut savoir sur vous, uniquement avec JavaScript.">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">SCANNING…</span>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-nav" id="copyBtn" type="button" data-i18n="nav.copy">COPIER</button>
+                <button class="btn-nav" id="exportBtn" type="button" data-i18n="nav.export">EXPORT.JSON</button>
+                <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+                    <span id="langLabel">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ── Hero ── -->
+        <header class="hero container">
+            <p class="hero-pre">// whoami --verbose</p>
+            <h1 class="hero-title"><span data-i18n="hero.title1">CE QUE JE SAIS</span><br><span data-i18n="hero.title2">DE VOUS</span><span class="title-cursor">_</span></h1>
+            <p class="hero-sub">
+                <span data-i18n="hero.sub1">Aucun formulaire. Aucune permission. Aucun cookie.</span><br>
+                <span data-i18n="hero.sub2">Juste le JavaScript que votre navigateur exécute en ouvrant cette page.</span>
+            </p>
+
+            <div class="hero-grid">
+                <div class="terminal">
+                    <div class="tc-bar">
+                        <div class="tc-dots"><span class="tcd red"></span><span class="tcd yellow"></span><span class="tcd green"></span></div>
+                        <span class="tc-title">~/scan.log</span>
+                    </div>
+                    <pre class="boot-log" id="bootLog"></pre>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat"><span class="stat-num" id="statSignals">0</span><span class="stat-label" data-i18n="stat.signals">signaux collectés</span></div>
+                    <div class="stat"><span class="stat-num">0</span><span class="stat-label" data-i18n="stat.perms">permission demandée</span></div>
+                    <div class="stat"><span class="stat-num" id="statTime">0.0s</span><span class="stat-label" data-i18n="stat.time">durée du scan</span></div>
+                    <div class="stat stat-wide"><span class="stat-num stat-id" id="statId">…</span><span class="stat-label" data-i18n="stat.id">votre empreinte (sans cookie)</span></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── Données statiques ── -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title">DUMP<span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="card-grid" id="cards"></div>
+            </div>
+        </section>
+
+        <!-- ── Live + déductions ── -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title">ANALYSE<span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="card-grid" id="cardsLive"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer container">
+        <p data-i18n="foot.local">// rien n'est stocké ni envoyé à yatoub.dev. Tout est calculé dans votre navigateur.</p>
+        <p><span data-i18n="foot.ext">// requêtes externes :</span> <code>ipwho.is</code> / <code>ipapi.co</code> <span data-i18n="foot.ip">(IP &amp; géoloc)</span>, <code>stun.l.google.com</code> (WebRTC).</p>
+        <p>// <a href="/">yatoub.dev</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

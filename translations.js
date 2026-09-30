@@ -1,7 +1,7 @@
 /* ── i18n translations ── */
 const translations = {
     en: {
-        nav: { home: 'HOME', about: 'ABOUT', exp: 'EXP', projects: 'PROJECTS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB' },
+        nav: { home: 'HOME', about: 'ABOUT', exp: 'EXP', projects: 'PROJECTS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB', whoami: 'WHOAMI' },
         hero: { bootok: 'BOOT OK', status: 'AVAILABLE', cta: 'VIEW_PROJECTS' },
         about: {
             title: 'ABOUT',
@@ -84,7 +84,7 @@ const translations = {
     },
 
     fr: {
-        nav: { home: 'ACCUEIL', about: 'À PROPOS', exp: 'EXP', projects: 'PROJETS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB' },
+        nav: { home: 'ACCUEIL', about: 'À PROPOS', exp: 'EXP', projects: 'PROJETS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB', whoami: 'WHOAMI' },
         hero: { bootok: 'DÉMARRAGE OK', status: 'DISPONIBLE', cta: 'VOIR_PROJETS' },
         about: {
             title: 'À PROPOS',

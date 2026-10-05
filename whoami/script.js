@@ -244,6 +244,29 @@ async function collectNetwork() {
     ];
 }
 
+/* ── Vu par le serveur ── */
+// /whoami/server.json est un template Caddy : IP, TLS et en-têtes tels que reçus, sans JavaScript côté client
+async function collectServer() {
+    const r = await fetch('/whoami/server.json', { cache: 'no-store', signal: AbortSignal.timeout(4000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    const h = d.headers || {};
+    const src = (name) => `header: ${name}`;
+    return [
+        ['srv.ip', d.ip, 'TCP remote address', true],
+        ['srv.proto', d.proto, 'HTTP'],
+        ['srv.tls', d.tls, 'TLS handshake'],
+        ['srv.cipher', d.cipher, 'TLS handshake'],
+        ['srv.alpn', d.alpn, 'TLS handshake'],
+        ['srv.sni', d.sni, 'TLS ClientHello'],
+        ['srv.ua', h['User-Agent'], src('User-Agent')],
+        ['srv.lang', h['Accept-Language'], src('Accept-Language')],
+        ['srv.enc', h['Accept-Encoding'], src('Accept-Encoding')],
+        ['srv.site', [h['Sec-Fetch-Site'], h['Sec-Fetch-Mode'], h['Sec-Fetch-Dest']].filter(Boolean).join(' / '), src('Sec-Fetch-*')],
+        ['srv.count', Object.keys(h).length, 'request headers'],
+    ];
+}
+
 /* ── 02 Lieu & temps ── */
 function collectLocale() {
     const ro = Intl.DateTimeFormat().resolvedOptions();
@@ -670,6 +693,7 @@ function renderDeductions(animate = true) {
 /* ═══════════ ORCHESTRATION ═══════════ */
 const SECTIONS = [
     { id: 'net', file: 'network.sh', desc: true, run: collectNetwork },
+    { id: 'srv', file: 'server.sh', desc: true, run: collectServer },
     { id: 'loc', file: 'locale.sh', desc: true, run: collectLocale, geo: true },
     { id: 'br', file: 'browser.sh', run: collectBrowser },
     { id: 'hw', file: 'hardware.sh', desc: true, after: ['br'], run: collectHardware },

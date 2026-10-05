@@ -1,0 +1,27 @@
+{{- /* Caddy template — rendered by `templates`, served to CLI clients on /whoami.
+       Credentials are never echoed back: a same-origin fetch could otherwise read HttpOnly cookies. */ -}}
+{{- $secret := list "Cookie" "Authorization" "Proxy-Authorization" -}}
+{{- $tls := placeholder "http.request.tls.version" }}
+  $ whoami --server
+  # what yatoub.dev sees before a single line of JavaScript runs
+
+  ip        {{ .RemoteIP }}
+  method    {{ .Req.Method }} {{ .OriginalReq.URL.Path }}
+  host      {{ .Req.Host }}
+  proto     {{ .Req.Proto }}
+{{- if $tls }}
+  tls       {{ $tls }}
+  cipher    {{ placeholder "http.request.tls.cipher_suite" }}
+  alpn      {{ placeholder "http.request.tls.proto" }}
+  sni       {{ placeholder "http.request.tls.server_name" }}
+{{- else }}
+  tls       none — plain HTTP, anyone on the path can read this
+{{- end }}
+
+  HEADERS YOU SENT
+  ────────────────
+{{- range $k, $v := .Req.Header }}
+  {{ printf "%-18s" $k }} {{ if has $k $secret }}[redacted]{{ else }}{{ join ", " $v }}{{ end }}
+{{- end }}
+
+  # the browser version leaks a lot more → https://yatoub.dev/whoami/

@@ -106,7 +106,10 @@ function renderRow(svc, meta, trusted) {
     const pct = StatusCore.fmtUptime(svc.uptime);
     uptime.append(el('strong', '', pct === null ? '—' : `${pct} %`), ` ${tf('row.uptime', { n: days.length })}`);
     const latency = el('span');
-    const ms = Number.isFinite(svc.latency_ms) ? `${Math.round(svc.latency_ms)} ms` : '—';
+    // Sub-10 ms probes (ICMP on the LAN) keep one decimal instead of rounding to 0
+    const ms = Number.isFinite(svc.latency_ms)
+        ? `${svc.latency_ms < 10 ? svc.latency_ms.toFixed(1) : Math.round(svc.latency_ms)} ms`
+        : '—';
     latency.append(`${t('row.latency')} `, el('strong', '', trusted ? ms : '—'));
     foot.append(uptime, latency);
 

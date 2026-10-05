@@ -128,7 +128,7 @@ code { font-family: var(--font-mono); }
     height: 100%;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .nav-logo {
@@ -188,6 +188,7 @@ a.nav-status:hover { color: var(--text-1); }
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    white-space: nowrap;
 }
 
 .nav-link::before {
@@ -1026,8 +1027,14 @@ a.nav-status:hover { color: var(--text-1); }
 /* ── Responsive ── */
 /* 8 liens de nav : on resserre avant le passage au hamburger */
 @media (min-width: 769px) and (max-width: 1240px) {
-    .nav-inner { gap: 1.25rem; }
     .nav-link { padding: 0.5rem 0.55rem; letter-spacing: 0.1em; }
+}
+
+/* Plus étroit : on retire le statut et les index pour garder les liens sur une ligne */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .nav-inner { gap: 1rem; }
+    .nav-status { display: none; }
+    .nav-link::before { display: none; }
 }
 
 @media (max-width: 960px) {

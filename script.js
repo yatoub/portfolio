@@ -29,6 +29,7 @@ function applyLang(lang) {
     if (statusEl) statusEl.textContent = liveState ? translations[lang].live[liveState] : translations[lang].status[0];
 
     renderHomelab(lang);
+    document.getElementById('termToggle')?.setAttribute('aria-label', translations[lang].term.open);
 
     if (typeof window._cookieUpdateLang === 'function') window._cookieUpdateLang(lang);
 }
@@ -245,6 +246,32 @@ setInterval(() => {
         statusEl.style.opacity = '1';
     }, 200);
 }, 4000);
+
+/* ── Terminal (term/*.js, loaded on first use: navbar button or Ctrl+K) ── */
+let termLoading = null;
+
+function loadTerminal() {
+    termLoading ??= ['/term/core.js', '/term/terminal.js'].reduce((chain, src) => chain.then(() => new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.body.appendChild(s);
+    })), Promise.resolve());
+    return termLoading;
+}
+
+const termToggle = document.getElementById('termToggle');
+if (termToggle) {
+    const toggleTerminal = () => loadTerminal().then(() => window.YTerm.toggle()).catch(() => { termLoading = null; });
+    termToggle.addEventListener('click', toggleTerminal);
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            toggleTerminal();
+        }
+    });
+}
 
 /* ── Live homelab state (navbar dot) ── */
 // Only a fresh /data/status.json replaces the decorative cycle above

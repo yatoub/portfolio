@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════
+   YATOUB // TERM — overlay styles
+   Palette and base components come from /styles.css
+   ═══════════════════════════════════════════ */
+
+.term-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;              /* above the navbar, below the CRT overlays */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(3px);
+}
+.term-overlay[hidden] { display: none; }
+
+.term-window {
+    display: flex;
+    flex-direction: column;
+    width: min(880px, 100%);
+    height: min(600px, 100%);
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--green-dim);
+    animation: termIn 0.18s ease;
+}
+@keyframes termIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.99); }
+}
+
+.term-bar { flex-shrink: 0; }
+.term-close {
+    margin-left: auto;
+    background: none;
+    border: 1px solid var(--border-bright);
+    color: var(--text-3);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+.term-close:hover, .term-close:focus-visible { color: var(--text-1); border-color: var(--green); outline: none; }
+
+.term-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    cursor: text;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-3) transparent;
+}
+
+.term-out > div { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text-2); min-height: 1.65em; }
+.term-out .cmd { color: var(--text-1); }
+.term-out .dim { color: var(--text-3); }
+.term-out .err { color: var(--red-dot); }
+.term-out .ok { color: var(--green-dot); }
+
+.term-line { display: flex; gap: 0.6ch; align-items: baseline; }
+.term-prompt { color: var(--green); white-space: nowrap; }
+.term-input {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: 0;
+    outline: none;
+    padding: 0;
+    color: var(--text-1);
+    font: inherit;
+    caret-color: var(--green);
+}
+
+/* ── Navbar trigger ── */
+.term-toggle {
+    background: none;
+    border: 1px solid var(--border-bright);
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.55rem;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+.term-toggle:hover, .term-toggle:focus-visible { border-color: var(--green); box-shadow: 0 0 8px var(--green-glow); outline: none; }
+
+@media (max-width: 768px) {
+    .term-overlay { padding: 0; }
+    .term-window { width: 100%; height: 100%; border: 0; }
+    .term-body { font-size: 0.75rem; padding: 0.75rem; }
+    .term-toggle { padding: 0.2rem 0.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .term-window { animation: none; }
+}
+
+@media print {
+    .term-overlay, .term-toggle { display: none !important; }
+}
+
+/* Sits next to the language switch */
+.term-toggle + .lang-toggle { margin-left: -0.65rem; }

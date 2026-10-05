@@ -16,7 +16,7 @@ jobs:
       - name: Check JS syntax
         run: for f in script.js translations.js whoami/*.js status/*.js; do node --check "$f"; done
       - name: Unit tests
-        run: node --test tools/
+        run: node --test tools/*.test.mjs
       - name: Check generated files are up to date
         run: node tools/build.mjs --check
 

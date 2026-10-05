@@ -122,7 +122,6 @@
   Grafana          MONITORING   Full metrics stack, dashboards and alerting
   Arcane           CONTAINERS   Docker management frontend
   n8n              WORKFLOW     Workflow automation and event orchestration
-  Wiki.js          DOCS         Self-hosted wiki, runbooks and knowledge base
   Matomo           ANALYTICS    Privacy-first self-hosted web analytics
   Vigie            TECH WATCH   Tech watch — RSS, web search and Reddit
   Proxmox          HYPERVISOR   VMs, LXC containers, KVM virtualisation layer

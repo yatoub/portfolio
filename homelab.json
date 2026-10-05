@@ -54,15 +54,6 @@
     "home": true
   },
   {
-    "id": "wikijs",
-    "name": "Wiki.js",
-    "badge_en": "DOCS",
-    "badge_fr": "DOCS",
-    "short_en": "Self-hosted wiki, runbooks and knowledge base",
-    "short_fr": "Wiki auto-hébergé, runbooks et base de connaissances",
-    "home": false
-  },
-  {
     "id": "matomo",
     "name": "Matomo",
     "badge_en": "ANALYTICS",

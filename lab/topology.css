@@ -1,0 +1,106 @@
+/* ═══════════════════════════════════════════
+   YATOUB // LAB — topology diagram
+   Palette and base components come from /styles.css
+   ═══════════════════════════════════════════ */
+
+.topo { margin-top: 2rem; }
+.topo-hint { font-size: 0.85rem; color: var(--text-3); font-style: italic; }
+
+.topo-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: start;
+}
+
+/* The diagram keeps its proportions and scrolls sideways on small screens */
+.topo-canvas {
+    overflow-x: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1rem;
+}
+.topo-svg { display: block; width: 100%; min-width: 760px; height: auto; }
+
+/* ── Nodes ── */
+.topo-node rect {
+    fill: var(--bg-1);
+    stroke: var(--border-bright);
+    stroke-width: 1;
+    transition: stroke var(--transition), fill var(--transition);
+}
+.topo-node .topo-name { fill: var(--text-1); font-family: var(--font-display); font-size: 13px; letter-spacing: 0.05em; }
+.topo-node .topo-sub { fill: var(--text-3); font-family: var(--font-mono); font-size: 10px; }
+.topo-node.on rect { stroke: var(--green); fill: var(--bg-2); }
+.topo-node.on.auth rect { stroke: var(--amber); }
+
+.topo-svc { cursor: pointer; }
+.topo-svc:hover rect { stroke: var(--text-2); }
+.topo-svc:focus-visible { outline: none; }
+.topo-svc:focus-visible rect { stroke: var(--text-1); stroke-width: 2; }
+.topo-svc.selected rect { stroke: var(--green); stroke-width: 2; fill: var(--bg-2); }
+.topo-svc .topo-name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0; }
+
+.topo-state { fill: var(--text-3); }
+.topo-state[data-state="up"] { fill: var(--green-dot); }
+.topo-state[data-state="down"] { fill: var(--red-dot); }
+
+/* ── Edges ── */
+.topo-edge { fill: none; stroke: var(--border); stroke-width: 1.5; transition: stroke var(--transition); }
+.topo-edge.auth { stroke-dasharray: 3 5; }
+.topo-edge.on { stroke: var(--green); stroke-width: 2; stroke-dasharray: 8 6; animation: topoFlow 0.9s linear infinite; }
+.topo-edge.on.auth { stroke: var(--amber); stroke-dasharray: 3 5; }
+
+@keyframes topoFlow { to { stroke-dashoffset: -14; } }
+
+/* ── Steps panel ── */
+.topo-panel { background: var(--bg-card); border: 1px solid var(--border); }
+.topo-panel-body { padding: 1.25rem; }
+.topo-target { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.05em; color: var(--text-1); }
+.topo-mode { display: inline-block; margin-top: 0.5rem; }
+
+.topo-steps { margin-top: 1.25rem; counter-reset: step; display: flex; flex-direction: column; gap: 0.9rem; }
+.topo-steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.2rem;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--text-3);
+    opacity: 0.35;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+.topo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--green);
+}
+.topo-steps li.auth::before { color: var(--amber); }
+.topo-steps li.on { opacity: 1; color: var(--text-2); }
+
+.topo-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: var(--text-3);
+}
+.topo-legend li { display: flex; align-items: center; gap: 0.5rem; }
+.topo-legend i { display: inline-block; width: 22px; border-top: 2px dashed var(--green); }
+.topo-legend i.auth { border-top: 2px dotted var(--amber); }
+.topo-legend i.dot { width: 8px; height: 8px; border: 0; border-radius: 50%; background: var(--text-3); }
+.topo-legend i.dot.up { background: var(--green-dot); }
+.topo-legend i.dot.down { background: var(--red-dot); }
+
+@media (max-width: 960px) {
+    .topo-layout { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .topo-edge.on { animation: none; }
+}

@@ -161,6 +161,11 @@ code { font-family: var(--font-mono); }
     animation: statusPulse 2s ease-in-out infinite;
 }
 
+.status-dot[data-state="up"]       { background: var(--green-dot);  box-shadow: 0 0 6px var(--green-dot); }
+.status-dot[data-state="degraded"] { background: var(--yellow-dot); box-shadow: 0 0 6px var(--yellow-dot); }
+.status-dot[data-state="down"]     { background: var(--red-dot);    box-shadow: 0 0 6px var(--red-dot); }
+a.nav-status:hover { color: var(--text-1); }
+
 @keyframes statusPulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }

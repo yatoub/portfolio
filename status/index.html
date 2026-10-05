@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // STATUS</title>
+    <meta name="description" content="État en direct et historique de disponibilité du homelab yatoub.dev.">
+    <link rel="canonical" href="https://yatoub.dev/status/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot" id="statusDot" data-state="loading"></span>
+                <span id="statusText">SCAN…</span>
+            </div>
+            <button class="lang-toggle st-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="st-main">
+        <header class="container st-hero">
+            <p class="st-pre">$ systemctl status homelab.target</p>
+            <h1 class="st-title"><span data-i18n="hero.title">ÉTAT DU HOMELAB</span><span class="title-cursor">_</span></h1>
+            <p class="st-sub" data-i18n="hero.sub">Disponibilité de mes services auto-hébergés, mesurée en continu par des sondes Blackbox et stockée dans VictoriaMetrics.</p>
+
+            <div class="st-banner" id="banner" data-state="loading" role="status" aria-live="polite">
+                <span class="st-banner-dot" aria-hidden="true"></span>
+                <div>
+                    <p class="st-banner-state" id="bannerState">INTERROGATION…</p>
+                    <p class="st-banner-meta" id="bannerMeta"></p>
+                </div>
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="st-list" id="services"></div>
+
+            <ul class="st-legend" aria-hidden="true">
+                <li><span class="st-bar" data-day="ok"></span><span data-i18n="legend.ok">≥ 99,9 %</span></li>
+                <li><span class="st-bar" data-day="warn"></span><span data-i18n="legend.warn">≥ 95 %</span></li>
+                <li><span class="st-bar" data-day="bad"></span><span data-i18n="legend.bad">&lt; 95 %</span></li>
+                <li><span class="st-bar" data-day="nodata"></span><span data-i18n="legend.nodata">pas de donnée</span></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="container st-foot">
+        <p data-i18n="foot.scope">// les sondes partent du réseau local : cette page mesure la disponibilité interne, pas la joignabilité depuis Internet.</p>
+        <p data-i18n="foot.privacy">// aucune adresse IP ni nom de machine interne ne figure dans les données publiées.</p>
+        <p>// <a href="/">yatoub.dev</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

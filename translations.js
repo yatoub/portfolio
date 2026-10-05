@@ -71,6 +71,7 @@ const translations = {
         },
         roles: ['Systems Administrator / DevOps', 'Infrastructure Engineer', 'Linux Enthusiast', 'Tech Lead', 'CTF Player'],
         status: ['ONLINE', 'READY', 'AVAILABLE', 'SYS:OK'],
+        live: { up: 'LAB:OK', degraded: 'LAB:DEGRADED', down: 'LAB:DOWN' },
     },
 
     fr: {
@@ -144,5 +145,6 @@ const translations = {
         },
         roles: ['Administrateur Systèmes / DevOps', 'Ingénieur Infrastructure', 'Passionné Linux', 'Lead Technique', 'CTF Player'],
         status: ['EN LIGNE', 'PRÊT', 'DISPONIBLE', 'SYS:OK'],
+        live: { up: 'LAB:OK', degraded: 'LAB:DÉGRADÉ', down: 'LAB:EN PANNE' },
     },
 };

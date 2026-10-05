@@ -69,10 +69,10 @@
             <a href="#home" class="nav-logo">
                 <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
             </a>
-            <div class="nav-status">
-                <span class="status-dot"></span>
+            <a href="/status/" class="nav-status" aria-label="Homelab status">
+                <span class="status-dot" id="statusDot"></span>
                 <span class="status-text" id="statusText">ONLINE</span>
-            </div>
+            </a>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
             </button>
@@ -531,6 +531,7 @@
     </script>
     <!-- End Matomo Code -->
     <script src="translations.js"></script>
+    <script src="/status/core.js"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>

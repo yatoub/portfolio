@@ -24,6 +24,7 @@ const translations = {
         unit: { signals: 'SIGNAUX', conclusions: 'CONCLUSIONS' },
         card: {
             net: { title: 'RÉSEAU', desc: 'Votre IP part avec chaque requête HTTP : impossible de la cacher sans VPN.' },
+            srv: { title: 'VU PAR LE SERVEUR', desc: 'Envoyé avec chaque requête, avant la moindre ligne de JavaScript. Essayez : curl https://yatoub.dev/whoami' },
             loc: { title: 'LIEU & TEMPS', desc: 'Votre horloge et vos langues trahissent votre région, même derrière un VPN.' },
             br: { title: 'NAVIGATEUR' },
             hw: { title: 'MACHINE', desc: "Le GPU est exposé via WebGL : l'une des données les plus identifiantes." },
@@ -38,6 +39,11 @@ const translations = {
             loc: 'Localisation approx.', postal: 'Code postal approx.', coords: 'Coordonnées approx.',
             iptz: "Fuseau de l'IP", rtc: 'Candidats WebRTC', type: 'Type de connexion',
             down: 'Débit estimé', rtt: 'Latence estimée', save: 'Mode économie de données', online: 'En ligne',
+        },
+        srv: {
+            ip: 'IP vue par le serveur', proto: 'Protocole HTTP', tls: 'Version TLS', cipher: 'Suite de chiffrement',
+            alpn: 'Protocole négocié (ALPN)', sni: 'Nom demandé (SNI)', ua: 'User-Agent reçu', lang: 'Langues annoncées',
+            enc: 'Compressions acceptées', site: 'Contexte de la requête', count: "Nombre d'en-têtes envoyés",
         },
         loc: {
             tz: 'Fuseau horaire', utc: 'Décalage UTC', dst: "Heure d'été en cours", now: 'Heure locale',
@@ -148,6 +154,7 @@ const translations = {
         unit: { signals: 'SIGNALS', conclusions: 'CONCLUSIONS' },
         card: {
             net: { title: 'NETWORK', desc: 'Your IP travels with every HTTP request: impossible to hide without a VPN.' },
+            srv: { title: 'SEEN BY THE SERVER', desc: 'Sent with every request, before a single line of JavaScript runs. Try: curl https://yatoub.dev/whoami' },
             loc: { title: 'PLACE & TIME', desc: 'Your clock and languages give away your region, even behind a VPN.' },
             br: { title: 'BROWSER' },
             hw: { title: 'HARDWARE', desc: 'The GPU is exposed through WebGL: one of the most identifying signals.' },
@@ -162,6 +169,11 @@ const translations = {
             loc: 'Approx. location', postal: 'Approx. postcode', coords: 'Approx. coordinates',
             iptz: 'IP time zone', rtc: 'WebRTC candidates', type: 'Connection type',
             down: 'Estimated bandwidth', rtt: 'Estimated latency', save: 'Data saver', online: 'Online',
+        },
+        srv: {
+            ip: 'IP seen by the server', proto: 'HTTP protocol', tls: 'TLS version', cipher: 'Cipher suite',
+            alpn: 'Negotiated protocol (ALPN)', sni: 'Requested name (SNI)', ua: 'User-Agent received', lang: 'Advertised languages',
+            enc: 'Accepted encodings', site: 'Request context', count: 'Headers sent',
         },
         loc: {
             tz: 'Time zone', utc: 'UTC offset', dst: 'Daylight saving active', now: 'Local time',

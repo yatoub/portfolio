@@ -1,0 +1,15 @@
+{{- /* Caddy template — what the server sees, for the whoami page. Credentials are never echoed back. */ -}}
+{{- $secret := list "Cookie" "Authorization" "Proxy-Authorization" -}}
+{{- $h := dict -}}
+{{- range $k, $v := .Req.Header -}}
+{{- if not (has $k $secret) -}}{{- $_ := set $h $k (join ", " $v) -}}{{- end -}}
+{{- end -}}
+{{- dict
+    "ip" .RemoteIP
+    "proto" .Req.Proto
+    "tls" (placeholder "http.request.tls.version")
+    "cipher" (placeholder "http.request.tls.cipher_suite")
+    "alpn" (placeholder "http.request.tls.proto")
+    "sni" (placeholder "http.request.tls.server_name")
+    "headers" $h
+  | toJson -}}

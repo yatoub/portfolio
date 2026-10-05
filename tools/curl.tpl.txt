@@ -74,7 +74,9 @@
   HOMELAB
   ───────
   Self-hosted infrastructure running on Proxmox (KVM + LXC).
-  All services protected by Authelia SSO, 2FA, and VPN/IP filtering.
+  Everything sits behind Authelia SSO; the authentication level follows
+  how sensitive each access is: 2FA for administration tools, single
+  factor for low-risk ones, VPN for the hypervisor.
 
 {{HOMELAB}}
 

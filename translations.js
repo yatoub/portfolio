@@ -60,7 +60,7 @@ const translations = {
         },
         homelab: {
             title: 'HOMELAB',
-            intro: "I run a self-hosted infrastructure at home on a Proxmox hypervisor — VMs, LXC containers, and services I actually use daily. All resources are protected by Authelia SSO and VPN/IP filtering.",
+            intro: "I run a self-hosted infrastructure at home on a Proxmox hypervisor — VMs, LXC containers, and services I actually use daily. Everything sits behind Authelia SSO, with a level of authentication matched to how sensitive each access is: second factor for administration tools, single factor for low-risk ones, VPN for the hypervisor.",
             cta: 'EXPLORE_LAB',
         },
         lab: {
@@ -161,7 +161,7 @@ const translations = {
         },
         homelab: {
             title: 'HOMELAB',
-            intro: "Je gère une infrastructure self-hosted à la maison sur un hyperviseur Proxmox — machines virtuelles, conteneurs LXC, et quelques services que j'utilise vraiment au quotidien. Toutes les ressources sont protégées par Authelia SSO et filtrage IP/VPN.",
+            intro: "Je gère une infrastructure self-hosted à la maison sur un hyperviseur Proxmox — machines virtuelles, conteneurs LXC, et quelques services que j'utilise vraiment au quotidien. Tout passe par le SSO Authelia, avec un niveau d'authentification proportionné à la criticité de chaque accès : second facteur pour les outils d'administration, un seul facteur pour les outils peu sensibles, VPN pour l'hyperviseur.",
             cta: 'EXPLORER_LE_LAB',
         },
         lab: {

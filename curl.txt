@@ -114,7 +114,9 @@
   HOMELAB
   ───────
   Self-hosted infrastructure running on Proxmox (KVM + LXC).
-  All services protected by Authelia SSO, 2FA, and VPN/IP filtering.
+  Everything sits behind Authelia SSO; the authentication level follows
+  how sensitive each access is: 2FA for administration tools, single
+  factor for low-risk ones, VPN for the hypervisor.
 
   Home Assistant   AUTOMATION   Home automation via MQTT and Zigbee
   Vaultwarden      SECURITY     Self-hosted Bitwarden password manager in Rust
@@ -125,8 +127,8 @@
   Matomo           ANALYTICS    Privacy-first self-hosted web analytics
   Vigie            TECH WATCH   Tech watch — RSS, web search and Reddit
   Proxmox          HYPERVISOR   VMs, LXC containers, KVM virtualisation layer
-  Authelia         SSO / IAM    Single sign-on and 2FA gateway — all services
-                                protected by Authelia + VPN IP filtering
+  Authelia         SSO / IAM    Single sign-on gateway — second factor
+                                required wherever the access is sensitive
 
   → yatoub.dev/lab
 

@@ -85,8 +85,8 @@
     "name": "Authelia",
     "badge_en": "SSO / IAM",
     "badge_fr": "SSO / IAM",
-    "short_en": "Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering",
-    "short_fr": "Portail SSO et double authentification — toutes les ressources protégées par Authelia + filtrage IP VPN",
+    "short_en": "Single sign-on gateway — second factor required wherever the access is sensitive",
+    "short_fr": "Portail SSO — second facteur exigé dès que l'accès est sensible",
     "home": true
   }
 ]

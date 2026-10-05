@@ -6,3 +6,6 @@ CLAUDE.md
 Thumbs.db
 *.swp
 *~
+
+# Runtime data written on the server (status exporter) — never committed
+data/

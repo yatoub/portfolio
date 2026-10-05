@@ -148,6 +148,7 @@
         </div>
     </footer>
 
+    <script src="/translations.js"></script>
     <script src="/script.js"></script>
     <script>
         function esc(str) {
@@ -166,7 +167,8 @@
 
                 const grid = document.getElementById('labGrid');
 
-                services.forEach(s => {
+                // Entries without url (e.g. Authelia) only feed the public homelab list
+                services.filter(s => s.url).forEach(s => {
                     const card = document.createElement('div');
                     card.className = 'lab-card';
 

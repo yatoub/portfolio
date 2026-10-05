@@ -62,16 +62,6 @@ const translations = {
             title: 'HOMELAB',
             intro: "I run a self-hosted infrastructure at home on a Proxmox hypervisor — VMs, LXC containers, and services I actually use daily. All resources are protected by Authelia SSO and VPN/IP filtering.",
             cta: 'EXPLORE_LAB',
-            svc: {
-                proxmox: { badge: 'HYPERVISOR',  desc: 'VMs, LXC containers, KVM virtualisation layer' },
-                ha:      { badge: 'AUTOMATION',  desc: 'Home automation via MQTT and Zigbee' },
-                vw:      { badge: 'SECURITY',    desc: 'Self-hosted Bitwarden password manager in Rust' },
-                grafana: { badge: 'MONITORING',  desc: 'Full metrics stack, dashboards and alerting' },
-                wg:      { badge: 'VPN',         desc: 'WireGuard VPN management interface' },
-                n8n:     { badge: 'WORKFLOW',    desc: 'Workflow automation and event orchestration' },
-                arcane:  { badge: 'CONTAINERS',  desc: 'Docker management frontend' },
-                authelia: { badge: 'SSO / IAM',  desc: 'Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering' },
-            },
         },
         lab: { title: 'PRIVATE SERVICES' },
         cookie: {
@@ -145,16 +135,6 @@ const translations = {
             title: 'HOMELAB',
             intro: "Je gère une infrastructure self-hosted à la maison sur un hyperviseur Proxmox — machines virtuelles, conteneurs LXC, et quelques services que j'utilise vraiment au quotidien. Toutes les ressources sont protégées par Authelia SSO et filtrage IP/VPN.",
             cta: 'EXPLORER_LE_LAB',
-            svc: {
-                proxmox: { badge: 'HYPERVISEUR', desc: 'VMs, conteneurs LXC, couche de virtualisation KVM' },
-                ha:      { badge: 'DOMOTIQUE',   desc: 'Automatisation domestique via MQTT et Zigbee' },
-                vw:      { badge: 'SÉCURITÉ',    desc: "Gestionnaire de mots de passe Bitwarden auto-hébergé en Rust" },
-                grafana: { badge: 'SUPERVISION', desc: 'Stack de métriques complète, dashboards et alerting' },
-                wg:      { badge: 'VPN',         desc: 'Interface de gestion WireGuard VPN' },
-                n8n:     { badge: 'WORKFLOW',    desc: "Automatisation de workflows et orchestration d'événements" },
-                arcane:  { badge: 'CONTENEURS',  desc: 'Interface de gestion Docker' },
-                authelia: { badge: 'SSO / IAM',  desc: "Portail SSO et double authentification — toutes les ressources protégées par Authelia + filtrage IP VPN" },
-            },
         },
         lab: { title: 'SERVICES PRIVÉS' },
         cookie: {

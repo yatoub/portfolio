@@ -1,0 +1,101 @@
+[
+  {
+    "id": "ha",
+    "name": "Home Assistant",
+    "badge_en": "AUTOMATION",
+    "badge_fr": "DOMOTIQUE",
+    "short_en": "Home automation via MQTT and Zigbee",
+    "short_fr": "Automatisation domestique via MQTT et Zigbee",
+    "home": true
+  },
+  {
+    "id": "vaultwarden",
+    "name": "Vaultwarden",
+    "badge_en": "SECURITY",
+    "badge_fr": "SÉCURITÉ",
+    "short_en": "Self-hosted Bitwarden password manager in Rust",
+    "short_fr": "Gestionnaire de mots de passe Bitwarden auto-hébergé en Rust",
+    "home": true
+  },
+  {
+    "id": "wgdashboard",
+    "name": "WGDashboard",
+    "badge_en": "VPN",
+    "badge_fr": "VPN",
+    "short_en": "WireGuard VPN management interface",
+    "short_fr": "Interface de gestion WireGuard VPN",
+    "home": true
+  },
+  {
+    "id": "grafana",
+    "name": "Grafana",
+    "badge_en": "MONITORING",
+    "badge_fr": "SUPERVISION",
+    "short_en": "Full metrics stack, dashboards and alerting",
+    "short_fr": "Stack de métriques complète, dashboards et alerting",
+    "home": true
+  },
+  {
+    "id": "arcane",
+    "name": "Arcane",
+    "badge_en": "CONTAINERS",
+    "badge_fr": "CONTENEURS",
+    "short_en": "Docker management frontend",
+    "short_fr": "Interface de gestion Docker",
+    "home": true
+  },
+  {
+    "id": "n8n",
+    "name": "n8n",
+    "badge_en": "WORKFLOW",
+    "badge_fr": "WORKFLOW",
+    "short_en": "Workflow automation and event orchestration",
+    "short_fr": "Automatisation de workflows et orchestration d'événements",
+    "home": true
+  },
+  {
+    "id": "wikijs",
+    "name": "Wiki.js",
+    "badge_en": "DOCS",
+    "badge_fr": "DOCS",
+    "short_en": "Self-hosted wiki, runbooks and knowledge base",
+    "short_fr": "Wiki auto-hébergé, runbooks et base de connaissances",
+    "home": false
+  },
+  {
+    "id": "matomo",
+    "name": "Matomo",
+    "badge_en": "ANALYTICS",
+    "badge_fr": "ANALYTIQUE",
+    "short_en": "Privacy-first self-hosted web analytics",
+    "short_fr": "Analytique web auto-hébergée, respectueuse de la vie privée",
+    "home": false
+  },
+  {
+    "id": "vigie",
+    "name": "Vigie",
+    "badge_en": "TECH WATCH",
+    "badge_fr": "VEILLE",
+    "short_en": "Tech watch — RSS, web search and Reddit",
+    "short_fr": "Agrégateur de veille — RSS, recherche web, Reddit",
+    "home": false
+  },
+  {
+    "id": "proxmox",
+    "name": "Proxmox",
+    "badge_en": "HYPERVISOR",
+    "badge_fr": "HYPERVISEUR",
+    "short_en": "VMs, LXC containers, KVM virtualisation layer",
+    "short_fr": "VMs, conteneurs LXC, couche de virtualisation KVM",
+    "home": true
+  },
+  {
+    "id": "authelia",
+    "name": "Authelia",
+    "badge_en": "SSO / IAM",
+    "badge_fr": "SSO / IAM",
+    "short_en": "Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering",
+    "short_fr": "Portail SSO et double authentification — toutes les ressources protégées par Authelia + filtrage IP VPN",
+    "home": true
+  }
+]

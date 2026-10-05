@@ -65,47 +65,7 @@
 
   PROJECTS
   ────────
-  Rutile             [Rust]    GNOME-native terminal emulator (Rust/GTK4)
-                               with recursive split tiling and synchronized
-                               input — a from-scratch Tilix rewrite
-                               github.com/yatoub/Rutile
-
-  susshi             [Rust]    Terminal SSH manager with YAML inventories,
-                               jump hosts, Wallix bastion support, tunnels
-                               and SCP. Built for sysadmins who live in the
-                               terminal.
-                               github.com/yatoub/susshi
-
-  Tych               [Python]  Random number generator based on chaos theory
-                               — uses the double pendulum system as an
-                               entropy source to produce unpredictable
-                               sequences.
-                               github.com/yatoub/Tych
-
-  loki               [Go]      Local file encryptor using AES-256. Simple CLI
-                               tool to encrypt and decrypt files on disk.
-                               github.com/yatoub/loki
-
-  PrometheusWithGrafana
-                     [Ansible] Ansible playbook to deploy a full Prometheus +
-                               Grafana monitoring stack. Ready-to-use
-                               dashboards, ideal for POCs.
-                               github.com/yatoub/PrometheusWithGrafana
-
-  check3TierEnv      [Ansible] Ansible playbook to audit multiple RedHat
-                               Linux machines against a technical
-                               specification sheet.
-                               github.com/yatoub/check3TierEnv
-
-  Log4jVulnChecker   [Shell]   Shell script to detect Log4Shell
-                               (CVE-2021-44228) exposure on a server by
-                               checking installed package versions.
-                               github.com/yatoub/Log4jVulnChecker
-
-  opensiren          [JS]      OSINT tool for gathering public information on
-                               French companies using the SIRENE open data
-                               API.
-                               github.com/yatoub/opensiren
+{{PROJECTS}}
 
   → github.com/yatoub
 
@@ -116,18 +76,7 @@
   Self-hosted infrastructure running on Proxmox (KVM + LXC).
   All services protected by Authelia SSO, 2FA, and VPN/IP filtering.
 
-  Home Assistant   AUTOMATION   Home automation via MQTT and Zigbee
-  Vaultwarden      SECURITY     Self-hosted Bitwarden password manager in Rust
-  WGDashboard      VPN          WireGuard VPN management interface
-  Grafana          MONITORING   Full metrics stack, dashboards and alerting
-  Arcane           CONTAINERS   Docker management frontend
-  n8n              WORKFLOW     Workflow automation and event orchestration
-  Wiki.js          DOCS         Self-hosted wiki, runbooks and knowledge base
-  Matomo           ANALYTICS    Privacy-first self-hosted web analytics
-  Vigie            TECH WATCH   Tech watch — RSS, web search and Reddit
-  Proxmox          HYPERVISOR   VMs, LXC containers, KVM virtualisation layer
-  Authelia         SSO / IAM    Single sign-on and 2FA gateway — all services
-                                protected by Authelia + VPN IP filtering
+{{HOMELAB}}
 
   → yatoub.dev/lab
 

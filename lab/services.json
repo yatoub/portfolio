@@ -15,7 +15,7 @@
       "MQTT",
       "Zigbee"
     ],
-    "auth": "forward",
+    "auth": "oidc",
     "vpn": false
   },
   {
@@ -34,7 +34,7 @@
       "Rust",
       "Self-hosted"
     ],
-    "auth": "forward",
+    "auth": "oidc",
     "vpn": false
   },
   {
@@ -167,7 +167,7 @@
       "KVM",
       "LXC"
     ],
-    "auth": "forward",
+    "auth": "oidc",
     "vpn": true
   },
   {

@@ -3,9 +3,24 @@ name: Deploy
 on:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JS syntax
+        run: node --check script.js && node --check translations.js
+      - name: Check generated files are up to date
+        run: node tools/build.mjs --check
+
   trigger-deploy:
+    needs: check
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger webhook

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // 404</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .nf { min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav-h); }
+        .nf .container { width: 100%; }
+        .nf-term { font-family: var(--font-mono); font-size: 0.95rem; line-height: 2; overflow-wrap: anywhere; }
+        .nf-prompt { color: var(--green); }
+        .nf-err { color: var(--red-dot); }
+        .nf-dim { color: var(--text-3); }
+        .nf-code {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 18vw, 9rem);
+            line-height: 1;
+            color: var(--green);
+            margin-bottom: 2rem;
+        }
+        .nf-ls { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; }
+        .nf-ls a { color: var(--amber); }
+        .nf-ls a:hover { color: var(--green); text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="nf">
+        <div class="container">
+            <h1 class="nf-code">404</h1>
+            <div class="nf-term">
+                <p><span class="nf-prompt">$</span> cd <span id="nfPath">/…</span></p>
+                <p class="nf-err">bash: cd: <span id="nfPathErr">/…</span>: <span id="nfMsg">No such file or directory</span></p>
+                <p><span class="nf-prompt">$</span> ls /</p>
+                <p class="nf-ls">
+                    <a href="/" id="nfHome">home/</a>
+                    <a href="/#projects" id="nfProjects">projects/</a>
+                    <a href="/whoami/">whoami/</a>
+                    <a href="/lab">lab/</a>
+                    <a href="/curl.txt">curl.txt</a>
+                </p>
+                <p class="nf-dim" id="nfHint"># pick a path above to get back on track</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            const saved = localStorage.getItem('lang');
+            const lang = saved === 'en' || saved === 'fr'
+                ? saved
+                : (navigator.language?.startsWith('fr') ? 'fr' : 'en');
+            document.documentElement.lang = lang;
+
+            const path = location.pathname;
+            document.getElementById('nfPath').textContent = path;
+            document.getElementById('nfPathErr').textContent = path;
+
+            if (lang === 'fr') {
+                document.getElementById('nfMsg').textContent = 'Aucun fichier ou dossier de ce nom';
+                document.getElementById('nfHome').textContent = 'accueil/';
+                document.getElementById('nfProjects').textContent = 'projets/';
+                document.getElementById('nfHint').textContent = '# choisissez un chemin ci-dessus pour repartir';
+            }
+        })();
+    </script>
+</body>
+</html>

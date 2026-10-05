@@ -1,82 +1,191 @@
 [
   {
+    "id": "ha",
     "name": "Home Assistant",
+    "badge_en": "AUTOMATION",
+    "badge_fr": "DOMOTIQUE",
+    "short_en": "Home automation via MQTT and Zigbee",
+    "short_fr": "Automatisation domestique via MQTT et Zigbee",
+    "home": true,
     "desc_en": "Home automation dashboard — lights, sensors, automations.",
     "desc_fr": "Tableau de bord domotique — lumières, capteurs, automatisations.",
     "url": "https://ha.yatoub.dev",
-    "tags": ["Domotique", "MQTT", "Zigbee"],
+    "tags": [
+      "Domotique",
+      "MQTT",
+      "Zigbee"
+    ],
     "vpn": false
   },
   {
+    "id": "vaultwarden",
     "name": "Vaultwarden",
+    "badge_en": "SECURITY",
+    "badge_fr": "SÉCURITÉ",
+    "short_en": "Self-hosted Bitwarden password manager in Rust",
+    "short_fr": "Gestionnaire de mots de passe Bitwarden auto-hébergé en Rust",
+    "home": true,
     "desc_en": "Self-hosted password manager, Bitwarden-compatible.",
     "desc_fr": "Gestionnaire de mots de passe auto-hébergé, compatible Bitwarden.",
     "url": "https://vault.yatoub.dev",
-    "tags": ["Passwords", "Rust", "Self-hosted"],
+    "tags": [
+      "Passwords",
+      "Rust",
+      "Self-hosted"
+    ],
     "vpn": false
   },
   {
+    "id": "wgdashboard",
     "name": "WGDashboard",
+    "badge_en": "VPN",
+    "badge_fr": "VPN",
+    "short_en": "WireGuard VPN management interface",
+    "short_fr": "Interface de gestion WireGuard VPN",
+    "home": true,
     "desc_en": "WireGuard VPN management dashboard — peers, tunnels, traffic monitoring.",
     "desc_fr": "Interface de gestion WireGuard — pairs, tunnels, supervision du trafic.",
     "url": "https://wgdashboard.yatoub.dev",
-    "tags": ["VPN", "WireGuard", "Networking"],
+    "tags": [
+      "VPN",
+      "WireGuard",
+      "Networking"
+    ],
     "vpn": false
   },
   {
+    "id": "grafana",
     "name": "Grafana",
+    "badge_en": "MONITORING",
+    "badge_fr": "SUPERVISION",
+    "short_en": "Full metrics stack, dashboards and alerting",
+    "short_fr": "Stack de métriques complète, dashboards et alerting",
+    "home": true,
     "desc_en": "Metrics and observability dashboards — infrastructure, services, alerts.",
     "desc_fr": "Dashboards de métriques et d'observabilité — infrastructure, services, alertes.",
     "url": "https://grafana.yatoub.dev",
-    "tags": ["Monitoring", "Prometheus", "Dashboards"],
+    "tags": [
+      "Monitoring",
+      "Prometheus",
+      "Dashboards"
+    ],
     "vpn": false
   },
   {
+    "id": "arcane",
     "name": "Arcane",
+    "badge_en": "CONTAINERS",
+    "badge_fr": "CONTENEURS",
+    "short_en": "Docker management frontend",
+    "short_fr": "Interface de gestion Docker",
+    "home": true,
     "desc_en": "Docker management frontend — containers, images, volumes, logs.",
     "desc_fr": "Frontend de gestion Docker — conteneurs, images, volumes, logs.",
     "url": "https://arcane.yatoub.dev",
-    "tags": ["Docker", "Containers", "Self-hosted"],
+    "tags": [
+      "Docker",
+      "Containers",
+      "Self-hosted"
+    ],
     "vpn": false
   },
   {
+    "id": "n8n",
     "name": "n8n",
+    "badge_en": "WORKFLOW",
+    "badge_fr": "WORKFLOW",
+    "short_en": "Workflow automation and event orchestration",
+    "short_fr": "Automatisation de workflows et orchestration d'événements",
+    "home": true,
     "desc_en": "Workflow automation platform — integrations, triggers, pipelines.",
     "desc_fr": "Plateforme d'automatisation de workflows — intégrations, déclencheurs, pipelines.",
     "url": "https://n8n.yatoub.dev",
-    "tags": ["Automation", "Workflows", "Self-hosted"],
+    "tags": [
+      "Automation",
+      "Workflows",
+      "Self-hosted"
+    ],
     "vpn": false
   },
   {
+    "id": "wikijs",
     "name": "Wiki.js",
+    "badge_en": "DOCS",
+    "badge_fr": "DOCS",
+    "short_en": "Self-hosted wiki, runbooks and knowledge base",
+    "short_fr": "Wiki auto-hébergé, runbooks et base de connaissances",
+    "home": false,
     "desc_en": "Self-hosted wiki and documentation platform — notes, runbooks, knowledge base.",
     "desc_fr": "Wiki et plateforme de documentation auto-hébergés — notes, runbooks, base de connaissances.",
     "url": "https://wiki.yatoub.dev",
-    "tags": ["Wiki", "Documentation", "Self-hosted"],
+    "tags": [
+      "Wiki",
+      "Documentation",
+      "Self-hosted"
+    ],
     "vpn": false
   },
   {
+    "id": "matomo",
     "name": "Matomo",
+    "badge_en": "ANALYTICS",
+    "badge_fr": "ANALYTIQUE",
+    "short_en": "Privacy-first self-hosted web analytics",
+    "short_fr": "Analytique web auto-hébergée, respectueuse de la vie privée",
+    "home": false,
     "desc_en": "Self-hosted web analytics — visitor tracking, traffic sources, goals, privacy-first.",
     "desc_fr": "Analytique web auto-hébergée — suivi des visiteurs, sources de trafic, objectifs, respect de la vie privée.",
     "url": "https://matomo.yatoub.dev",
-    "tags": ["Analytics", "Privacy", "Self-hosted"],
+    "tags": [
+      "Analytics",
+      "Privacy",
+      "Self-hosted"
+    ],
     "vpn": false
   },
   {
+    "id": "vigie",
     "name": "Vigie",
+    "badge_en": "TECH WATCH",
+    "badge_fr": "VEILLE",
+    "short_en": "Tech watch — RSS, web search and Reddit",
+    "short_fr": "Agrégateur de veille — RSS, recherche web, Reddit",
+    "home": false,
     "desc_en": "Tech watch aggregator — RSS feeds, web search (SearXNG) and Reddit, organized by tag, with dedup, scoring, full-text search and automatic summaries via n8n.",
     "desc_fr": "Agrégateur de veille techno — sources RSS, recherche web (SearXNG) et Reddit, organisées par tag, avec dédup, scoring, recherche plein texte et résumés automatiques via n8n.",
     "url": "https://vigie.yatoub.dev",
-    "tags": ["RSS", "n8n", "Self-hosted"],
+    "tags": [
+      "RSS",
+      "n8n",
+      "Self-hosted"
+    ],
     "vpn": false
   },
   {
+    "id": "proxmox",
     "name": "Proxmox",
+    "badge_en": "HYPERVISOR",
+    "badge_fr": "HYPERVISEUR",
+    "short_en": "VMs, LXC containers, KVM virtualisation layer",
+    "short_fr": "VMs, conteneurs LXC, couche de virtualisation KVM",
+    "home": true,
     "desc_en": "Hypervisor management interface — VMs, containers, storage. Requires WireGuard tunnel.",
     "desc_fr": "Interface de gestion de l'hyperviseur — VMs, conteneurs, stockage. Nécessite le tunnel WireGuard.",
     "url": "https://proxmox.yatoub.dev",
-    "tags": ["Hypervisor", "KVM", "LXC"],
+    "tags": [
+      "Hypervisor",
+      "KVM",
+      "LXC"
+    ],
     "vpn": true
+  },
+  {
+    "id": "authelia",
+    "name": "Authelia",
+    "badge_en": "SSO / IAM",
+    "badge_fr": "SSO / IAM",
+    "short_en": "Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering",
+    "short_fr": "Portail SSO et double authentification — toutes les ressources protégées par Authelia + filtrage IP VPN",
+    "home": true
   }
 ]

@@ -1215,3 +1215,72 @@ code { font-family: var(--font-mono); }
     .cookie-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
     .cookie-actions { justify-content: flex-end; }
 }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+    }
+    .crt-flicker, .noise { display: none; }
+    .reveal, .reveal-child { opacity: 1; transform: none; }
+}
+
+/* ── Print (résumé via Ctrl+P) ── */
+@media print {
+    :root {
+        --bg-0: #fff;
+        --bg-1: #fff;
+        --bg-2: #fff;
+        --bg-3: #eee;
+        --bg-card: #fff;
+        --green: #1e4fa3;
+        --green-dim: #666;
+        --green-glow: transparent;
+        --amber: #6b3fa0;
+        --amber-dim: #666;
+        --text-1: #000;
+        --text-2: #222;
+        --text-3: #555;
+        --border: #bbb;
+        --border-bright: #999;
+    }
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+    }
+    body { cursor: auto; font-size: 10pt; }
+
+    .scanlines, .crt-flicker, .noise, .navbar, .cookie-banner,
+    .hero-ascii, .hero-cta, .terminal-callout, .cursor-blink, .type-cursor,
+    .title-cursor, .copy-btn, .homelab-cta, .proj-arrow,
+    .swiper-pagination, .swiper-button-prev, .swiper-button-next { display: none !important; }
+
+    .reveal, .reveal-child { opacity: 1 !important; transform: none !important; }
+    .hero { min-height: 0; padding: 0 0 1rem; }
+    .section { padding: 1rem 0; }
+
+    /* Carousel → plain list of every project */
+    .projects-swiper { overflow: visible; }
+    .projects-swiper .swiper-wrapper { display: block; transform: none !important; }
+    .projects-swiper .swiper-slide { width: auto !important; margin: 0 0 0.5rem !important; }
+    .proj-card::after {
+        content: attr(href);
+        position: static;
+        display: block;
+        opacity: 1;
+        background: none;
+        padding: 0 1.75rem 1rem;
+        font-size: 8pt;
+        color: var(--text-3);
+    }
+    .proj-card-inner { padding-bottom: 0.5rem; }
+
+    .hl-service, .proj-card, .swiper-slide { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+}

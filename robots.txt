@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /lab/
+
+Sitemap: https://yatoub.dev/sitemap.xml

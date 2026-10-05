@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YATOUB // Systems & Infrastructure</title>
     <meta name="description" content="Systems Administrator — Linux, Infrastructure, DevOps">
+    <meta name="theme-color" content="#1e1e2e">
+    <link rel="canonical" href="https://yatoub.dev/">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="yatoub.dev">
+    <meta property="og:title" content="YATOUB // Systems &amp; Infrastructure">
+    <meta property="og:description" content="Systems Administrator — Linux, Infrastructure, DevOps">
+    <meta property="og:url" content="https://yatoub.dev/">
+    <meta property="og:image" content="https://yatoub.dev/assets/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="YATOUB // Systems &amp; Infrastructure">
+    <meta name="twitter:description" content="Systems Administrator — Linux, Infrastructure, DevOps">
+    <meta name="twitter:image" content="https://yatoub.dev/assets/og.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Paul Collin",
+        "alternateName": "Yatoub",
+        "url": "https://yatoub.dev/",
+        "image": "https://yatoub.dev/assets/ytb-logo-150.png",
+        "jobTitle": "Systems Administrator",
+        "email": "mailto:yatoub@yatoub.dev",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dijon", "addressCountry": "FR" },
+        "knowsAbout": ["Linux", "Ansible", "Proxmox", "Docker", "Infrastructure", "Monitoring", "Rust"],
+        "sameAs": ["https://github.com/yatoub", "https://twitch.tv/yatoub"]
+    }
+    </script>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="stylesheet" href="styles.css">
@@ -404,64 +435,7 @@
                         </a>
                     </div>
 
-                    <div class="homelab-services">
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">Proxmox</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.proxmox.badge">HYPERVISOR</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.proxmox.desc">VMs, LXC containers, KVM virtualisation layer</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">Home Assistant</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.ha.badge">AUTOMATION</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.ha.desc">Home automation via MQTT and Zigbee</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">Vaultwarden</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.vw.badge">SECURITY</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.vw.desc">Self-hosted Bitwarden password manager in Rust</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">Grafana + Prometheus</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.grafana.badge">MONITORING</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.grafana.desc">Full metrics stack, dashboards and alerting</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">WGDashboard</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.wg.badge">VPN</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.wg.desc">WireGuard VPN management interface</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">n8n</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.n8n.badge">WORKFLOW</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.n8n.desc">Workflow automation and event orchestration</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">Arcane</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.arcane.badge">CONTAINERS</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.arcane.desc">Docker management frontend</p>
-                        </div>
-                        <div class="hl-service reveal-child">
-                            <div class="hl-svc-header">
-                                <span class="hl-svc-name">Authelia</span>
-                                <span class="hl-svc-badge" data-i18n="homelab.svc.authelia.badge">SSO / IAM</span>
-                            </div>
-                            <p class="hl-svc-desc" data-i18n="homelab.svc.authelia.desc">Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering</p>
-                        </div>
-                    </div>
+                    <div class="homelab-services" id="homelabServices"></div>
                 </div>
             </div>
         </section>

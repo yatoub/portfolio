@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/lab/topology.css">
     <style>
         .lab-grid {
             display: grid;
@@ -124,10 +125,22 @@
     </nav>
 
     <main>
-        <section id="lab" class="section reveal" style="min-height: 100vh; padding-top: calc(var(--nav-h) + 4rem);">
+        <section id="topo" class="section reveal" style="padding-top: calc(var(--nav-h) + 4rem);">
             <div class="container">
                 <div class="section-header">
                     <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="lab.topo.title">TOPOLOGY</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="topo" id="topology"></div>
+            </div>
+        </section>
+
+        <section id="lab" class="section section-alt reveal" style="min-height: 100vh;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
                     <h2 class="sh-title"><span data-i18n="lab.title">PRIVATE SERVICES</span><span class="title-cursor">_</span></h2>
                     <div class="sh-line"></div>
                 </div>
@@ -150,6 +163,9 @@
 
     <script src="/translations.js"></script>
     <script src="/script.js"></script>
+    <script src="/status/core.js"></script>
+    <script src="/lab/topology-core.js"></script>
+    <script src="/lab/topology.js"></script>
     <script>
         function esc(str) {
             const d = document.createElement('div');

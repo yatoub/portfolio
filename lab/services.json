@@ -15,6 +15,7 @@
       "MQTT",
       "Zigbee"
     ],
+    "auth": "oidc",
     "vpn": false
   },
   {
@@ -33,6 +34,7 @@
       "Rust",
       "Self-hosted"
     ],
+    "auth": "oidc",
     "vpn": false
   },
   {
@@ -51,6 +53,7 @@
       "WireGuard",
       "Networking"
     ],
+    "auth": "forward",
     "vpn": false
   },
   {
@@ -69,6 +72,7 @@
       "Prometheus",
       "Dashboards"
     ],
+    "auth": "forward",
     "vpn": false
   },
   {
@@ -87,6 +91,7 @@
       "Containers",
       "Self-hosted"
     ],
+    "auth": "forward",
     "vpn": false
   },
   {
@@ -105,24 +110,7 @@
       "Workflows",
       "Self-hosted"
     ],
-    "vpn": false
-  },
-  {
-    "id": "wikijs",
-    "name": "Wiki.js",
-    "badge_en": "DOCS",
-    "badge_fr": "DOCS",
-    "short_en": "Self-hosted wiki, runbooks and knowledge base",
-    "short_fr": "Wiki auto-hébergé, runbooks et base de connaissances",
-    "home": false,
-    "desc_en": "Self-hosted wiki and documentation platform — notes, runbooks, knowledge base.",
-    "desc_fr": "Wiki et plateforme de documentation auto-hébergés — notes, runbooks, base de connaissances.",
-    "url": "https://wiki.yatoub.dev",
-    "tags": [
-      "Wiki",
-      "Documentation",
-      "Self-hosted"
-    ],
+    "auth": "forward",
     "vpn": false
   },
   {
@@ -141,6 +129,7 @@
       "Privacy",
       "Self-hosted"
     ],
+    "auth": "oidc",
     "vpn": false
   },
   {
@@ -159,6 +148,7 @@
       "n8n",
       "Self-hosted"
     ],
+    "auth": "forward-1fa",
     "vpn": false
   },
   {
@@ -177,6 +167,7 @@
       "KVM",
       "LXC"
     ],
+    "auth": "oidc",
     "vpn": true
   },
   {
@@ -184,8 +175,8 @@
     "name": "Authelia",
     "badge_en": "SSO / IAM",
     "badge_fr": "SSO / IAM",
-    "short_en": "Single sign-on and 2FA gateway — all services protected by Authelia + VPN IP filtering",
-    "short_fr": "Portail SSO et double authentification — toutes les ressources protégées par Authelia + filtrage IP VPN",
+    "short_en": "Single sign-on gateway — second factor required wherever the access is sensitive",
+    "short_fr": "Portail SSO — second facteur exigé dès que l'accès est sensible",
     "home": true
   }
 ]

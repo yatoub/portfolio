@@ -43,6 +43,17 @@ test('ls lists the home directory with directories marked', async () => {
     assert.equal((await run('ls')).text, 'about.md  contact.txt  curl.txt  experience/  homelab/  projects/');
 });
 
+test('dotfiles are hidden from ls unless -a is given, and stay readable by name', async () => {
+    const { run } = shell();
+    assert.doesNotMatch((await run('ls')).text, /\.env/);
+    assert.equal((await run('ls -a')).text, '.env  about.md  contact.txt  curl.txt  experience/  homelab/  projects/');
+    assert.match((await run('ls -la')).text, /^\.env {2}about\.md/);
+    assert.match((await run('ll -a ~')).text, /^\.env/);
+    assert.doesNotMatch((await run('ls -l')).text, /\.env/);
+    assert.match((await run('cat .env')).text, /^FLAG=YATOUB\{.+\}$/m);
+    assert.equal((await run('ls -a projects')).text, (await run('ls projects')).text);
+});
+
 test('the filesystem mirrors projects.json and homelab.json', async () => {
     const { run } = shell();
     assert.equal((await run('ls projects')).text.split('  ').length, projects.length);
@@ -77,6 +88,7 @@ test('cat reports directories, missing files, and fetches remote files', async (
 test('open resolves sections, project names and paths', async () => {
     const { run } = shell();
     assert.deepEqual((await run('open lab')).effects, [{ type: 'open', url: '/lab' }]);
+    assert.deepEqual((await run('open ctf')).effects, [{ type: 'open', url: '/ctf/' }]);
     assert.equal((await run('open Rutile')).effects[0].url, 'https://github.com/yatoub/Rutile');
     assert.equal((await run('open projects/tych.md')).effects[0].url, 'https://github.com/yatoub/Tych');
     assert.deepEqual((await run('open nothing')).effects, []);
@@ -146,6 +158,9 @@ test('completion: commands, paths, unique and ambiguous matches', () => {
     assert.deepEqual(T.complete('lang ', ctx).options, ['fr', 'en']);
     assert.deepEqual(T.complete('cat zzz', ctx), { input: 'cat zzz', options: [] });
     assert.ok(!T.complete('', ctx).options.includes('sudo'));
+    assert.deepEqual(T.complete('cat ', ctx).options.filter(o => o.startsWith('.')), []);
+    assert.equal(T.complete('cat .', ctx).input, 'cat .env ');
+    assert.equal(T.complete('open ct', ctx).input, 'open ctf ');
 });
 
 test('every help entry is a real command, in both languages', () => {

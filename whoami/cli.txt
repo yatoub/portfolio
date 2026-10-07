@@ -24,4 +24,10 @@
   {{ printf "%-18s" $k }} {{ if has $k $secret }}[redacted]{{ else }}{{ join ", " $v }}{{ end }}
 {{- end }}
 
+{{- if hasPrefix "curl/" (.Req.Header.Get "User-Agent") }}
+
+  # you asked with curl, so you get a line browsers never see:
+  # YATOUB{us3r_4g3nt_1s_ju5t_4_cl41m} → https://yatoub.dev/ctf/
+{{- end }}
+
   # the browser version leaks a lot more → https://yatoub.dev/whoami/

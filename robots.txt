@@ -1,3 +1,6 @@
+# Crawlers read this file first. So do curious humans: YATOUB{r0b0ts_txt_1s_n0t_4_l0ck}
+# Five more are hidden around here -> https://yatoub.dev/ctf/
+
 User-agent: *
 Allow: /
 Disallow: /lab/

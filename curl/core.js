@@ -80,6 +80,70 @@ const CurlCore = (() => {
         });
     }
 
+    /* ── Content-Security-Policy ── */
+    // Why each external host is allowed: id of the explanation in translations.js (csp.why.*)
+    const CSP_HOSTS = {
+        'cdn.jsdelivr.net': 'jsdelivr',
+        'matomo.yatoub.dev': 'matomo',
+        'ipwho.is': 'ipLookup',
+        'ipapi.co': 'ipLookup',
+        'api.ipify.org': 'ipLookup',
+        'cloudflare-dns.com': 'doh',
+        'dns.google': 'doh',
+    };
+    const CSP_KEYWORDS = ['self', 'none', 'unsafe-inline', 'unsafe-eval', 'strict-dynamic'];
+
+    // "default-src 'self'; img-src 'self' data:" → [{ name, sources: ["'self'", …] }], first occurrence of a directive wins
+    function parseCsp(value) {
+        const seen = new Set();
+        return String(value ?? '').split(';').map(part => part.trim().split(/\s+/).filter(Boolean)).filter(tokens => tokens.length)
+            .map(([name, ...sources]) => ({ name: lower(name), sources }))
+            .filter(d => /^[a-z][a-z-]*$/.test(d.name) && !seen.has(d.name) && seen.add(d.name));
+    }
+
+    // One source expression → { kind, host, why }
+    // kind: a keyword of CSP_KEYWORDS | 'nonce' | 'hash' | 'scheme' | 'wildcard' | 'host'
+    function cspSource(source) {
+        const s = String(source);
+        const quoted = s.match(/^'(.+)'$/)?.[1];
+        if (quoted !== undefined) {
+            const k = lower(quoted);
+            if (CSP_KEYWORDS.includes(k)) return { kind: k, host: null, why: null };
+            if (k.startsWith('nonce-')) return { kind: 'nonce', host: null, why: null };
+            if (/^sha(256|384|512)-/.test(k)) return { kind: 'hash', host: null, why: null };
+            return { kind: 'host', host: null, why: null };
+        }
+        if (s === '*') return { kind: 'wildcard', host: null, why: null };
+        if (/^[a-z][a-z0-9+.-]*:$/i.test(s)) return { kind: 'scheme', host: null, why: null };
+        const host = lower(s).replace(/^[a-z][a-z0-9+.-]*:\/\//, '').replace(/[/:].*$/, '');
+        return { kind: 'host', host, why: Object.hasOwn(CSP_HOSTS, host) ? CSP_HOSTS[host] : null };
+    }
+
+    // What weakens a policy → ids of the warnings to show (csp.warn.*)
+    function cspWarnings(directives) {
+        const get = (name) => directives.find(d => d.name === name);
+        const has = (d, kind) => Boolean(d) && d.sources.some(s => cspSource(s).kind === kind);
+        // A fetch directive that is not set falls back to default-src
+        const script = get('script-src') ?? get('default-src');
+        const style = get('style-src') ?? get('default-src');
+        const out = [];
+        if (!directives.length) return out;
+        if (!get('default-src')) out.push('noDefault');
+        if (has(script, 'unsafe-inline') && !has(script, 'nonce') && !has(script, 'hash')) out.push('unsafeInlineScript');
+        if (has(script, 'unsafe-eval')) out.push('unsafeEval');
+        if (has(style, 'unsafe-inline')) out.push('unsafeInlineStyle');
+        if (directives.some(d => /-src$/.test(d.name) && has(d, 'wildcard'))) out.push('wildcard');
+        return out;
+    }
+
+    // The policy a response carries → { value, reportOnly } or null
+    function cspOf(headers) {
+        const map = toMap(headers);
+        if (map.has('content-security-policy')) return { value: map.get('content-security-policy'), reportOnly: false };
+        if (map.has('content-security-policy-report-only')) return { value: map.get('content-security-policy-report-only'), reportOnly: true };
+        return null;
+    }
+
     const score = (verdicts) => ({ ok: verdicts.filter(v => v.state === 'ok').length, total: verdicts.length });
 
     // Stack-describing headers present → [{ name, value, version }] ; version: the value carries a version number
@@ -113,7 +177,7 @@ const CurlCore = (() => {
         return { n: seconds, unit: 'second' };
     }
 
-    return { SECURITY, LEAKS, REDACTED, toMap, redact, kind, parseHsts, audit, score, leaks, output, protocolName, duration };
+    return { SECURITY, LEAKS, REDACTED, CSP_HOSTS, toMap, redact, kind, parseHsts, audit, parseCsp, cspSource, cspWarnings, cspOf, score, leaks, output, protocolName, duration };
 })();
 
 if (typeof module !== 'undefined') module.exports = CurlCore;

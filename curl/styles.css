@@ -55,7 +55,34 @@
     white-space: nowrap;
 }
 
+/* ── Policy, decoded directive by directive ── */
+.cu-policy { display: grid; grid-template-columns: minmax(8rem, 12rem) 1fr; gap: 1.25rem 1.5rem; max-width: 100ch; margin-top: 1rem; }
+.cu-directive { min-width: 0; }
+.cu-sources { display: grid; gap: 0.35rem; margin-top: 0.6rem; }
+.cu-source { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.75rem; font-size: 0.78rem; }
+.cu-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.1rem 0.45rem;
+    color: var(--amber);
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    overflow-wrap: anywhere;
+}
+/* A weakening source is named in the warnings below ; the mark only points at it */
+.cu-chip[data-weak="true"] { color: var(--yellow-dot); border-color: var(--yellow-dot); }
+.cu-chip[data-weak="true"]::after { content: ' !'; }
+.cu-source-text { color: var(--text-3); }
+
+.cu-warnings { max-width: 90ch; margin-top: 2rem; padding: 1rem 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--yellow-dot); }
+.cu-warnings[hidden] { display: none; }
+.cu-warnings .pg-label { margin-top: 0; }
+.cu-warn-list { display: grid; gap: 0.8rem; }
+.cu-warn { font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+
 @media (max-width: 600px) {
+    .cu-policy { grid-template-columns: 1fr; gap: 0.3rem; }
+    .cu-directive { margin-bottom: 1rem; }
     .cu-headers { grid-template-columns: 1fr; gap: 0.2rem; }
     .cu-def { margin-bottom: 0.9rem; }
 }

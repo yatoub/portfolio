@@ -115,3 +115,74 @@ test('every audited header is explained in both languages, and every fix is a Ca
     const fixed = Object.fromEntries(C.SECURITY.map(({ id, fix }) => [id, fix.match(/"(.*)"$/)[1]]));
     assert.deepEqual(C.score(C.audit(fixed)), { ok: 6, total: 6 });
 });
+
+// The policy of yatoub.dev (2026-10-07). font-src data: is for the icon font embedded in Swiper's stylesheet.
+const prodCsp = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://matomo.yatoub.dev; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://matomo.yatoub.dev; font-src 'self' data:; connect-src 'self' https://matomo.yatoub.dev https://ipwho.is https://ipapi.co https://api.ipify.org https://cloudflare-dns.com https://dns.google; frame-ancestors 'none'; base-uri 'self'; form-action 'self'";
+
+test('a policy is split into directives and their sources', () => {
+    const d = C.parseCsp(prodCsp);
+    assert.deepEqual(d.map(x => x.name), ['default-src', 'script-src', 'style-src', 'img-src', 'font-src', 'connect-src', 'frame-ancestors', 'base-uri', 'form-action']);
+    assert.deepEqual(d[0].sources, ["'self'"]);
+    assert.deepEqual(d[3].sources, ["'self'", 'data:', 'https://matomo.yatoub.dev']);
+    assert.deepEqual(C.parseCsp("  Default-Src   'self' ;; upgrade-insecure-requests ; "), [{ name: 'default-src', sources: ["'self'"] }, { name: 'upgrade-insecure-requests', sources: [] }]);
+    assert.deepEqual(C.parseCsp("script-src 'self'; script-src *").map(x => x.sources), [["'self'"]], 'the first occurrence wins, as in browsers');
+    for (const junk of ['', undefined, null, ';;;', '<img> x']) assert.deepEqual(C.parseCsp(junk), [], String(junk));
+});
+
+test('sources are recognised by what they allow', () => {
+    const kind = s => C.cspSource(s).kind;
+    assert.equal(kind("'self'"), 'self');
+    assert.equal(kind("'none'"), 'none');
+    assert.equal(kind("'unsafe-inline'"), 'unsafe-inline');
+    assert.equal(kind("'UNSAFE-EVAL'"), 'unsafe-eval');
+    assert.equal(kind("'nonce-r4nd0m'"), 'nonce');
+    assert.equal(kind("'sha256-abc='"), 'hash');
+    assert.equal(kind('data:'), 'scheme');
+    assert.equal(kind('https:'), 'scheme');
+    assert.equal(kind('*'), 'wildcard');
+    assert.deepEqual(C.cspSource('https://cdn.jsdelivr.net'), { kind: 'host', host: 'cdn.jsdelivr.net', why: 'jsdelivr' });
+    assert.deepEqual(C.cspSource('https://DNS.google/resolve'), { kind: 'host', host: 'dns.google', why: 'doh' });
+    assert.deepEqual(C.cspSource('example.org:8443'), { kind: 'host', host: 'example.org', why: null });
+    assert.equal(C.cspSource('constructor').why, null);
+});
+
+test('every source of the production policy is explained in both languages', () => {
+    for (const lang of ['en', 'fr']) {
+        const tr = translations[lang].csp;
+        for (const d of C.parseCsp(prodCsp)) {
+            assert.ok(tr.directives[d.name], `${lang}: directive ${d.name}`);
+            for (const s of d.sources) {
+                const { kind, why } = C.cspSource(s);
+                if (kind === 'host') assert.ok(why && tr.why[why], `${lang}: host ${s}`);
+                else assert.ok(tr.sources[kind], `${lang}: source ${s}`);
+            }
+        }
+        for (const id of new Set(Object.values(C.CSP_HOSTS))) assert.ok(tr.why[id], `${lang}: why.${id}`);
+        for (const id of ['noDefault', 'unsafeInlineScript', 'unsafeEval', 'unsafeInlineStyle', 'wildcard']) assert.ok(tr.warn[id], `${lang}: warn.${id}`);
+    }
+});
+
+test('what weakens a policy is reported', () => {
+    const warn = v => C.cspWarnings(C.parseCsp(v));
+    assert.deepEqual(warn(prodCsp), ['unsafeInlineScript', 'unsafeInlineStyle']);
+    assert.deepEqual(warn("default-src 'self'; frame-ancestors 'none'"), []);
+    assert.deepEqual(warn("script-src 'self'"), ['noDefault']);
+    // Without script-src, default-src decides for scripts too
+    assert.deepEqual(warn("default-src 'self' 'unsafe-inline'"), ['unsafeInlineScript', 'unsafeInlineStyle']);
+    // A nonce makes browsers ignore 'unsafe-inline' for scripts
+    assert.deepEqual(warn("default-src 'self'; script-src 'nonce-abc' 'unsafe-inline'"), []);
+    assert.deepEqual(warn("default-src 'self'; script-src 'self' 'unsafe-eval'; img-src *"), ['unsafeEval', 'wildcard']);
+    assert.deepEqual(warn(''), []);
+});
+
+test('the policy is read from the enforcing header first, then from report-only', () => {
+    assert.deepEqual(C.cspOf({ 'Content-Security-Policy': 'a', 'Content-Security-Policy-Report-Only': 'b' }), { value: 'a', reportOnly: false });
+    assert.deepEqual(C.cspOf({ 'content-security-policy-report-only': 'b' }), { value: 'b', reportOnly: true });
+    assert.equal(C.cspOf(bare), null);
+});
+
+test('with the production policy enforced, the audit is complete', () => {
+    const verdicts = C.audit({ ...hardened, 'Content-Security-Policy': prodCsp });
+    assert.deepEqual(C.score(verdicts), { ok: 6, total: 6 });
+    assert.equal(verdicts.find(v => v.id === 'x-frame-options').state, 'ok');
+});

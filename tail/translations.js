@@ -61,6 +61,7 @@ const translations = {
             windowNote: 'Sur les {n} derniers jours. Tout a reçu la même réponse : 404.',
         },
         families: {
+            scan: { name: 'Balayage', wanted: "Rien de précis : savoir si quelque chose répond à cette adresse. Le robot ne connaît pas le nom du site, il parcourt les adresses IP une à une et note celles qui hébergent un serveur web, pour y revenir avec une liste de chemins." },
             exploit: { name: 'Failles connues', wanted: "Un logiciel précis et non corrigé : traversée de répertoires, Log4Shell, Exchange, Solr. La requête contient déjà l'attaque, sans vérifier que la cible existe." },
             git: { name: 'Dépôt Git exposé', wanted: "Un dossier .git servi par erreur : il permet de reconstituer tout le code source, son historique, et souvent des mots de passe commités puis « supprimés »." },
             secrets: { name: 'Fichiers de secrets', wanted: "Un .env, une clé privée ou un fichier de configuration : identifiants de base de données, clés d'API de paiement ou de messagerie, accès cloud." },
@@ -146,6 +147,7 @@ const translations = {
             windowNote: 'Over the last {n} days. Everything got the same answer: 404.',
         },
         families: {
+            scan: { name: 'Sweep', wanted: 'Nothing specific: finding out whether anything answers at this address. The bot does not know the site name, it walks through IP addresses one by one and notes those that host a web server, to come back later with a list of paths.' },
             exploit: { name: 'Known vulnerabilities', wanted: 'A specific, unpatched piece of software: path traversal, Log4Shell, Exchange, Solr. The request already carries the attack, without checking that the target exists.' },
             git: { name: 'Exposed Git repository', wanted: 'A .git directory served by mistake: it lets anyone rebuild the whole source code, its history, and often passwords that were committed and then "removed".' },
             secrets: { name: 'Secret files', wanted: 'A .env, a private key or a configuration file: database credentials, payment or mail API keys, cloud access.' },

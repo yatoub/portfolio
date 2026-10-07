@@ -36,9 +36,10 @@ const daily = Array.from({ length: HISTORY_DAYS }, (_, i) => {
 const total = hourly.reduce((a, b) => a + b, 0);
 const split = (shares) => shares.map(s => Math.round(total * s));
 const FAMILIES = [
-    ['secrets', 0.27, ['/.env', '/.env.production', '/.aws/credentials', '/config.json', '/.env.bak']],
-    ['wordpress', 0.24, ['/wp-login.php', '/xmlrpc.php', '/wp-admin/setup-config.php', '/wp-includes/wlwmanifest.xml', '/wp-content/plugins/']],
-    ['shell', 0.14, ['/index.php', '/shell.php', '/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php', '/alfa.php']],
+    ['scan', 0.3, ['/']],
+    ['secrets', 0.19, ['/.env', '/.env.production', '/.aws/credentials', '/config.json', '/.env.bak']],
+    ['wordpress', 0.16, ['/wp-login.php', '/xmlrpc.php', '/wp-admin/setup-config.php', '/wp-includes/wlwmanifest.xml', '/wp-content/plugins/']],
+    ['shell', 0.08, ['/index.php', '/shell.php', '/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php', '/alfa.php']],
     ['git', 0.11, ['/.git/config', '/.git/HEAD']],
     ['admin', 0.09, ['/phpmyadmin/', '/admin/', '/manager/html', '/adminer.php']],
     ['debug', 0.06, ['/actuator/health', '/actuator/env', '/server-status', '/swagger-ui.html']],
@@ -56,7 +57,7 @@ const families = FAMILIES.map(([id, , paths], i) => {
             const c = n === paths.length - 1 ? Math.round(left * 0.6) : Math.round(left * 0.45);
             left -= c;
             return { path, count: Math.max(c, 0) };
-        }).filter(p => p.count > 0).filter(p => /^\/[A-Za-z0-9._/-]{1,79}$/.test(p.path)),
+        }).filter(p => p.count > 0).filter(p => p.path === '/' || /^\/[A-Za-z0-9._/-]{1,79}$/.test(p.path)),
     };
 }).filter(f => f.count > 0);
 

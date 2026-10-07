@@ -11,7 +11,7 @@ const translations = {
         form: {
             address: 'adresse',
             prefix: 'préfixe',
-            yours: "C'est l'adresse publique sous laquelle ce serveur vous voit.",
+            yours: "C'est l'adresse sous laquelle ce serveur vous voit.",
             example: "Adresse d'exemple : la vôtre n'est lisible que derrière le vrai serveur. Saisissez celle que vous voulez.",
             invalid: 'Adresse invalide : quatre nombres de 0 à 255 séparés par des points.',
             reset: '[ revenir à mon adresse ]',
@@ -72,7 +72,7 @@ const translations = {
         form: {
             address: 'address',
             prefix: 'prefix',
-            yours: 'This is the public address this server sees you under.',
+            yours: 'This is the address this server sees you under.',
             example: 'Example address: yours can only be read behind the real server. Type any address you like.',
             invalid: 'Invalid address: four numbers from 0 to 255 separated by dots.',
             reset: '[ back to my address ]',

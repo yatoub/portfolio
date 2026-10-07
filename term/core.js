@@ -10,7 +10,7 @@ const TermCore = (() => {
     const HOSTNAME = 'yatoub';
     // Stable file names for experience entries, whatever the display language
     const EXP_SLUGS = { en: 'education-nationale', lp: 'la-poste', mc: 'maincare', cp: 'cpage', dp: 'delpharm' };
-    const SECTIONS = { lab: '/lab', whoami: '/whoami/', status: '/status/', tcpdump: '/tcpdump/', tail: '/tail/', ctf: '/ctf/', curl: '/curl.txt', github: 'https://github.com/yatoub' };
+    const SECTIONS = { man: '/man/', lab: '/lab', whoami: '/whoami/', status: '/status/', tcpdump: '/tcpdump/', ping: '/ping/', dig: '/dig/', curl: '/curl/', tail: '/tail/', ctf: '/ctf/', github: 'https://github.com/yatoub' };
 
     const dir = (children = {}) => ({ dir: children });
     const file = (content, extra = {}) => ({ file: content, ...extra });

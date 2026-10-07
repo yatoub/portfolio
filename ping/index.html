@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // PING</title>
+    <meta name="description" content="Le temps d'aller-retour entre votre appareil et yatoub.dev, mesuré en direct, et la distance maximale qu'il autorise.">
+    <link rel="canonical" href="https://yatoub.dev/ping/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navRtt">…</span>
+            </div>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre">$ ping -c 10 yatoub.dev</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">PING</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.measure">MESURE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <pre class="pg-out pn-out" id="out" role="log" aria-live="polite"></pre>
+                <div class="pn-bars" id="bars" aria-hidden="true"></div>
+                <div class="pn-stats" id="stats" hidden>
+                    <div class="pn-stat"><span class="pn-stat-num" id="statMin">—</span><span class="pn-stat-label" data-i18n="stat.min">meilleur aller-retour</span></div>
+                    <div class="pn-stat"><span class="pn-stat-num" id="statAvg">—</span><span class="pn-stat-label" data-i18n="stat.avg">moyenne</span></div>
+                    <div class="pn-stat"><span class="pn-stat-num" id="statMdev">—</span><span class="pn-stat-label" data-i18n="stat.mdev">gigue (écart moyen)</span></div>
+                </div>
+                <p class="pg-note" id="unsupported" hidden></p>
+                <button class="pg-link-btn pn-again" id="again" type="button" disabled></button>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.distance">DISTANCE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="pg-panel pn-dist">
+                    <p class="pn-bound" id="bound">…</p>
+                    <p class="pg-text" id="how"></p>
+                    <code class="pn-formula" data-i18n="dist.formula"></code>
+                    <p class="pg-text pn-real" data-i18n="dist.real"></p>
+                </div>
+                <p class="pg-label" data-i18n="dist.refs">Le minimum que la physique autorise</p>
+                <dl class="pn-refs" id="refs"></dl>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">03</span>
+                    <h2 class="sh-title"><span data-i18n="sec.notes">LECTURE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="pn-notes" id="notes"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p data-i18n="foot.local"></p>
+        <p><span data-i18n="foot.more"></span> <a href="/tcpdump/">/tcpdump/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

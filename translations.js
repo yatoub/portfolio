@@ -1,7 +1,7 @@
 /* ── i18n translations ── */
 const translations = {
     en: {
-        nav: { home: 'HOME', about: 'ABOUT', exp: 'EXP', projects: 'PROJECTS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB', whoami: 'WHOAMI' },
+        nav: { home: 'HOME', about: 'ABOUT', exp: 'EXP', projects: 'PROJECTS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB', whoami: 'WHOAMI', man: 'MAN' },
         hero: { bootok: 'BOOT OK', status: 'AVAILABLE', cta: 'VIEW_PROJECTS' },
         about: {
             title: 'ABOUT',
@@ -113,7 +113,7 @@ const translations = {
                 cd: 'change directory',
                 pwd: 'print the current directory',
                 cat: 'print a file (about.md, projects/*.md, curl.txt…)',
-                open: 'open a project or a section (lab, whoami, status, tcpdump, tail, ctf, github)',
+                open: "open a project or a page ('open man' lists the pages)",
                 status: 'live state of the homelab',
                 whoami: 'what the server sees of you',
                 lang: 'switch language (fr | en)',
@@ -149,7 +149,7 @@ const translations = {
     },
 
     fr: {
-        nav: { home: 'ACCUEIL', about: 'À PROPOS', exp: 'EXP', projects: 'PROJETS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB', whoami: 'WHOAMI' },
+        nav: { home: 'ACCUEIL', about: 'À PROPOS', exp: 'EXP', projects: 'PROJETS', homelab: 'HOMELAB', contact: 'CONTACT', lab: 'LAB', whoami: 'WHOAMI', man: 'MAN' },
         hero: { bootok: 'DÉMARRAGE OK', status: 'DISPONIBLE', cta: 'VOIR_PROJETS' },
         about: {
             title: 'À PROPOS',
@@ -261,7 +261,7 @@ const translations = {
                 cd: 'changer de dossier',
                 pwd: 'afficher le dossier courant',
                 cat: 'afficher un fichier (about.md, projects/*.md, curl.txt…)',
-                open: 'ouvrir un projet ou une section (lab, whoami, status, tcpdump, tail, ctf, github)',
+                open: "ouvrir un projet ou une page ('open man' liste les pages)",
                 status: 'état en direct du homelab',
                 whoami: 'ce que le serveur voit de vous',
                 lang: 'changer de langue (fr | en)',

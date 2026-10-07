@@ -1,0 +1,46 @@
+/* ═══════════════════════════════════════════
+   YATOUB // MAN — page styles
+   A manual page: one column, uppercase section headings flush
+   left, body indented. Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.mn-page { max-width: 90ch; padding-bottom: 4rem; }
+
+.mn-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-3);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+.mn-foot { margin-top: 3rem; padding: 0.75rem 0 0; border-bottom: none; border-top: 1px solid var(--border); }
+
+.mn-h {
+    margin: 2rem 0 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-1);
+}
+.mn-body, .mn-list { margin-left: 4ch; }
+.mn-body { max-width: 76ch; margin-bottom: 0.8rem; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+.mn-body strong { color: var(--text-1); font-weight: 700; }
+.mn-body em { color: var(--amber); font-style: normal; text-decoration: underline; text-underline-offset: 3px; }
+.mn-body a, .mn-term a { color: var(--green); }
+.mn-body a:hover, .mn-term a:hover { text-decoration: underline; }
+
+.mn-term { display: flex; align-items: center; flex-wrap: wrap; gap: 0 0.75rem; font-size: 0.85rem; font-weight: 700; color: var(--text-1); }
+.mn-term a { font-weight: 700; }
+.mn-term .pg-tag { font-weight: 400; }
+.mn-def { margin: 0.3rem 0 1.4rem 4ch; max-width: 72ch; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+.mn-cmd { display: block; margin-bottom: 0.3rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-3); overflow-wrap: anywhere; }
+.mn-files .mn-def { margin-bottom: 0.8rem; }
+
+@media (max-width: 480px) {
+    .mn-body, .mn-list { margin-left: 2ch; }
+    .mn-def { margin-left: 2ch; }
+    .mn-head span:nth-child(2) { display: none; }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // DIG</title>
+    <meta name="description" content="Les enregistrements DNS de yatoub.dev interrogés en direct auprès de deux résolveurs publics, et ce que chacun révèle.">
+    <link rel="canonical" href="https://yatoub.dev/dig/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre">$ dig +noall +answer yatoub.dev</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">DIG</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.zone">ZONE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="dg-records" id="records"></div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.trust">CONFIANCE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="pg-panel dg-trust">
+                    <h3 class="pg-panel-title" data-i18n="trust.title">DNSSEC</h3>
+                    <p class="dg-trust-text" id="trust">…</p>
+                    <p class="dg-trust-text" data-i18n="trust.limit"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">03</span>
+                    <h2 class="sh-title"><span data-i18n="sec.query">À VOUS</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="pg-text" data-i18n="ask.intro"></p>
+                <form class="dg-form" id="form" autocomplete="off">
+                    <span class="dg-prompt" aria-hidden="true">$ dig</span>
+                    <label class="dg-field">
+                        <span class="dg-field-label" data-i18n="ask.name">nom</span>
+                        <span class="dg-name"><input class="dg-input" id="name" name="name" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" maxlength="120"><span class="dg-suffix">.yatoub.dev</span></span>
+                    </label>
+                    <label class="dg-field">
+                        <span class="dg-field-label" data-i18n="ask.type">type</span>
+                        <select class="dg-input dg-select" id="type" name="type"></select>
+                    </label>
+                    <button class="btn btn-primary" type="submit" data-i18n="ask.submit">INTERROGER</button>
+                </form>
+                <p class="dg-msg" id="msg" role="status" aria-live="polite"></p>
+                <div class="dg-results" id="results"></div>
+                <p class="pg-note" id="local" hidden></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p><span data-i18n="foot.ext"></span> <code>cloudflare-dns.com</code> <span data-i18n="foot.and"></span> <code>dns.google</code>.</p>
+        <p data-i18n="foot.zone"></p>
+        <p><span data-i18n="foot.more"></span> <a href="/tcpdump/">/tcpdump/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

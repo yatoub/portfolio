@@ -5,4 +5,8 @@
   <url><loc>https://yatoub.dev/status/</loc></url>
   <url><loc>https://yatoub.dev/tcpdump/</loc></url>
   <url><loc>https://yatoub.dev/tail/</loc></url>
+  <url><loc>https://yatoub.dev/man/</loc></url>
+  <url><loc>https://yatoub.dev/ping/</loc></url>
+  <url><loc>https://yatoub.dev/dig/</loc></url>
+  <url><loc>https://yatoub.dev/curl/</loc></url>
 </urlset>

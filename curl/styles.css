@@ -1,0 +1,61 @@
+/* ═══════════════════════════════════════════
+   YATOUB // CURL — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.cu-out { color: var(--text-1); margin-bottom: 2rem; }
+
+.cu-headers { display: grid; grid-template-columns: minmax(8rem, 14rem) 1fr; gap: 1rem 1.5rem; max-width: 100ch; }
+.cu-name { font-size: 0.8rem; color: var(--green); overflow-wrap: anywhere; }
+.cu-name[data-kind="leak"]::after     { content: ' !'; color: var(--yellow-dot); }
+.cu-name[data-kind="redacted"]::after { content: ' ?'; color: var(--amber); }
+.cu-def { min-width: 0; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+.cu-value { display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--amber); overflow-wrap: anywhere; }
+.cu-def .cu-value { margin-bottom: 0.25rem; }
+
+/* ── Score ── */
+.cu-score {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+}
+.cu-score-num { font-family: var(--font-display); font-size: clamp(1.4rem, 4.5vw, 2.1rem); line-height: 1.1; color: var(--text-1); }
+.cu-score-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+
+/* ── Verdict cards: the state is written in the tag, the colour backs it up ── */
+.cu-audit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.cu-card { min-width: 0; border-left: 3px solid var(--border-bright); }
+.cu-card[data-state="ok"]      { border-left-color: var(--green-dot); }
+.cu-card[data-state="weak"]    { border-left-color: var(--yellow-dot); }
+.cu-card[data-state="missing"] { border-left-color: var(--red-dot); }
+.cu-card-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+.cu-card-head .pg-panel-title { margin-right: auto; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; letter-spacing: 0; overflow-wrap: anywhere; }
+.cu-state[data-state="ok"]      { color: var(--green-dot); border-color: var(--green-dot); }
+.cu-state[data-state="weak"]    { color: var(--yellow-dot); border-color: var(--yellow-dot); }
+.cu-state[data-state="missing"] { color: var(--red-dot); border-color: var(--red-dot); }
+
+.cu-text { font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+.cu-card > .cu-text { margin-top: 0.8rem; }
+.cu-detail, .cu-reason { margin-top: 0.4rem; font-size: 0.75rem; line-height: 1.5; color: var(--text-3); }
+.cu-reason { color: var(--yellow-dot); }
+.cu-fix {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--green);
+    background: var(--bg-0);
+    border: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .cu-headers { grid-template-columns: 1fr; gap: 0.2rem; }
+    .cu-def { margin-bottom: 0.9rem; }
+}

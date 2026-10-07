@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════════════
+   YATOUB // NC — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.nc-layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 1.5rem; align-items: start; }
+.nc-session { min-width: 0; }
+
+.nc-form { padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border-bright); border-left: 3px solid var(--green); }
+.nc-form .pg-label { display: block; margin-top: 0; }
+.nc-input {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-1);
+    background: var(--bg-0);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius);
+    caret-color: var(--green);
+    resize: vertical;
+    tab-size: 4;
+}
+.nc-input:focus-visible { outline: none; border-color: var(--green); box-shadow: 0 0 12px var(--green-glow); }
+.nc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1.25rem; margin-top: 0.9rem; }
+.nc-keys { font-size: 0.7rem; color: var(--text-3); }
+.nc-actions .pg-link-btn { margin-left: auto; }
+
+.nc-msgs { display: grid; gap: 0.4rem; margin-top: 0.9rem; list-style: none; font-size: 0.8rem; line-height: 1.6; }
+.nc-msgs:empty, .nc-sent:empty { display: none; }
+.nc-msg { padding-left: 0.9rem; border-left: 3px solid var(--border-bright); color: var(--text-2); }
+.nc-msg[data-kind="err"] { border-left-color: var(--red-dot); color: var(--text-1); }
+.nc-msg[data-kind="note"] { border-left-color: var(--amber); }
+
+.nc-sent { display: grid; gap: 0.3rem; margin-top: 0.9rem; list-style: none; font-size: 0.78rem; }
+.nc-sent-item { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.75rem; }
+.nc-sent-item code { font-family: var(--font-mono); color: var(--text-2); overflow-wrap: anywhere; }
+/* "not sent" is written in the tag ; the strike-through only repeats it */
+.nc-sent-item[data-sent="false"] code { color: var(--text-3); text-decoration: line-through; }
+
+.nc-out { margin-top: 1rem; min-height: 12rem; max-height: 30rem; overflow: auto; color: var(--text-1); white-space: pre-wrap; overflow-wrap: anywhere; }
+.nc-out[data-state="idle"], .nc-out[data-state="sending"] { color: var(--text-3); }
+.nc-out[data-state="failed"], .nc-out[data-state="redirect"] { color: var(--text-2); white-space: normal; }
+
+/* ── Challenges ── */
+.nc-ch-head { display: flex; align-items: center; gap: 0.75rem; }
+.nc-ch-head .pg-tag { margin-left: auto; }
+[data-complete="true"] .nc-ch-head .pg-tag { color: var(--green-dot); border-color: var(--green-dot); }
+.nc-ch-list { display: grid; gap: 1.1rem; margin: 1.1rem 0; list-style: none; }
+.nc-ch-name { display: flex; gap: 0.6rem; font-size: 0.85rem; color: var(--text-2); }
+.nc-ch-mark { font-family: var(--font-mono); color: var(--text-3); white-space: nowrap; }
+.nc-ch[data-state="done"] .nc-ch-name { color: var(--text-1); }
+.nc-ch[data-state="done"] .nc-ch-mark { color: var(--green-dot); }
+.nc-ch[data-fresh="true"] .nc-ch-name { color: var(--green-dot); }
+.nc-ch-goal, .nc-ch-why, .nc-ch-hint { margin: 0.25rem 0 0.35rem 2.1rem; font-size: 0.75rem; line-height: 1.6; color: var(--text-3); }
+.nc-ch-why { color: var(--text-2); }
+.nc-ch-hint { color: var(--amber); overflow-wrap: anywhere; }
+.nc-ch .pg-link-btn { margin-left: 2.1rem; font-size: 0.7rem; }
+#reset[data-armed="true"] { color: var(--red-dot); }
+
+.nc-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.nc-note-text { margin-top: 0.6rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+.nc-real { color: var(--green); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (max-width: 1000px) {
+    .nc-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .nc-form { padding: 1rem; }
+    .nc-actions .btn { width: 100%; justify-content: center; }
+    .nc-actions .pg-link-btn { margin-left: 0; }
+}

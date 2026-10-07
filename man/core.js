@@ -16,6 +16,7 @@ const ManCore = (() => {
         { id: 'curl', section: 1, href: '/curl/', synopsis: 'curl -I https://yatoub.dev' },
         { id: 'ipcalc', section: 1, href: '/ipcalc/', synopsis: 'ipcalc 203.0.113.7/24' },
         { id: 'nc', section: 1, href: '/nc/', synopsis: 'nc yatoub.dev 80' },
+        { id: 'xxd', section: 1, href: '/xxd/', synopsis: 'tcpdump -c 1 -w - host yatoub.dev | xxd' },
         { id: 'tail', section: 1, href: '/tail/', synopsis: "tail -f /var/log/caddy/access.log | grep ' 404 '" },
         { id: 'status', section: 1, href: '/status/', synopsis: 'systemctl status homelab.target' },
         { id: 'lab', section: 8, href: '/lab', synopsis: 'ls /srv', restricted: true },

@@ -20,6 +20,7 @@ const translations = {
             local: "// rien n'est stocké ni envoyé à yatoub.dev. Tout est calculé dans votre navigateur.",
             ext: '// requêtes externes :',
             ip: '(IP & géoloc)',
+            tcpdump: '// la durée de chaque étape de votre connexion, et ce qui en circule en clair :',
         },
         unit: { signals: 'SIGNAUX', conclusions: 'CONCLUSIONS' },
         card: {
@@ -150,6 +151,7 @@ const translations = {
             local: '// nothing is stored or sent to yatoub.dev. Everything is computed in your browser.',
             ext: '// external requests:',
             ip: '(IP & geolocation)',
+            tcpdump: '// how long each step of your connection took, and what travels in clear:',
         },
         unit: { signals: 'SIGNALS', conclusions: 'CONCLUSIONS' },
         card: {

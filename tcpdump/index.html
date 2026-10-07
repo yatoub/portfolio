@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // TCPDUMP</title>
+    <meta name="description" content="Anatomie d'une requête : la durée réelle de chaque étape du chargement, et ce qu'un observateur du réseau voit de votre connexion.">
+    <link rel="canonical" href="https://yatoub.dev/tcpdump/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navProto">…</span>
+            </div>
+            <button class="lang-toggle wr-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="wr-main">
+        <header class="container wr-hero">
+            <p class="wr-pre">$ tcpdump -i any -tttt host yatoub.dev</p>
+            <h1 class="wr-title"><span data-i18n="hero.title">TCPDUMP</span><span class="title-cursor">_</span></h1>
+            <p class="wr-sub" data-i18n="hero.sub">Ce qui s'est réellement passé entre votre navigateur et ce serveur.</p>
+        </header>
+
+        <!-- ── Cascade des durées ── -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.waterfall">CASCADE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="wr-panels" id="waterfalls"></div>
+                <ul class="wr-legend" aria-hidden="true">
+                    <li><span class="wr-swatch"></span><span data-i18n="wf.legendMeasured">durée mesurée</span></li>
+                    <li><span class="wr-swatch" data-state="reused"></span><span data-i18n="wf.legendReused">étape évitée</span></li>
+                </ul>
+                <h3 class="wr-h3" data-i18n="wf.phases">Les étapes, dans l'ordre</h3>
+                <dl class="wr-glossary" id="glossary"></dl>
+            </div>
+        </section>
+
+        <!-- ── Ce que voit un observateur du réseau ── -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.observer">OBSERVATEUR</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="wr-intro" data-i18n="obs.intro"></p>
+                <p class="wr-note" id="obsNote" hidden></p>
+                <div class="wr-split" id="observer"></div>
+            </div>
+        </section>
+
+        <!-- ── Suite cryptographique ── -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">03</span>
+                    <h2 class="sh-title"><span data-i18n="sec.cipher">SUITE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="wr-intro" data-i18n="cipher.intro"></p>
+                <div id="cipher"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container wr-foot">
+        <p data-i18n="foot.local">// rien n'est stocké ni envoyé.</p>
+        <p><span data-i18n="foot.more">// ce que le serveur lit de vous :</span> <a href="/whoami/">/whoami/</a></p>
+        <p>// <a href="/">yatoub.dev</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

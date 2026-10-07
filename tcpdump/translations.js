@@ -105,6 +105,7 @@ const translations = {
         foot: {
             local: "// rien n'est stocké ni envoyé : les durées viennent de l'API de mesure de votre navigateur, la vue TLS de la même source que /whoami/.",
             more: '// ce que le serveur lit de vous :',
+            tail: "// ce que ce serveur reçoit sans l'avoir demandé :",
         },
     },
 
@@ -211,6 +212,7 @@ const translations = {
         foot: {
             local: '// nothing is stored or sent: durations come from your browser timing API, the TLS view from the same source as /whoami/.',
             more: '// what the server reads from you:',
+            tail: '// what this server receives without asking for it:',
         },
     },
 };

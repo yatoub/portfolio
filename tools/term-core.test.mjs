@@ -166,6 +166,54 @@ test('completion: commands, paths, unique and ambiguous matches', () => {
     assert.equal(T.complete('open ct', ctx).input, 'open ctf ');
 });
 
+test('hidden commands: cowsay wraps its text, fortune draws from the list', async () => {
+    const { run, ctx } = shell();
+    const cow = (await run('cowsay hello')).text;
+    assert.match(cow, /^ _______\n< hello >\n -------\n/);
+    assert.match(cow, /\(oo\)/);
+    const long = (await run('cowsay one two three four five six seven eight nine ten eleven twelve')).text.split('\n');
+    assert.ok(long.slice(1, -6).length > 1, 'long text spans several bubble rows');
+    assert.ok(long.every(l => l.length <= 46));
+    assert.match((await run('cowsay')).text, /turning it off and on/);
+    ctx.random = () => 0;
+    assert.equal((await run('fortune')).text, 'It is always DNS.');
+    ctx.random = () => 0.9999;
+    assert.equal((await run('fortune')).text, translations.en.term.egg.fortunes.at(-1));
+    assert.equal(translations.fr.term.egg.fortunes.length, translations.en.term.egg.fortunes.length);
+});
+
+test('hidden commands: sl and cmatrix return frames of a fixed size', async () => {
+    const { run, ctx } = shell();
+    const sl = (await run('sl')).effects[0];
+    assert.equal(sl.type, 'animate');
+    assert.ok(sl.frames.length > 40);
+    for (const f of sl.frames) assert.ok(f.split('\n').every(l => l.length === 64), 'train frames are clipped to the terminal width');
+    assert.equal(sl.frames.at(-1).trim(), '', 'the train has left');
+    assert.match(sl.frames[Math.floor(sl.frames.length / 2)], /O=====O/);
+
+    ctx.random = () => 0.5;
+    const offline = (await run('cmatrix')).effects[0];
+    assert.equal(offline.frames.length, 48);
+    assert.ok(offline.frames.every(f => f.split('\n').length === 12 && f.split('\n').every(l => l.length === 64)));
+    assert.match(offline.frames.join(''), /[a-z/.]/);
+
+    // With the export available, columns are made of the paths bots really asked for, printable ones only
+    const noise = { families: [{ id: 'x', paths: ['/aaaa', '/bbbb', '/cccc', '/dddd', '/eeee', '<script>', 'bad path'].map(path => ({ path })) }] };
+    const live = (await shell('en', { json: async () => noise }).run('cmatrix')).effects[0].frames.join('');
+    assert.doesNotMatch(live, /[<>]/);
+    assert.match(live, /[abcde]/);
+});
+
+test('hidden commands stay out of help and completion', () => {
+    const { ctx } = shell();
+    for (const cmd of ['cowsay', 'fortune', 'sl', 'cmatrix']) {
+        assert.ok(Object.hasOwn(T.COMMANDS, cmd), cmd);
+        assert.ok(!Object.hasOwn(translations.en.term.help, cmd), cmd);
+    }
+    assert.deepEqual(T.complete('s', ctx).options.includes('sl'), false);
+    assert.equal(T.complete('cow', ctx).input, 'cow');
+});
+
 test('every help entry is a real command, in both languages', () => {
     for (const lang of ['en', 'fr']) {
         for (const name of Object.keys(translations[lang].term.help)) assert.ok(Object.hasOwn(T.COMMANDS, name), `${lang}: ${name}`);

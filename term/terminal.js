@@ -70,9 +70,40 @@ window.YTerm = (() => {
         if (!TermCore.lookup(ctx.fs, state.cwd)?.dir) state.cwd = [];
     }
 
+    /* ── Frame animation (sl, cmatrix): one block whose text is replaced on a timer ── */
+    let animation = null;
+    function stopAnimation() {
+        if (!animation) return;
+        clearInterval(animation.timer);
+        if (!animation.keep) animation.block.remove();
+        animation = null;
+    }
+
+    function animate({ frames, ms, keep }) {
+        stopAnimation();
+        if (!frames.length) return;
+        const block = el('div', 'art', frames[0]);
+        block.setAttribute('aria-hidden', 'true');
+        out.append(block);
+        scrollDown();
+        // Reduced motion: one still frame from the middle, then it goes away like the others
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            block.textContent = frames[Math.floor(frames.length / 2)];
+            animation = { block, keep, timer: setTimeout(stopAnimation, 1500) };
+            return;
+        }
+        let i = 0;
+        animation = { block, keep, timer: setInterval(() => {
+            i += 1;
+            if (i >= frames.length) return stopAnimation();
+            block.textContent = frames[i];
+        }, ms) };
+    }
+
     /* ── Effects requested by commands ── */
     function apply(effect) {
-        if (effect.type === 'clear') out.replaceChildren();
+        if (effect.type === 'clear') { stopAnimation(); out.replaceChildren(); }
+        else if (effect.type === 'animate') animate(effect);
         else if (effect.type === 'close') close();
         else if (effect.type === 'lang') {
             currentLang = effect.lang;
@@ -89,6 +120,7 @@ window.YTerm = (() => {
     }
 
     async function run(command) {
+        stopAnimation();
         echo(command);
         input.value = '';
         histPos = null;
@@ -219,6 +251,7 @@ window.YTerm = (() => {
 
     function close() {
         if (!root || root.hidden) return;
+        stopAnimation();
         root.hidden = true;
         document.body.style.overflow = '';
         input.blur();

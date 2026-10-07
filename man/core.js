@@ -10,6 +10,7 @@ const ManCore = (() => {
     const PAGES = [
         { id: 'whoami', section: 1, href: '/whoami/', synopsis: 'whoami --verbose' },
         { id: 'tcpdump', section: 8, href: '/tcpdump/', synopsis: 'tcpdump -i any -tttt host yatoub.dev' },
+        { id: 'traceroute', section: 8, href: '/traceroute/', synopsis: 'traceroute yatoub.dev' },
         { id: 'ping', section: 8, href: '/ping/', synopsis: 'ping -c 10 yatoub.dev' },
         { id: 'dig', section: 1, href: '/dig/', synopsis: 'dig +noall +answer yatoub.dev' },
         { id: 'curl', section: 1, href: '/curl/', synopsis: 'curl -I https://yatoub.dev' },

@@ -1,0 +1,108 @@
+/* ═══════════════════════════════════════════
+   YATOUB // TRACEROUTE — page styles
+   Same visual vocabulary as the /lab topology (boxes, edges that
+   light up, a terminal panel), redone here: /lab is behind
+   authentication and its stylesheet is not reachable from a public
+   page. Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+/* The diagram takes the full width: beside a tall panel its labels shrank below 10px */
+.tr-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+.tr-canvas { background: var(--bg-card); border: 1px solid var(--border); padding: 1rem; }
+.tr-svg { display: block; width: 100%; height: auto; }
+
+/* ── Nodes ── */
+.tr-node rect { fill: var(--bg-1); stroke: var(--border-bright); stroke-width: 1; transition: stroke var(--transition), fill var(--transition); }
+.tr-name { fill: var(--text-1); font-family: var(--font-display); font-size: 12px; letter-spacing: 0.04em; }
+.tr-sub { fill: var(--text-3); font-family: var(--font-mono); font-size: 9.5px; }
+.tr-node.on rect { stroke: var(--green); fill: var(--bg-2); }
+/* The Internet in between is the part nobody on this page can see */
+.tr-node[data-side="net"] rect { stroke-dasharray: 4 4; }
+.tr-node[data-side="net"] .tr-sub { letter-spacing: 0.2em; }
+
+/* ── Edges ── */
+.tr-edge { stroke: var(--border-bright); stroke-width: 1.5; transition: stroke var(--transition); }
+.tr-edge[data-side="net"] { stroke-dasharray: 3 5; }
+.tr-edge.on { stroke: var(--green); stroke-width: 2; stroke-dasharray: 8 6; animation: trFlow 0.9s linear infinite; }
+@keyframes trFlow { to { stroke-dashoffset: -14; } }
+
+.tr-packet { fill: var(--amber); stroke: var(--bg-card); stroke-width: 2; }
+.tr-bracket { stroke: var(--border-bright); stroke-width: 1; }
+.tr-side { fill: var(--text-3); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; }
+
+/* ── Round trips panel ── */
+.tr-panel { background: var(--bg-card); border: 1px solid var(--border); }
+.tr-panel-body { padding: 1.25rem; }
+.tr-summary { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.04em; line-height: 1.5; color: var(--text-1); }
+
+.tr-trips { margin: 1.1rem 0; counter-reset: trip; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1.25rem 2rem; list-style: none; }
+.tr-trip { counter-increment: trip; position: relative; padding-left: 2rem; }
+.tr-trip::before {
+    content: counter(trip);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    display: grid;
+    place-items: center;
+    font-size: 0.65rem;
+    color: var(--text-3);
+    border: 1px solid var(--border-bright);
+    transition: all var(--transition);
+}
+.tr-trip.on::before { color: var(--bg-0); background: var(--green); border-color: var(--green); }
+.tr-trip-btn {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-align: left;
+    color: var(--text-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.tr-trip-btn:hover .tr-trip-name, .tr-trip.on .tr-trip-name { color: var(--green); }
+.tr-trip-btn:focus-visible { outline: 1px solid var(--green); outline-offset: 3px; }
+.tr-trip-ms { margin-left: auto; white-space: nowrap; color: var(--text-1); font-variant-numeric: tabular-nums; }
+.tr-trip-what { margin-top: 0.3rem; font-size: 0.75rem; line-height: 1.6; color: var(--text-3); }
+.tr-trip.on .tr-trip-what { color: var(--text-2); }
+/* A trip that did not happen keeps its place in the list, struck out by its label */
+.tr-trip[data-state="reused"] .tr-trip-name,
+.tr-trip[data-state="none"] .tr-trip-name { color: var(--text-3); text-decoration: line-through; }
+.tr-trip[data-state="reused"] .tr-trip-ms,
+.tr-trip[data-state="none"] .tr-trip-ms { color: var(--text-3); }
+
+.tr-panel-note { margin-bottom: 1rem; font-size: 0.75rem; line-height: 1.6; color: var(--text-2); }
+.tr-panel-note:empty { display: none; }
+.tr-hint { margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-3); }
+
+.tr-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1rem; font-size: 0.75rem; color: var(--text-3); list-style: none; }
+.tr-meta code { font-family: var(--font-mono); color: var(--amber); }
+
+/* ── Hops and notes ── */
+.tr-hops { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; }
+.tr-hop-col { border-top: 3px solid var(--border-bright); }
+.tr-hop-col[data-side="net"] { border-top-style: dashed; }
+.tr-hop-list { margin-top: 1rem; display: grid; gap: 0.3rem; }
+.tr-hop-name { font-size: 0.8rem; color: var(--green); }
+.tr-hop-what { margin-bottom: 0.9rem; font-size: 0.78rem; line-height: 1.6; color: var(--text-2); }
+
+.tr-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.tr-note-text { margin-top: 0.6rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+.tr-try { color: var(--green); }
+
+@media (prefers-reduced-motion: reduce) {
+    .tr-edge.on { animation: none; }
+}
+
+@media (max-width: 768px) {
+    .tr-canvas { padding: 0.75rem; }
+    .tr-svg { max-width: 360px; margin: 0 auto; }
+    .tr-name { font-size: 13px; }
+    .tr-sub { font-size: 10.5px; }
+}

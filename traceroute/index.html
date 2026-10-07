@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // TRACEROUTE</title>
+    <meta name="description" content="Le chemin de vos paquets jusqu'à yatoub.dev, et chacun des allers-retours du chargement avec sa durée réelle.">
+    <link rel="canonical" href="https://yatoub.dev/traceroute/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navTrips">…</span>
+            </div>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre">$ traceroute yatoub.dev</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">TRACEROUTE</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.path">TRAJET</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="tr-layout">
+                    <div class="tr-canvas" id="canvas"></div>
+                    <aside class="tr-panel">
+                        <div class="tc-bar">
+                            <div class="tc-dots"><span class="tcd red"></span><span class="tcd yellow"></span><span class="tcd green"></span></div>
+                            <span class="tc-title">~/traceroute.sh</span>
+                        </div>
+                        <div class="tr-panel-body">
+                            <p class="tr-summary" id="summary" role="status" aria-live="polite">…</p>
+                            <ol class="tr-trips" id="trips"></ol>
+                            <p class="tr-panel-note" id="panelNote"></p>
+                            <button class="pg-link-btn" id="replay" type="button" data-i18n="panel.replay">[ rejouer ]</button>
+                            <p class="tr-hint" data-i18n="panel.hint"></p>
+                        </div>
+                    </aside>
+                </div>
+                <ul class="tr-meta" id="meta"></ul>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.hops">SAUTS</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="pg-text" data-i18n="hops.intro"></p>
+                <div class="tr-hops" id="hops"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">03</span>
+                    <h2 class="sh-title"><span data-i18n="sec.real">LE VRAI</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="pg-text" data-i18n="real.intro"></p>
+                <div class="tr-notes" id="notes"></div>
+                <p class="pg-label" data-i18n="real.try">À lancer chez vous</p>
+                <pre class="pg-out tr-try">$ traceroute yatoub.dev        # Linux, macOS
+$ mtr -rw yatoub.dev            # the same, repeated and averaged
+&gt; tracert yatoub.dev          # Windows</pre>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p data-i18n="foot.local"></p>
+        <p data-i18n="foot.roles"></p>
+        <p><span data-i18n="foot.more"></span> <a href="/tcpdump/">/tcpdump/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="/tcpdump/core.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

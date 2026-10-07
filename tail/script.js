@@ -253,6 +253,7 @@ function render() {
     $('#content').hidden = !ok;
     $('#updated').textContent = sum.age != null && sum.state !== 'unknown' ? tf('meta.updated', { when: ago(Math.max(sum.age, 0)) }) : '';
     $('#other').textContent = '';
+    $('#byIp').textContent = '';
     if (!ok) return;
 
     const last = payload.last24;
@@ -261,6 +262,10 @@ function render() {
     const pace = TailCore.rate(last.requests);
     $('#statRate').textContent = pace.unit === 'none' ? t('stat.none') : tf(`stat.${pace.unit}`, { n: num(pace.n) });
     if (last.other > 0) $('#other').textContent = tf('stat.other', { n: num(last.other) });
+    // Older exports do not carry this counter: the line simply stays out
+    if (last.by_ip > 0 && last.requests > 0) {
+        $('#byIp').textContent = tf('stat.byIp', { n: num(last.by_ip), pct: TailCore.percent(Math.min(last.by_ip / last.requests, 1)) });
+    }
 
     const hours = TailCore.hours(payload);
     const days = TailCore.days(payload);

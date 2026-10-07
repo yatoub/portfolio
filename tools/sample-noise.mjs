@@ -74,7 +74,7 @@ const payload = {
     generated_at: new Date(now).toISOString().replace(/\.\d+Z$/, 'Z'),
     window_days: WINDOW_DAYS,
     geo,
-    last24: { requests: requests24, other: has('--empty') ? 0 : rand(3, 30), sources: Math.round(requests24 * 0.35) },
+    last24: { requests: requests24, other: has('--empty') ? 0 : rand(3, 30), by_ip: Math.round(requests24 * 0.8), sources: Math.round(requests24 * 0.35) },
     hourly: { start: new Date(thisHour - (hourly.length - 1) * HOUR).toISOString().replace(/\.\d+Z$/, 'Z'), counts: hourly },
     daily: { start: new Date(today - (HISTORY_DAYS - 1) * DAY).toISOString().slice(0, 10), counts: daily },
     families,

@@ -99,7 +99,18 @@ const TailCore = (() => {
         }).sort((a, b) => b.r - a.r);
     }
 
-    return { STALE_MS, SKEW_MS, HOUR_MS, DAY_MS, summarize, hours, days, heights, peak, rate, ranked, percent, landCells, project, markers };
+    // Which markers get their name written on the map: the busiest first, skipping any that would
+    // sit on a label already placed (neighbouring countries in Europe)
+    function labelled(marks, { max = 3, gap = 7 } = {}) {
+        const out = [];
+        for (const m of [...marks].sort((a, b) => b.count - a.count)) {
+            if (out.length >= max) break;
+            if (out.every(o => Math.hypot(o.x - m.x, o.y - m.y) >= gap)) out.push(m);
+        }
+        return out;
+    }
+
+    return { STALE_MS, SKEW_MS, HOUR_MS, DAY_MS, summarize, hours, days, heights, peak, rate, ranked, percent, landCells, project, markers, labelled };
 })();
 
 if (typeof module !== 'undefined') module.exports = TailCore;

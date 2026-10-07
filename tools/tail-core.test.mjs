@@ -173,3 +173,10 @@ test('every country of the real export and of the sample generator is on the map
     for (const { cc } of real.countries) assert.ok(Object.hasOwn(M.countries, cc), cc);
     for (const cc of ['US', 'DE', 'NL', 'CN', 'FR', 'SG', 'GB', 'RU', 'IN', 'BR', 'HK']) assert.ok(Object.hasOwn(M.countries, cc), cc);
 });
+
+test('labels go to the busiest markers that do not sit on one another', () => {
+    const marks = T.markers(M, [{ cc: 'US', count: 500 }, { cc: 'DE', count: 300 }, { cc: 'NL', count: 280 }, { cc: 'FR', count: 200 }, { cc: 'CN', count: 150 }, { cc: 'BR', count: 20 }]);
+    assert.deepEqual(T.labelled(marks).map(m => m.cc), ['US', 'DE', 'CN'], 'the Netherlands and France are too close to Germany');
+    assert.deepEqual(T.labelled(marks, { max: 1 }).map(m => m.cc), ['US']);
+    assert.deepEqual(T.labelled([]), []);
+});

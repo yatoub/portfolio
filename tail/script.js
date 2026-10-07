@@ -214,8 +214,8 @@ function renderMap(data) {
             svg('circle', { class: 'tl-mark-dot', cx: m.x, cy: m.y, r: m.r }));
         layer.append(g);
     }
-    // The three busiest countries are named on the map ; the others are in the ranking
-    for (const m of top.slice(0, 3)) layer.append(svg('text', { class: 'tl-mark-label', x: m.x, y: m.y - m.r - 0.8, 'text-anchor': 'middle' }, m.cc));
+    // A few of the busiest countries are named on the map ; the others are in the ranking
+    for (const m of TailCore.labelled(marks)) layer.append(svg('text', { class: 'tl-mark-label', x: m.x, y: m.y - m.r - 0.8, 'text-anchor': 'middle' }, m.cc));
     root.append(landDots, layer);
     host.replaceChildren(root, el('figcaption', 'tl-meta', t('geo.mapCaption')));
 }

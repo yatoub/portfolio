@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 
 const require = createRequire(import.meta.url);
 const T = require('../tail/core.js');
+const M = require('../tail/map.js');
 const read = p => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
 const translations = new Function(`${read('tail/translations.js')}; return translations;`)();
 
@@ -131,4 +132,44 @@ test('percent never rounds something seen down to 0', () => {
 test('both languages expose the same keys', () => {
     const keys = (o, p = '') => Object.entries(o).flatMap(([k, v]) => (v && typeof v === 'object' ? keys(v, `${p}${k}.`) : [`${p}${k}`]));
     assert.deepEqual(keys(translations.en).sort(), keys(translations.fr).sort());
+});
+
+test('the generated map is a consistent grid', () => {
+    assert.equal(M.land.length, M.rows);
+    assert.ok(M.land.every(r => r.length === M.cols / 4 && /^[0-9a-f]+$/.test(r)));
+    const cells = T.landCells(M);
+    assert.ok(cells.length > 1500 && cells.length < 2500, `${cells.length} land cells`);
+    assert.ok(cells.every(([c, r]) => c >= 0 && c < M.cols && r >= 0 && r < M.rows));
+    assert.ok(Object.keys(M.countries).length > 200);
+    for (const [cc, [lon, lat]] of Object.entries(M.countries)) {
+        assert.match(cc, /^[A-Z]{2}$/);
+        assert.ok(lon >= -180 && lon <= 180 && lat >= -90 && lat <= 90, cc);
+    }
+});
+
+test('known places land where they should on the grid', () => {
+    const has = (lon, lat) => { const { x, y } = T.project(M, lon, lat); return T.landCells(M).some(([c, r]) => c === Math.floor(x) && r === Math.floor(y)); };
+    assert.ok(has(2.35, 48.85), 'Paris is on land');
+    assert.ok(has(-100, 40), 'the middle of the United States is on land');
+    assert.ok(has(134, -25), 'the middle of Australia is on land');
+    assert.ok(!has(-30, 30), 'the middle of the Atlantic is not');
+    assert.ok(!has(-140, 0), 'the middle of the Pacific is not');
+    assert.deepEqual(T.project(M, -180, 84), { x: 0, y: 0 });
+    assert.deepEqual(T.project(M, 500, -500), { x: M.cols, y: M.rows }, 'out-of-range points are clamped');
+});
+
+test('markers: one per known country, area following the count, small ones drawn last', () => {
+    const marks = T.markers(M, [{ cc: 'US', count: 400 }, { cc: 'FR', count: 100 }, { cc: 'ZZ', count: 50 }, { cc: 'constructor', count: 9 }, { cc: 'SG', count: 0 }, { count: 5 }]);
+    assert.deepEqual(marks.map(m => m.cc), ['US', 'FR']);
+    assert.equal(marks[0].r, 3.4);
+    assert.equal(marks[1].r, 0.9 + 2.5 * Math.sqrt(100 / 400));
+    assert.ok(marks[1].x > marks[0].x, 'France is east of the United States');
+    assert.ok(marks[0].y > 10 && marks[0].y < 20);
+    assert.deepEqual(T.markers(M, []), []);
+    assert.deepEqual(T.markers(M, undefined), []);
+});
+
+test('every country of the real export and of the sample generator is on the map', () => {
+    for (const { cc } of real.countries) assert.ok(Object.hasOwn(M.countries, cc), cc);
+    for (const cc of ['US', 'DE', 'NL', 'CN', 'FR', 'SG', 'GB', 'RU', 'IN', 'BR', 'HK']) assert.ok(Object.hasOwn(M.countries, cc), cc);
 });

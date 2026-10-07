@@ -115,6 +115,19 @@
 .tl-path code { font-family: var(--font-mono); color: var(--amber); overflow-wrap: anywhere; }
 .tl-path-count { margin-left: auto; white-space: nowrap; color: var(--text-3); font-variant-numeric: tabular-nums; }
 
+/* ── World map: land as dim dots, one marker per country ── */
+.tl-map { margin: 0 0 1rem; padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+.tl-map[hidden] { display: none; }
+.tl-map-svg { display: block; width: 100%; height: auto; }
+.tl-land circle { fill: var(--bg-3); }
+.tl-mark-dot { fill: var(--green); fill-opacity: 0.85; stroke: var(--bg-card); stroke-width: 0.25; }
+.tl-mark-ring { fill: none; stroke: var(--green); stroke-width: 0.3; transform-box: fill-box; transform-origin: center; animation: tlPulse 2.4s ease-out infinite; }
+.tl-mark:hover .tl-mark-dot { fill-opacity: 1; }
+.tl-mark-label { fill: var(--text-1); font-family: var(--font-mono); font-size: 2.2px; letter-spacing: 0.1px; paint-order: stroke; stroke: var(--bg-card); stroke-width: 0.6px; }
+.tl-map figcaption { margin-top: 0.75rem; }
+@keyframes tlPulse { from { transform: scale(1); opacity: 0.9; } to { transform: scale(2.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .tl-mark-ring { animation: none; opacity: 0; } }
+
 .tl-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
 .tl-col { padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
 .tl-col-title { margin-bottom: 1rem; font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.08em; color: var(--text-1); }

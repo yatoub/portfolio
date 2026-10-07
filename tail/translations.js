@@ -77,6 +77,8 @@ const translations = {
             caveat: "Le pays est celui de la machine, pas de la personne : la plupart des sondes partent de serveurs loués ou d'appareils compromis. Les opérateurs en tête sont surtout des hébergeurs.",
             none: "La géolocalisation n'est pas disponible dans cet export : ni pays ni opérateur.",
             unknownNetwork: 'AS{n}',
+            mapLabel: 'Carte du monde : {n} pays ont envoyé des sondes, {top} en tête.',
+            mapCaption: 'Un point par pays, de surface proportionnelle au nombre de sondes. Le détail chiffré est dans le classement ci-dessous.',
         },
         foot: {
             privacy: "// aucune adresse IP n'est publiée ni conservée dans les statistiques : l'export ne sort que des compteurs, et le journal brut est effacé au bout de 48 heures.",
@@ -159,6 +161,8 @@ const translations = {
             caveat: 'The country is that of the machine, not of the person: most probes come from rented servers or compromised devices. The networks at the top are mostly hosting providers.',
             none: 'Geolocation is not available in this export: no country, no network.',
             unknownNetwork: 'AS{n}',
+            mapLabel: 'World map: {n} countries sent probes, {top} first.',
+            mapCaption: 'One dot per country, its area proportional to the number of probes. Exact figures are in the ranking below.',
         },
         foot: {
             privacy: '// no IP address is published or kept in the statistics: the export only outputs counters, and the raw log is erased after 48 hours.',

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // NFT</title>
+    <meta name="description" content="Un jeu de pare-feu : écrivez des règles nftables, lancez le trafic, et bloquez les attaques sans couper les visiteurs.">
+    <link rel="canonical" href="https://yatoub.dev/nft/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navDone">0/4</span>
+            </div>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre">$ nft -f /etc/nftables.conf</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">NFT</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.game">PARTIE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="nf-levels" id="levels" role="tablist"></div>
+
+                <div class="pg-panel nf-brief">
+                    <h3 class="pg-panel-title" id="levelName"></h3>
+                    <p class="nf-brief-text" id="brief"></p>
+                    <p class="nf-hint" id="hint" hidden></p>
+                    <button class="pg-link-btn" id="hintBtn" type="button"></button>
+                </div>
+
+                <div class="nf-layout">
+                    <div class="nf-editor">
+                        <p class="pg-label" data-i18n="edit.policy">politique par défaut</p>
+                        <div class="nf-policy" id="policy" role="radiogroup"></div>
+
+                        <p class="pg-label" data-i18n="edit.rules">règles, lues de haut en bas</p>
+                        <ol class="nf-rules" id="rules"></ol>
+
+                        <form class="nf-builder" id="builder">
+                            <label class="nf-field"><span class="nf-kw" data-i18n="edit.when">si</span><select class="nf-select" id="cond1"></select></label>
+                            <label class="nf-field"><span class="nf-kw" data-i18n="edit.and">et</span><select class="nf-select" id="cond2"></select></label>
+                            <label class="nf-field"><span class="nf-kw" data-i18n="edit.then">alors</span><select class="nf-select" id="action"></select></label>
+                            <button class="btn btn-ghost" type="submit" data-i18n="edit.add">AJOUTER LA RÈGLE</button>
+                        </form>
+                        <p class="nf-msg" id="msg" role="status" aria-live="polite"></p>
+                        <button class="pg-link-btn" id="clear" type="button" data-i18n="edit.reset"></button>
+
+                        <p class="pg-label" data-i18n="edit.nft">Ce que cela donne en nftables</p>
+                        <pre class="pg-out nf-nft" id="nft"></pre>
+                    </div>
+
+                    <div class="nf-side">
+                        <p class="pg-label nf-first" data-i18n="run.traffic">Le trafic de ce niveau</p>
+                        <ul class="nf-traffic" id="traffic"></ul>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary nf-go" id="go" type="button"></button>
+
+                <div class="nf-track" id="track" aria-hidden="true">
+                    <span class="nf-wall" data-i18n="run.wall">PARE-FEU</span>
+                    <span class="nf-server" data-i18n="run.server">SERVEUR</span>
+                    <div class="nf-lanes" id="lanes"></div>
+                </div>
+
+                <div class="pg-panel nf-result" id="result" role="status" aria-live="polite" hidden></div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.read">LECTURE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="nf-notes" id="notes"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p data-i18n="foot.local"></p>
+        <p><span data-i18n="foot.more"></span> <a href="/tail/">/tail/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

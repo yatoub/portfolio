@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════
+   YATOUB // NFT — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+/* ── Levels ── */
+.nf-levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 0.6rem; margin-bottom: 1rem; }
+.nf-level {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-mono);
+    text-align: left;
+    color: var(--text-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color var(--transition);
+}
+.nf-level:hover { border-color: var(--border-bright); }
+.nf-level[aria-selected="true"] { border-color: var(--green); }
+.nf-level:focus-visible { outline: 1px solid var(--green); outline-offset: 2px; }
+.nf-level-n { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.nf-level-name { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.04em; color: var(--text-1); }
+.nf-level-mark { font-size: 0.7rem; }
+.nf-level[data-done="true"] .nf-level-mark { color: var(--green-dot); }
+
+.nf-brief { border-left: 3px solid var(--green); margin-bottom: 1.5rem; }
+.nf-brief-text { max-width: 85ch; margin: 0.6rem 0; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+.nf-hint { max-width: 85ch; margin-bottom: 0.4rem; font-size: 0.8rem; line-height: 1.6; color: var(--amber); }
+.nf-hint[hidden] { display: none; }
+
+.nf-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+.nf-first, .nf-editor > .pg-label:first-child { margin-top: 0; }
+.nf-editor, .nf-side { min-width: 0; }
+
+/* ── Packets: the kind is carried by the prefix and the border style, the hue only backs it up ── */
+.nf-chip {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    white-space: nowrap;
+    color: var(--text-1);
+    background: var(--bg-2);
+    border: 1px solid var(--border-bright);
+    border-radius: 2px;
+}
+.nf-chip[data-kind="legit"]   { border-style: solid; border-color: var(--green-dot); }
+.nf-chip[data-kind="attack"]  { border-style: dashed; border-color: var(--red-dot); }
+.nf-chip[data-kind="neutral"] { border-style: dotted; border-color: var(--text-3); }
+.nf-chip[data-kind="legit"]::before   { content: '+ '; color: var(--green-dot); }
+.nf-chip[data-kind="attack"]::before  { content: '! '; color: var(--red-dot); }
+.nf-chip[data-kind="neutral"]::before { content: '? '; color: var(--text-3); }
+
+.nf-traffic { display: grid; gap: 0.45rem; list-style: none; }
+.nf-traffic-item { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.7rem; font-size: 0.78rem; color: var(--text-2); }
+.nf-traffic-item .pg-tag { margin-left: auto; }
+.pg-tag[data-kind="legit"]  { color: var(--green-dot); border-color: var(--green-dot); }
+.pg-tag[data-kind="attack"] { color: var(--red-dot); border-color: var(--red-dot); }
+
+/* ── Editor ── */
+.nf-policy { display: inline-flex; border: 1px solid var(--border-bright); }
+.nf-policy-btn { padding: 0.5rem 1.1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-3); background: var(--bg-card); border: none; cursor: pointer; }
+.nf-policy-btn + .nf-policy-btn { border-left: 1px solid var(--border-bright); }
+.nf-policy-btn[aria-checked="true"] { color: var(--bg-0); background: var(--green); font-weight: 700; }
+.nf-policy-btn:focus-visible { outline: 1px solid var(--text-1); outline-offset: 2px; }
+
+.nf-rules { display: grid; gap: 0.4rem; counter-reset: rule; list-style: none; }
+.nf-rule { counter-increment: rule; display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0.75rem; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--border-bright); }
+.nf-rule::before { content: counter(rule); width: 1.2rem; font-size: 0.7rem; color: var(--text-3); }
+.nf-rule[data-action="accept"] { border-left-color: var(--green-dot); }
+.nf-rule[data-action="drop"]   { border-left-color: var(--red-dot); }
+.nf-rule-text { display: grid; gap: 0.15rem; min-width: 0; margin-right: auto; }
+.nf-rule-text code { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-1); overflow-wrap: anywhere; }
+.nf-rule-plain { font-size: 0.7rem; color: var(--text-3); }
+.nf-rule-tools { display: flex; gap: 0.25rem; }
+.nf-icon { width: 1.9rem; height: 1.9rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-2); background: var(--bg-2); border: 1px solid var(--border-bright); cursor: pointer; }
+.nf-icon:hover:not(:disabled) { color: var(--green); border-color: var(--green); }
+.nf-icon:disabled { opacity: 0.35; cursor: default; }
+.nf-icon:focus-visible { outline: 1px solid var(--green); outline-offset: 1px; }
+.nf-rule-empty { padding: 0.6rem 0.75rem; font-size: 0.78rem; color: var(--text-3); border: 1px dashed var(--border-bright); }
+
+.nf-builder { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; margin-top: 0.9rem; padding: 0.9rem 1rem; background: var(--bg-card); border: 1px solid var(--border-bright); }
+.nf-field { display: flex; align-items: center; gap: 0.5rem; }
+.nf-kw { font-size: 0.75rem; color: var(--green); }
+.nf-select { max-width: 100%; padding: 0.45rem 0.6rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-1); background: var(--bg-2); border: 1px solid var(--border-bright); border-radius: var(--radius); }
+.nf-select:focus-visible { outline: none; border-color: var(--green); }
+.nf-msg { min-height: 1.2rem; margin-top: 0.4rem; font-size: 0.78rem; color: var(--yellow-dot); }
+.nf-nft { color: var(--green); }
+
+/* ── Track ── */
+.nf-go { margin: 1.5rem 0 1rem; }
+.nf-go:disabled { opacity: 0.6; cursor: default; }
+.nf-track { position: relative; height: 13.5rem; background: var(--bg-card); border: 1px solid var(--border); overflow: hidden; }
+.nf-wall, .nf-server { position: absolute; top: 0; bottom: 0; display: grid; place-items: center; font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; writing-mode: vertical-rl; color: var(--text-3); }
+.nf-wall { left: 52%; width: 2.2rem; margin-left: -1.1rem; background: var(--bg-2); border-inline: 1px solid var(--border-bright); z-index: 2; }
+.nf-server { right: 0; width: 2.6rem; background: var(--bg-1); border-left: 1px solid var(--green); color: var(--green); }
+.nf-lanes { position: absolute; inset: 0.75rem 3rem 0.75rem 0.5rem; }
+.nf-flying { position: absolute; left: 0; opacity: 0; z-index: 1; }
+/* The verdict is written on the packet when it meets the wall */
+.nf-flying[data-verdict="drop"]::after   { content: ' ✕'; color: var(--red-dot); }
+.nf-flying[data-verdict="accept"]::after { content: ' ›'; color: var(--green-dot); }
+.nf-flying[data-verdict="drop"] { z-index: 3; }
+
+/* ── Result ── */
+.nf-result { margin-top: 1rem; border-left: 3px solid var(--yellow-dot); }
+.nf-result[hidden] { display: none; }
+.nf-result[data-won="true"] { border-left-color: var(--green-dot); }
+.nf-result-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.08em; color: var(--yellow-dot); }
+.nf-result[data-won="true"] .nf-result-title { color: var(--green-dot); }
+.nf-result-line { margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-1); }
+.nf-lesson { max-width: 85ch; margin: 0.9rem 0 1rem; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+.nf-log { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 0.35rem 1.5rem; list-style: none; }
+.nf-log-item { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.6rem; font-size: 0.74rem; color: var(--text-3); }
+.nf-log-who { color: var(--text-2); }
+.nf-log-item[data-wrong="true"] .nf-log-verdict { color: var(--text-1); }
+.nf-wrong { color: var(--red-dot); border-color: var(--red-dot); }
+
+.nf-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; }
+.nf-note-text { margin-top: 0.6rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+
+@media (max-width: 900px) {
+    /* minmax(0, …): a bare 1fr would let the nftables block set the column width */
+    .nf-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 768px) {
+    .nf-builder { padding: 0.75rem; }
+    .nf-field { width: 100%; }
+    .nf-select { flex: 1; min-width: 0; }
+    .nf-builder .btn, .nf-go { width: 100%; justify-content: center; }
+    .nf-track { height: 12rem; }
+}

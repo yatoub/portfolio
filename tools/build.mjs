@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://yatoub.dev';
-const PAGES = ['/', '/whoami/', '/status/', '/tcpdump/'];
+const PAGES = ['/', '/whoami/', '/status/', '/tcpdump/', '/tail/'];
 
 const read = p => readFileSync(join(ROOT, p), 'utf8');
 const projects = JSON.parse(read('projects.json'));

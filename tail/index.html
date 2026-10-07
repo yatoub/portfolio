@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // TAIL</title>
+    <meta name="description" content="Le bruit de fond d'Internet : ce que les robots viennent chercher sur yatoub.dev, d'où ils viennent et à quel rythme.">
+    <link rel="canonical" href="https://yatoub.dev/tail/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot" id="statusDot" data-state="loading"></span>
+                <span id="statusText">SCAN…</span>
+            </div>
+            <button class="lang-toggle tl-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="tl-main">
+        <header class="container tl-hero">
+            <p class="tl-pre">$ tail -f /var/log/caddy/access.log | grep ' 404 '</p>
+            <h1 class="tl-title"><span data-i18n="hero.title">TAIL</span><span class="title-cursor">_</span></h1>
+            <p class="tl-sub" data-i18n="hero.sub">Ce que ce serveur reçoit sans l'avoir demandé.</p>
+
+            <div class="tl-banner" id="banner" data-state="loading" role="status" aria-live="polite" hidden>
+                <p class="tl-banner-state" id="bannerState"></p>
+                <p class="tl-banner-meta" id="bannerMeta"></p>
+            </div>
+
+            <div class="tl-stats" id="stats" hidden>
+                <div class="tl-stat"><span class="tl-stat-num" id="statRequests">—</span><span class="tl-stat-label" data-i18n="stat.requests">sondes en 24 heures</span></div>
+                <div class="tl-stat"><span class="tl-stat-num" id="statSources">—</span><span class="tl-stat-label" data-i18n="stat.sources">adresses distinctes</span></div>
+                <div class="tl-stat"><span class="tl-stat-num tl-stat-text" id="statRate">—</span><span class="tl-stat-label" data-i18n="stat.rate">cadence</span></div>
+            </div>
+            <p class="tl-meta" id="updated"></p>
+            <p class="tl-meta" id="other"></p>
+        </header>
+
+        <div id="content" hidden>
+            <!-- ── Volume ── -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="sh-index">01</span>
+                        <h2 class="sh-title"><span data-i18n="sec.volume">VOLUME</span><span class="title-cursor">_</span></h2>
+                        <div class="sh-line"></div>
+                    </div>
+                    <div class="tl-panels" id="charts"></div>
+                    <p class="tl-text" data-i18n="vol.regular"></p>
+                </div>
+            </section>
+
+            <!-- ── Familles de sondes ── -->
+            <section class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="sh-index">02</span>
+                        <h2 class="sh-title"><span data-i18n="sec.targets">CIBLES</span><span class="title-cursor">_</span></h2>
+                        <div class="sh-line"></div>
+                    </div>
+                    <p class="tl-text" data-i18n="fam.intro"></p>
+                    <div class="tl-families" id="families"></div>
+                    <p class="tl-meta" id="windowNote"></p>
+                </div>
+            </section>
+
+            <!-- ── Provenance ── -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="sh-index">03</span>
+                        <h2 class="sh-title"><span data-i18n="sec.origin">PROVENANCE</span><span class="title-cursor">_</span></h2>
+                        <div class="sh-line"></div>
+                    </div>
+                    <p class="tl-text" data-i18n="geo.intro"></p>
+                    <div class="tl-split" id="origin"></div>
+                    <p class="tl-note" id="geoNote"></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="container tl-foot">
+        <p data-i18n="foot.privacy">// aucune adresse IP n'est publiée.</p>
+        <p data-i18n="foot.paths">// un chemin n'apparaît ici que s'il correspond à un motif de sonde connu.</p>
+        <p><span data-i18n="foot.geo">// géolocalisation :</span> <a href="https://db-ip.com" rel="noopener">IP Geolocation by DB-IP</a></p>
+        <p><span data-i18n="foot.more">// votre propre requête, étape par étape :</span> <a href="/tcpdump/">/tcpdump/</a></p>
+        <p>// <a href="/">yatoub.dev</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -89,6 +89,7 @@ test('open resolves sections, project names and paths', async () => {
     const { run } = shell();
     assert.deepEqual((await run('open lab')).effects, [{ type: 'open', url: '/lab' }]);
     assert.deepEqual((await run('open ctf')).effects, [{ type: 'open', url: '/ctf/' }]);
+    assert.deepEqual((await run('open tcpdump')).effects, [{ type: 'open', url: '/tcpdump/' }]);
     assert.equal((await run('open Rutile')).effects[0].url, 'https://github.com/yatoub/Rutile');
     assert.equal((await run('open projects/tych.md')).effects[0].url, 'https://github.com/yatoub/Tych');
     assert.deepEqual((await run('open nothing')).effects, []);

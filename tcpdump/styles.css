@@ -1,0 +1,159 @@
+/* ═══════════════════════════════════════════
+   YATOUB // TCPDUMP — page styles
+   Palette and base components come from /styles.css
+   ═══════════════════════════════════════════ */
+
+.wr-lang { margin-left: auto; }
+.wr-main { padding-top: calc(var(--nav-h) + 4rem); }
+.wr-main .section { padding: 4rem 0; }
+
+/* ── Hero ── */
+.wr-pre { font-size: 0.75rem; color: var(--text-3); margin-bottom: 1rem; overflow-wrap: anywhere; }
+.wr-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    color: var(--text-1);
+    margin-bottom: 1.25rem;
+}
+.wr-sub, .wr-intro { max-width: 72ch; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+.wr-sub { margin-bottom: 1rem; }
+.wr-intro { margin-bottom: 2rem; }
+
+.wr-note {
+    max-width: 80ch;
+    margin: 0 0 1.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-2);
+    border-left: 3px solid var(--amber);
+    background: var(--bg-card);
+}
+.wr-note[hidden] { display: none; }
+.wr-note:empty { display: none; }
+
+.wr-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    color: var(--text-2);
+    border: 1px solid var(--border-bright);
+}
+
+/* ── Waterfall: one row per step, one hue, a shared time scale ── */
+.wr-panels { display: grid; gap: 1rem; }
+
+.wr-panel {
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+.wr-panel-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.wr-panel-title { font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-1); }
+.wr-total { margin-left: auto; font-size: 0.75rem; color: var(--text-3); }
+.wr-total strong { font-family: var(--font-display); font-size: 1rem; font-weight: 500; color: var(--text-1); }
+.wr-panel-desc { margin: 0.4rem 0 1.1rem; font-size: 0.75rem; color: var(--text-3); }
+.wr-panel-note { max-width: 80ch; margin-top: 1rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+
+.wr-chart { display: grid; gap: 2px; }
+.wr-row {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr 9.5rem;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.2rem 0;
+}
+.wr-row:hover .wr-track { background: var(--bg-2); }
+.wr-row-label { font-size: 0.75rem; color: var(--text-2); }
+.wr-row-value { font-size: 0.75rem; text-align: right; color: var(--text-1); font-variant-numeric: tabular-nums; }
+.wr-row[data-state="reused"] .wr-row-value,
+.wr-row[data-state="none"] .wr-row-value { color: var(--text-3); }
+
+.wr-track { position: relative; height: 14px; background: var(--bg-0); border-radius: 2px; transition: background var(--transition); }
+.wr-bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    min-width: 3px;
+    background: var(--green);
+    border-radius: 2px;
+}
+/* A skipped step keeps its place on the time axis, drawn as a hatched marker instead of a duration */
+.wr-row[data-state="reused"] .wr-bar,
+.wr-swatch[data-state="reused"] {
+    min-width: 14px;
+    background: repeating-linear-gradient(135deg, var(--text-3) 0 2px, transparent 2px 5px);
+}
+.wr-row[data-state="none"] .wr-bar { display: none; }
+
+.wr-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1rem; font-size: 0.7rem; color: var(--text-3); }
+.wr-legend li { display: flex; align-items: center; gap: 0.5rem; }
+.wr-swatch { width: 14px; height: 10px; border-radius: 2px; background: var(--green); }
+
+.wr-h3 {
+    margin: 3rem 0 1rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+.wr-glossary { display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.75rem 1.25rem; max-width: 90ch; }
+.wr-term { font-size: 0.8rem; color: var(--green); }
+.wr-def { font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+
+/* ── Observer: two columns, named by their heading, not by colour alone ── */
+.wr-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; }
+.wr-col {
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--border-bright);
+}
+.wr-col[data-kind="visible"] { border-top-color: var(--yellow-dot); }
+.wr-col[data-kind="hidden"]  { border-top-color: var(--green-dot); }
+.wr-col-title { font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.08em; color: var(--text-1); }
+.wr-col-title::before { margin-right: 0.6rem; font-family: var(--font-mono); color: var(--text-3); }
+.wr-col[data-kind="visible"] .wr-col-title::before { content: '[ ]'; }
+.wr-col[data-kind="hidden"]  .wr-col-title::before { content: '[#]'; }
+.wr-col-desc { margin: 0.4rem 0 1rem; font-size: 0.75rem; color: var(--text-3); }
+
+.wr-items { display: grid; gap: 1.1rem; }
+.wr-item-name { font-size: 0.85rem; color: var(--text-1); }
+.wr-item-value { margin-top: 0.3rem; font-size: 0.75rem; overflow-wrap: anywhere; }
+.wr-item-yours { color: var(--text-3); }
+.wr-item-value code { font-family: var(--font-mono); color: var(--amber); }
+.wr-item-why { margin-top: 0.3rem; font-size: 0.78rem; line-height: 1.6; color: var(--text-2); }
+
+/* ── Cipher suite ── */
+.wr-suite { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+.wr-suite-name { font-family: var(--font-mono); font-size: clamp(0.8rem, 2.4vw, 1rem); color: var(--text-1); overflow-wrap: anywhere; }
+
+.wr-parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.wr-part { padding: 1rem 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--green); }
+.wr-part-token { font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.05em; color: var(--text-1); }
+.wr-part-role { margin: 0.25rem 0 0.6rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.wr-part-why { font-size: 0.78rem; line-height: 1.6; color: var(--text-2); }
+
+/* ── Footer ── */
+.wr-foot {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    font-size: 0.7rem;
+    line-height: 1.9;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+}
+.wr-foot a { color: var(--green); }
+.wr-foot a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+    .wr-panel, .wr-col { padding: 1rem; }
+    .wr-row { grid-template-columns: 4.5rem 1fr; }
+    .wr-row-value { grid-column: 2; text-align: left; }
+    .wr-glossary { grid-template-columns: 1fr; gap: 0.25rem; }
+    .wr-def { margin-bottom: 0.75rem; }
+}

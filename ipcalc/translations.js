@@ -1,0 +1,126 @@
+/* ── i18n translations ──
+   ⚠ Chaînes contenant une apostrophe : délimiteurs "…" obligatoires.
+   {x} = variable injectée par tf(). */
+const translations = {
+    fr: {
+        hero: {
+            title: 'IPCALC',
+            sub: "Une adresse IPv4, ce sont 32 bits. Le masque dit où couper : à gauche le réseau, à droite la machine. Tout le découpage d'Internet tient dans ce trait. Voici votre adresse, bit par bit ; déplacez la coupure pour voir le réseau changer de taille.",
+        },
+        sec: { calc: 'CALCUL', read: 'LECTURE' },
+        form: {
+            address: 'adresse',
+            prefix: 'préfixe',
+            yours: "C'est l'adresse publique sous laquelle ce serveur vous voit.",
+            example: "Adresse d'exemple : la vôtre n'est lisible que derrière le vrai serveur. Saisissez celle que vous voulez.",
+            invalid: 'Adresse invalide : quatre nombres de 0 à 255 séparés par des points.',
+            reset: '[ revenir à mon adresse ]',
+        },
+        bits: {
+            network: 'réseau',
+            host: 'machine',
+            hint: 'Cliquez sur un bit pour placer la coupure juste après lui.',
+            cut: 'coupure après le bit {n}',
+        },
+        out: {
+            address: 'adresse',
+            netmask: 'masque',
+            wildcard: 'masque inverse',
+            network: 'réseau',
+            broadcast: 'diffusion',
+            first: 'première machine',
+            last: 'dernière machine',
+            hosts: 'machines possibles',
+            addresses: 'adresses dans le bloc',
+        },
+        scope: {
+            public: "Adresse publique : routable sur Internet, unique au monde.",
+            private: "Adresse privée (RFC 1918) : utilisable librement dans un réseau local, jamais routée sur Internet. Votre box la traduit en adresse publique.",
+            cgnat: "Plage partagée par les opérateurs (CGNAT) : votre fournisseur vous fait partager une adresse publique avec d'autres abonnés.",
+            loopback: "Boucle locale : la machine se parle à elle-même. 127.0.0.1 ne sort jamais sur le réseau.",
+            linklocal: "Lien local : l'adresse qu'une machine s'attribue quand aucun serveur DHCP ne répond.",
+            doc: "Plage réservée à la documentation : elle n'existe sur aucun réseau réel, on peut donc l'écrire dans un exemple sans viser personne.",
+            multicast: "Multidiffusion : une adresse qui désigne un groupe de machines, pas une seule.",
+            reserved: "Plage réservée, jamais attribuée.",
+            this: "« Ce réseau » : une adresse de départ avant qu'une machine connaisse la sienne.",
+        },
+        preset: {
+            8: "un opérateur ou un très grand réseau privé (10.0.0.0/8)",
+            16: "un campus, une grande entreprise",
+            24: "le réseau local typique : 254 machines",
+            30: "une liaison entre deux routeurs : 2 machines",
+            32: "une seule machine, pour une règle de pare-feu ou une route",
+        },
+        read: {
+            mask: { name: 'Le masque', text: "Une suite de 1 puis de 0. Appliqué à une adresse par un ET logique, il efface la partie machine et laisse l'adresse du réseau. C'est ce calcul que fait chaque machine pour savoir si son correspondant est sur le même réseau ou s'il faut passer par la passerelle." },
+            two: { name: 'Pourquoi deux de moins', text: "Dans chaque bloc, la première adresse désigne le réseau lui-même et la dernière sert à s'adresser à tout le monde d'un coup. Il reste donc deux adresses de moins que la taille du bloc, sauf en /31 et /32 où cette convention ne s'applique pas." },
+            cidr: { name: 'La notation /n', text: "Avant 1993, il n'existait que trois tailles de réseau (classes A, B, C) : beaucoup trop grand ou beaucoup trop petit. La notation CIDR permet de couper n'importe où, ce qui a retardé de vingt ans l'épuisement des adresses." },
+            scarce: { name: 'La pénurie', text: "32 bits, c'est 4,3 milliards d'adresses pour toute la planète, et elles sont toutes distribuées. D'où les adresses privées réutilisées dans chaque foyer, la traduction d'adresses, et IPv6 avec ses 128 bits." },
+        },
+        foot: {
+            local: "// rien n'est stocké ni envoyé : tout est calculé dans votre navigateur.",
+            more: '// ce que cette adresse révèle de vous :',
+        },
+    },
+
+    en: {
+        hero: {
+            title: 'IPCALC',
+            sub: 'An IPv4 address is 32 bits. The mask says where to cut: the network on the left, the machine on the right. The whole partitioning of the Internet comes down to that line. Here is your address, bit by bit; move the cut to see the network change size.',
+        },
+        sec: { calc: 'COMPUTE', read: 'READING' },
+        form: {
+            address: 'address',
+            prefix: 'prefix',
+            yours: 'This is the public address this server sees you under.',
+            example: 'Example address: yours can only be read behind the real server. Type any address you like.',
+            invalid: 'Invalid address: four numbers from 0 to 255 separated by dots.',
+            reset: '[ back to my address ]',
+        },
+        bits: {
+            network: 'network',
+            host: 'host',
+            hint: 'Click a bit to place the cut right after it.',
+            cut: 'cut after bit {n}',
+        },
+        out: {
+            address: 'address',
+            netmask: 'netmask',
+            wildcard: 'wildcard',
+            network: 'network',
+            broadcast: 'broadcast',
+            first: 'first host',
+            last: 'last host',
+            hosts: 'usable hosts',
+            addresses: 'addresses in the block',
+        },
+        scope: {
+            public: 'Public address: routable on the Internet, unique worldwide.',
+            private: 'Private address (RFC 1918): free to use inside a local network, never routed on the Internet. Your gateway translates it to a public address.',
+            cgnat: 'Carrier-grade NAT range: your provider makes you share one public address with other subscribers.',
+            loopback: 'Loopback: the machine talking to itself. 127.0.0.1 never leaves for the network.',
+            linklocal: 'Link-local: the address a machine gives itself when no DHCP server answers.',
+            doc: 'Range reserved for documentation: it exists on no real network, so it can be written in an example without pointing at anyone.',
+            multicast: 'Multicast: an address that stands for a group of machines, not a single one.',
+            reserved: 'Reserved range, never assigned.',
+            this: '"This network": a source address used before a machine knows its own.',
+        },
+        preset: {
+            8: 'an operator or a very large private network (10.0.0.0/8)',
+            16: 'a campus, a large company',
+            24: 'the typical local network: 254 hosts',
+            30: 'a link between two routers: 2 hosts',
+            32: 'a single machine, for a firewall rule or a route',
+        },
+        read: {
+            mask: { name: 'The mask', text: 'A run of 1s then 0s. Applied to an address with a logical AND, it clears the host part and leaves the network address. Every machine does this computation to know whether its peer is on the same network or whether to go through the gateway.' },
+            two: { name: 'Why two fewer', text: 'In every block, the first address names the network itself and the last one is used to address everyone at once. That leaves two addresses fewer than the block size, except in /31 and /32 where the convention does not apply.' },
+            cidr: { name: 'The /n notation', text: 'Before 1993 there were only three network sizes (classes A, B, C): far too large or far too small. CIDR notation lets you cut anywhere, which delayed address exhaustion by twenty years.' },
+            scarce: { name: 'Scarcity', text: '32 bits make 4.3 billion addresses for the whole planet, and all of them have been handed out. Hence private addresses reused in every home, address translation, and IPv6 with its 128 bits.' },
+        },
+        foot: {
+            local: '// nothing is stored or sent: everything is computed in your browser.',
+            more: '// what this address gives away about you:',
+        },
+    },
+};

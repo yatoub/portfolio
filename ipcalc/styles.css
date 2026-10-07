@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════
+   YATOUB // IPCALC — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.ic-form { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 1rem 2rem; padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border-bright); border-left: 3px solid var(--green); }
+.ic-field { display: flex; flex-direction: column; }
+.ic-field .pg-label { margin-top: 0; }
+.ic-field-prefix { flex: 1; min-width: 14rem; }
+.ic-field-prefix output { margin-left: 0.5rem; font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.04em; color: var(--text-1); }
+.ic-input {
+    width: 12.5rem;
+    padding: 0.7rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--text-1);
+    background: var(--bg-2);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius);
+    caret-color: var(--green);
+}
+.ic-input:focus-visible { outline: none; border-color: var(--green); box-shadow: 0 0 12px var(--green-glow); }
+.ic-range { width: 100%; height: 2.6rem; accent-color: var(--green); }
+
+.pg-meta#origin { margin-top: 0.75rem; }
+.ic-msg { min-height: 1.3rem; margin-top: 0.4rem; font-size: 0.8rem; color: var(--red-dot); }
+
+/* ── The 32 bits ── */
+.ic-bits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem 1.25rem; margin-top: 1.5rem; }
+.ic-octet { display: grid; gap: 0.4rem; min-width: 0; }
+.ic-octet-value { font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.5rem); color: var(--text-1); text-align: center; }
+.ic-octet-bits { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 2px; }
+.ic-bit {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    min-width: 0;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(0.6rem, 1.6vw, 0.95rem);
+    cursor: pointer;
+    border: 1px solid var(--border-bright);
+    border-radius: 2px;
+    transition: background var(--transition), color var(--transition);
+}
+/* Network bits are filled, host bits are hollow: the split reads without relying on the hue */
+.ic-bit[data-part="network"] { color: var(--bg-0); background: var(--green); border-color: var(--green); font-weight: 700; }
+.ic-bit[data-part="host"] { color: var(--amber); background: transparent; }
+.ic-bit[data-cut="true"] { box-shadow: 3px 0 0 0 var(--text-1); }
+.ic-bit:hover { border-color: var(--text-1); }
+.ic-bit:focus-visible { outline: 2px solid var(--text-1); outline-offset: 1px; }
+
+.ic-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1rem; font-size: 0.75rem; color: var(--text-3); list-style: none; }
+.ic-legend li { display: flex; align-items: center; gap: 0.5rem; }
+.ic-legend .ic-bit { width: 1.4rem; font-size: 0.7rem; cursor: default; }
+.ic-hint { font-style: italic; }
+
+.ic-presets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 0.6rem; margin-top: 1.5rem; }
+.ic-preset {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.7rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    text-align: left;
+    color: var(--text-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color var(--transition);
+}
+.ic-preset strong { font-family: var(--font-display); font-size: 0.9rem; font-weight: 400; color: var(--text-1); }
+.ic-preset:hover { border-color: var(--border-bright); }
+.ic-preset[aria-pressed="true"] { border-color: var(--green); }
+.ic-preset:focus-visible { outline: 1px solid var(--green); outline-offset: 2px; }
+
+.ic-out { display: grid; grid-template-columns: minmax(8rem, 13rem) 1fr; gap: 0.5rem 1.5rem; margin: 2rem 0 1.5rem; padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+.ic-out-name { font-size: 0.8rem; color: var(--text-3); }
+.ic-out-value { font-family: var(--font-mono); font-size: 0.9rem; color: var(--amber); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ic-out-big { font-family: var(--font-display); font-size: 1.2rem; color: var(--text-1); }
+
+.ic-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; }
+.ic-note-text { margin-top: 0.6rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+
+@media (max-width: 768px) {
+    .ic-form, .ic-out { padding: 1rem; }
+    .ic-input { width: 100%; }
+    .ic-field-ip { width: 100%; }
+    .ic-bits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ic-out { grid-template-columns: 1fr; gap: 0.1rem; }
+    .ic-out-value { margin-bottom: 0.6rem; }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // IPCALC</title>
+    <meta name="description" content="Votre adresse IPv4 bit par bit : déplacez la coupure du masque et voyez le réseau changer de taille.">
+    <link rel="canonical" href="https://yatoub.dev/ipcalc/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navCidr">…</span>
+            </div>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre" id="pre">$ ipcalc</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">IPCALC</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.calc">CALCUL</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <form class="ic-form" id="form" autocomplete="off">
+                    <label class="ic-field ic-field-ip">
+                        <span class="pg-label" data-i18n="form.address">adresse</span>
+                        <input class="ic-input" id="ip" name="ip" type="text" inputmode="decimal" spellcheck="false" maxlength="15">
+                    </label>
+                    <label class="ic-field ic-field-prefix">
+                        <span class="pg-label"><span data-i18n="form.prefix">préfixe</span> <output id="prefixOut" for="prefix">/24</output></span>
+                        <input class="ic-range" id="prefix" name="prefix" type="range" min="0" max="32" step="1" value="24">
+                    </label>
+                </form>
+                <p class="pg-meta" id="origin"></p>
+                <p class="ic-msg" id="msg" role="status" aria-live="polite"></p>
+                <button class="pg-link-btn" id="reset" type="button" hidden></button>
+
+                <div class="ic-bits" id="bits" role="group"></div>
+                <ul class="ic-legend">
+                    <li><span class="ic-bit" data-part="network">1</span><span data-i18n="bits.network">réseau</span></li>
+                    <li><span class="ic-bit" data-part="host">0</span><span data-i18n="bits.host">machine</span></li>
+                    <li class="ic-hint" data-i18n="bits.hint"></li>
+                </ul>
+
+                <div class="ic-presets" id="presets"></div>
+
+                <dl class="ic-out" id="out"></dl>
+                <p class="pg-note" id="scope"></p>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.read">LECTURE</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="ic-notes" id="notes"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p data-i18n="foot.local"></p>
+        <p><span data-i18n="foot.more"></span> <a href="/whoami/">/whoami/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

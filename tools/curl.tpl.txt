@@ -93,4 +93,5 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   $ curl yatoub.dev/curl.txt | less
+  $ curl yatoub.dev/whoami           # six flags are hidden on this site -> yatoub.dev/ctf/
 

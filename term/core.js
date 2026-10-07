@@ -10,7 +10,7 @@ const TermCore = (() => {
     const HOSTNAME = 'yatoub';
     // Stable file names for experience entries, whatever the display language
     const EXP_SLUGS = { en: 'education-nationale', lp: 'la-poste', mc: 'maincare', cp: 'cpage', dp: 'delpharm' };
-    const SECTIONS = { lab: '/lab', whoami: '/whoami/', status: '/status/', curl: '/curl.txt', github: 'https://github.com/yatoub' };
+    const SECTIONS = { lab: '/lab', whoami: '/whoami/', status: '/status/', ctf: '/ctf/', curl: '/curl.txt', github: 'https://github.com/yatoub' };
 
     const dir = (children = {}) => ({ dir: children });
     const file = (content, extra = {}) => ({ file: content, ...extra });
@@ -43,6 +43,8 @@ const TermCore = (() => {
         }
 
         return dir({
+            // Dotfile: left out by ls unless -a is given. One of the /ctf flags.
+            '.env': file(['# not everything in a home directory is meant to be listed', 'FLAG=YATOUB{d0tf1l3s_4r3_n0t_h1dd3n}', 'MORE=https://yatoub.dev/ctf/'].join('\n')),
             'about.md': file([`# ${tr.about.title}`, '', tr.about.bio1, '', tr.about.bio2].join('\n')),
             'contact.txt': file(contact.map(c => c.label).join('\n')),
             'curl.txt': file(null, { remote: '/curl.txt' }),
@@ -76,7 +78,9 @@ const TermCore = (() => {
 
     const display = (parts) => (parts.length ? `~/${parts.join('/')}` : '~');
     const prompt = (state) => `${USER}@${HOSTNAME}:${display(state.cwd)}$`;
-    const listing = (node) => Object.keys(node.dir).sort().map(name => (node.dir[name].dir ? `${name}/` : name));
+    // Dotfiles are a display convention: hidden from listings, still reachable by name
+    const listing = (node, all = false) => Object.keys(node.dir).filter(name => all || !name.startsWith('.')).sort()
+        .map(name => (node.dir[name].dir ? `${name}/` : name));
 
     /* ── Parsing ── */
     function tokenize(input) {
@@ -101,11 +105,12 @@ const TermCore = (() => {
 
         ls(args, { fs, state, tr }) {
             const targets = args.filter(a => !a.startsWith('-'));
+            const all = args.some(a => /^-[a-zA-Z]*a/.test(a));
             const out = [];
             for (const target of targets.length ? targets : ['']) {
                 const node = lookup(fs, resolve(state.cwd, target));
                 if (!node) out.push(err(fill(tr.err.nofile, { cmd: 'ls', path: target })));
-                else if (node.dir) out.push(line(listing(node).join('  ') || ''));
+                else if (node.dir) out.push(line(listing(node, all).join('  ') || ''));
                 else out.push(line(target.split('/').pop()));
             }
             return { lines: out };
@@ -247,7 +252,7 @@ const TermCore = (() => {
             const cut = word.lastIndexOf('/') + 1;
             base = word.slice(0, cut);
             const node = lookup(ctx.fs, resolve(ctx.state.cwd, base));
-            candidates = node?.dir ? listing(node).map(n => (n.endsWith('/') ? n : `${n} `)) : [];
+            candidates = node?.dir ? listing(node, word.slice(cut).startsWith('.')).map(n => (n.endsWith('/') ? n : `${n} `)) : [];
             if (tokens[0] === 'open' && !base) {
                 const projects = Object.keys(lookup(ctx.fs, ['projects']).dir).map(n => `${n.replace(/\.md$/, '')} `);
                 candidates = [...Object.keys(SECTIONS).map(s => `${s} `), ...projects];

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // CTF</title>
+    <meta name="description" content="Six drapeaux cachés sur yatoub.dev, et l'explication de chaque technique de reconnaissance.">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://yatoub.dev/ctf/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navCount">0/6</span>
+            </div>
+            <button class="lang-toggle ctf-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="ctf-main">
+        <header class="container ctf-hero">
+            <p class="ctf-pre">$ ./ctf --progress</p>
+            <h1 class="ctf-title"><span data-i18n="hero.title">CAPTURE THE FLAG</span><span class="title-cursor">_</span></h1>
+            <p class="ctf-sub" data-i18n="hero.sub">Six drapeaux sont cachés sur yatoub.dev.</p>
+
+            <div class="ctf-progress" id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
+                <span class="ctf-progress-bar" id="progressBar" aria-hidden="true"></span>
+                <span class="ctf-progress-count" id="progressCount">0/6</span>
+            </div>
+
+            <form class="ctf-form" id="form" autocomplete="off">
+                <label class="ctf-form-label" for="flagInput">&gt; <span data-i18n="form.label">drapeau</span> :</label>
+                <input class="ctf-input" id="flagInput" name="flag" type="text" placeholder="YATOUB{...}"
+                       spellcheck="false" autocapitalize="off" autocorrect="off" maxlength="120">
+                <button class="btn btn-primary" type="submit" data-i18n="form.submit">VALIDER</button>
+            </form>
+            <p class="ctf-msg" id="msg" role="status" aria-live="polite"></p>
+        </header>
+
+        <section class="container">
+            <div class="ctf-list" id="cards"></div>
+
+            <div class="ctf-done" id="done" hidden>
+                <p class="ctf-done-title" data-i18n="done.title">SIX SUR SIX</p>
+                <p class="ctf-done-text" data-i18n="done.text"></p>
+                <a class="btn btn-primary" href="mailto:yatoub@yatoub.dev" data-i18n="done.contact">ME CONTACTER</a>
+            </div>
+
+            <button class="ctf-reset" id="reset" type="button" hidden></button>
+        </section>
+    </main>
+
+    <footer class="container ctf-foot">
+        <p data-i18n="foot.local">// la progression reste dans ton navigateur.</p>
+        <p data-i18n="foot.scope">// le périmètre du jeu est ce site.</p>
+        <p>// <a href="/">yatoub.dev</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

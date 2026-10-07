@@ -1,0 +1,92 @@
+/* ═══════════════════════════════════════════
+   YATOUB // PAGE — shared styles for standalone pages
+   Palette and base components come from /styles.css ;
+   each page adds its own styles.css for what is specific to it.
+   ═══════════════════════════════════════════ */
+
+.pg-lang { margin-left: auto; }
+.pg-main { padding-top: calc(var(--nav-h) + 4rem); }
+.pg-main .section { padding: 4rem 0; }
+
+/* ── Hero ── */
+.pg-pre { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; overflow-wrap: anywhere; }
+.pg-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    color: var(--text-1);
+    margin-bottom: 1.25rem;
+}
+.pg-sub, .pg-text { max-width: 72ch; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+.pg-sub { margin-bottom: 2rem; }
+.pg-text { margin-bottom: 1.5rem; }
+.pg-meta { max-width: 80ch; font-size: 0.75rem; line-height: 1.6; color: var(--text-3); }
+.pg-meta:empty, .pg-note:empty { display: none; }
+
+/* ── Blocks ── */
+.pg-panel { padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+.pg-panel-title { font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.05em; color: var(--text-1); }
+.pg-label { margin: 1rem 0 0.35rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.pg-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    color: var(--text-2);
+    border: 1px solid var(--border-bright);
+    white-space: nowrap;
+}
+.pg-note {
+    max-width: 80ch;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-2);
+    border-left: 3px solid var(--amber);
+    background: var(--bg-card);
+}
+.pg-note[hidden] { display: none; }
+
+/* Terminal-like output */
+.pg-out {
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--text-2);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.pg-link-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-3);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+.pg-link-btn:hover { color: var(--green); }
+.pg-link-btn:focus-visible { outline: 1px solid var(--green); outline-offset: 3px; }
+.pg-link-btn:disabled { color: var(--text-3); cursor: default; opacity: 0.6; }
+
+/* ── Footer ── */
+.pg-foot {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    font-size: 0.7rem;
+    line-height: 1.9;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+}
+.pg-foot a { color: var(--green); }
+.pg-foot a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+    .pg-panel { padding: 1rem; }
+}

@@ -1,0 +1,138 @@
+/* ── i18n translations ──
+   ⚠ Chaînes contenant une apostrophe : délimiteurs "…" obligatoires.
+   {x} = variable injectée par tf().
+   sec.* : une entrée par en-tête de CurlCore.SECURITY (core.js).
+   info.* : en-têtes courants, clé = nom en minuscules. */
+const translations = {
+    fr: {
+        hero: {
+            title: 'CURL',
+            sub: "Avant le premier octet de la page, un serveur envoie des en-têtes : quelques lignes que le navigateur lit et que vous ne voyez jamais. Certaines protègent le visiteur, d'autres en disent trop. Voici celles que ce serveur vient de vous renvoyer, et ce qu'elles valent.",
+        },
+        secs: { response: 'RÉPONSE', audit: 'AUDIT', leaks: 'FUITES' },
+        state: { loading: 'requête en cours…', error: "La requête a échoué : impossible de lire les en-têtes de ce serveur." },
+        resp: {
+            intro: "Une requête HEAD vers la page d'accueil, envoyée à l'instant par votre navigateur.",
+            redacted: "masqué volontairement : cet en-tête fait partie d'un jeu, il faut aller le chercher soi-même.",
+            unknown: "En-tête non documenté sur cette page.",
+        },
+        info: {
+            'content-type': 'La nature du contenu et son encodage. Sans lui, le navigateur devine, et une devinette est une faille possible.',
+            'content-length': 'La taille du corps en octets.',
+            'content-encoding': "La compression appliquée au contenu pour le transport.",
+            etag: "L'empreinte de cette version du fichier. Le navigateur la renverra pour demander « a-t-il changé ? » et recevoir un 304 sans contenu.",
+            'last-modified': 'La date de dernière modification du fichier : sur un site statique, celle du dernier déploiement.',
+            'cache-control': 'Combien de temps et par qui la réponse peut être gardée en cache.',
+            date: "L'heure du serveur au moment de la réponse.",
+            vary: 'Les en-têtes de requête qui changent la réponse : un cache doit en tenir compte.',
+            'accept-ranges': "Le serveur accepte qu'on lui demande un morceau du fichier, pour reprendre un téléchargement.",
+            'alt-svc': "L'annonce d'un autre accès au même service : ici HTTP/3, sur UDP. Le navigateur l'essaiera à la prochaine connexion.",
+            server: 'Le logiciel serveur. Voir la section FUITES.',
+        },
+        audit: {
+            intro: "Six en-têtes font aujourd'hui consensus. Chacun ferme une attaque précise, et aucun ne coûte plus d'une ligne de configuration.",
+            score: '{ok} sur {total}',
+            scoreLabel: 'en-têtes de sécurité en place',
+            ok: 'EN PLACE',
+            weak: 'FAIBLE',
+            missing: 'ABSENT',
+            value: 'valeur reçue',
+            protects: 'ce que ça empêche',
+            fix: 'la ligne Caddy',
+            honest: "Cette page audite le serveur qui la sert, en direct. Ce qui manque ici est une tâche à faire de mon côté, pas un exemple fabriqué.",
+        },
+        sec: {
+            'strict-transport-security': { name: 'Strict-Transport-Security', protects: "Le retour en HTTP. Sans lui, un attaquant sur le réseau peut intercepter la toute première requête en clair et maintenir la victime hors du chiffrement. Avec lui, le navigateur refuse HTTP pour ce domaine pendant la durée annoncée." },
+            'content-security-policy': { name: 'Content-Security-Policy', protects: "L'exécution de code injecté. La politique liste d'où peuvent venir scripts, styles et images ; un script glissé dans la page par une faille XSS n'est pas dans la liste, donc ne s'exécute pas." },
+            'x-content-type-options': { name: 'X-Content-Type-Options', protects: "La devinette de type. Sans « nosniff », un navigateur peut interpréter comme du script un fichier déclaré comme texte ou image." },
+            'x-frame-options': { name: 'X-Frame-Options', protects: "Le détournement de clic. Un site hostile ne peut plus afficher cette page dans un cadre invisible pour faire cliquer le visiteur à son insu." },
+            'referrer-policy': { name: 'Referrer-Policy', protects: "La fuite de l'adresse de départ. En suivant un lien sortant, le navigateur n'envoie plus le chemin complet de la page quittée, seulement le nom du site." },
+            'permissions-policy': { name: 'Permissions-Policy', protects: "L'usage abusif de capteurs. La page déclare d'avance qu'elle n'utilise ni caméra ni micro : un script tiers compromis ne pourra pas les demander." },
+        },
+        reason: {
+            hstsShort: 'Durée trop courte : en dessous de six mois, la protection expire entre deux visites.',
+            cspReportOnly: "Mode observation seulement : les violations sont signalées, pas bloquées. C'est l'étape normale avant d'activer la politique.",
+            nosniff: 'Seule la valeur « nosniff » est reconnue.',
+            referrer: "Cette valeur envoie l'adresse complète aux sites tiers.",
+        },
+        hsts: { for: 'imposé pendant {n} {unit}', year: 'an(s)', day: 'jour(s)', hour: 'heure(s)', second: 'seconde(s)', sub: 'sous-domaines inclus', preload: 'candidat à la liste préchargée des navigateurs' },
+        leak: {
+            intro: "Ces en-têtes ne servent pas le visiteur : ils décrivent la pile technique. C'est le premier renseignement que cherche un attaquant, parce qu'il dit quelles failles essayer.",
+            none: 'Aucun en-tête ne décrit la pile technique.',
+            withVersion: 'Révèle le logiciel et sa version : il suffit de chercher les failles connues de cette version.',
+            noVersion: "Révèle le logiciel, sans sa version. C'est peu, mais ce n'est utile à personne d'autre qu'à quelqu'un qui cible ce logiciel.",
+            fix: 'la ligne Caddy',
+        },
+        foot: {
+            local: "// rien n'est stocké ni envoyé : une requête HEAD vers ce même site, lue par votre navigateur.",
+            cli: '// la même chose dans un terminal : curl -I https://yatoub.dev',
+            more: '// les enregistrements DNS de la zone :',
+        },
+    },
+
+    en: {
+        hero: {
+            title: 'CURL',
+            sub: 'Before the first byte of the page, a server sends headers: a few lines the browser reads and you never see. Some protect the visitor, others say too much. Here are the ones this server just sent you, and what they are worth.',
+        },
+        secs: { response: 'RESPONSE', audit: 'AUDIT', leaks: 'LEAKS' },
+        state: { loading: 'request in progress…', error: 'The request failed: the headers of this server cannot be read.' },
+        resp: {
+            intro: 'A HEAD request to the home page, sent just now by your browser.',
+            redacted: 'hidden on purpose: this header is part of a game, you have to go and get it yourself.',
+            unknown: 'Header not documented on this page.',
+        },
+        info: {
+            'content-type': 'The nature of the content and its encoding. Without it the browser guesses, and a guess is a possible flaw.',
+            'content-length': 'The size of the body in bytes.',
+            'content-encoding': 'The compression applied to the content for transport.',
+            etag: 'The fingerprint of this version of the file. The browser will send it back to ask "has it changed?" and get a 304 with no content.',
+            'last-modified': 'The date the file was last modified: on a static site, that of the last deployment.',
+            'cache-control': 'How long and by whom the response may be cached.',
+            date: 'The server time when it answered.',
+            vary: 'The request headers that change the response: a cache must take them into account.',
+            'accept-ranges': 'The server accepts requests for a piece of the file, to resume a download.',
+            'alt-svc': 'The announcement of another way to reach the same service: here HTTP/3, over UDP. The browser will try it on the next connection.',
+            server: 'The server software. See the LEAKS section.',
+        },
+        audit: {
+            intro: 'Six headers are consensus today. Each one closes a specific attack, and none costs more than one line of configuration.',
+            score: '{ok} out of {total}',
+            scoreLabel: 'security headers in place',
+            ok: 'IN PLACE',
+            weak: 'WEAK',
+            missing: 'MISSING',
+            value: 'value received',
+            protects: 'what it prevents',
+            fix: 'the Caddy line',
+            honest: 'This page audits the server that serves it, live. What is missing here is a task on my side, not a made-up example.',
+        },
+        sec: {
+            'strict-transport-security': { name: 'Strict-Transport-Security', protects: 'Falling back to HTTP. Without it, an attacker on the network can intercept the very first request in clear and keep the victim off encryption. With it, the browser refuses HTTP for this domain for the announced duration.' },
+            'content-security-policy': { name: 'Content-Security-Policy', protects: 'Running injected code. The policy lists where scripts, styles and images may come from; a script slipped into the page through an XSS flaw is not on the list, so it does not run.' },
+            'x-content-type-options': { name: 'X-Content-Type-Options', protects: 'Type guessing. Without "nosniff", a browser may interpret as script a file declared as text or image.' },
+            'x-frame-options': { name: 'X-Frame-Options', protects: 'Clickjacking. A hostile site can no longer display this page in an invisible frame to make the visitor click unknowingly.' },
+            'referrer-policy': { name: 'Referrer-Policy', protects: 'Leaking where you came from. When following an outgoing link, the browser no longer sends the full path of the page you left, only the site name.' },
+            'permissions-policy': { name: 'Permissions-Policy', protects: 'Sensor abuse. The page declares upfront that it uses neither camera nor microphone: a compromised third-party script cannot ask for them.' },
+        },
+        reason: {
+            hstsShort: 'Duration too short: under six months, the protection expires between two visits.',
+            cspReportOnly: 'Observation mode only: violations are reported, not blocked. It is the normal step before enforcing the policy.',
+            nosniff: 'Only the value "nosniff" is recognised.',
+            referrer: 'This value sends the full address to third-party sites.',
+        },
+        hsts: { for: 'enforced for {n} {unit}', year: 'year(s)', day: 'day(s)', hour: 'hour(s)', second: 'second(s)', sub: 'subdomains included', preload: 'candidate for the browsers preload list' },
+        leak: {
+            intro: 'These headers do not serve the visitor: they describe the stack. It is the first piece of information an attacker looks for, because it says which flaws to try.',
+            none: 'No header describes the stack.',
+            withVersion: 'Reveals the software and its version: looking up the known flaws of that version is all it takes.',
+            noVersion: 'Reveals the software, without its version. Not much, but it is useful to no one other than someone targeting that software.',
+            fix: 'the Caddy line',
+        },
+        foot: {
+            local: '// nothing is stored or sent: one HEAD request to this same site, read by your browser.',
+            cli: '// the same thing in a terminal: curl -I https://yatoub.dev',
+            more: '// the DNS records of the zone:',
+        },
+    },
+};

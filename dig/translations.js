@@ -1,0 +1,113 @@
+/* ── i18n translations ──
+   ⚠ Chaînes contenant une apostrophe : délimiteurs "…" obligatoires.
+   {x} = variable injectée par tf().
+   rec.* : une entrée par requête de DigCore.QUERIES (core.js). */
+const translations = {
+    fr: {
+        hero: {
+            title: 'DIG',
+            sub: "Le DNS est l'annuaire d'Internet, et il est public : n'importe qui peut lire les enregistrements d'un domaine. Voici ceux de yatoub.dev, demandés à l'instant depuis votre navigateur à deux résolveurs publics, et ce que chacun révèle.",
+        },
+        sec: { zone: 'ZONE', trust: 'CONFIANCE', query: 'À VOUS' },
+        state: { loading: 'interrogation…', error: 'résolveur injoignable', nodata: 'aucun enregistrement de ce type', nxdomain: "ce nom n'existe pas" },
+        agree: { yes: 'les deux résolveurs concordent', no: 'les deux résolveurs divergent', one: 'un seul résolveur a répondu' },
+        ttl: { label: 'en cache {n} {unit}', s: 's', min: 'min', h: 'h', d: 'j' },
+        rec: {
+            A: { name: 'A · adresse IPv4', what: "L'adresse vers laquelle votre navigateur s'est connecté. C'est l'adresse publique de ma connexion : le serveur est chez moi, pas chez un hébergeur.", empty: 'Aucune adresse IPv4.' },
+            AAAA: { name: 'AAAA · adresse IPv6', what: "L'équivalent IPv6 de l'enregistrement A.", empty: "Aucune adresse IPv6 : ce site n'est joignable qu'en IPv4. C'est un choix de simplicité côté pare-feu, pas une fatalité." },
+            NS: { name: 'NS · serveurs de noms', what: "Les serveurs qui font autorité sur la zone : ce sont eux qui détiennent la vérité, les autres ne font que la répéter. Ils indiquent chez qui le domaine est géré.", empty: 'Aucun serveur de noms.' },
+            SOA: { name: "SOA · début d'autorité", what: "La fiche d'identité de la zone : serveur principal, contact technique, et un numéro de série qui augmente à chaque modification. Sa date trahit souvent le dernier changement.", empty: 'Aucun SOA.' },
+            MX: { name: 'MX · courrier entrant', what: "Où livrer les courriels adressés à ce domaine. Le nombre est une priorité. On y lit le prestataire de messagerie, sans avoir envoyé un seul message.", empty: 'Aucun MX : ce domaine ne reçoit pas de courrier.' },
+            TXT: { name: 'TXT · texte', what: "Du texte attaché au domaine, lisible par tous. On y trouve surtout la politique d'envoi du courrier (SPF) et les preuves de propriété demandées par des services tiers, qui dressent en passant la liste des outils utilisés.", empty: "Aucun enregistrement TXT : en particulier pas de SPF, donc n'importe quel serveur peut prétendre écrire au nom de ce domaine." },
+            DMARC: { name: 'TXT · DMARC', what: "La consigne donnée aux destinataires quand un message échoue aux contrôles SPF et DKIM. « p=reject » demande de le refuser purement et simplement.", empty: "Aucune politique DMARC : les destinataires décident seuls du sort d'un message usurpé." },
+            CAA: { name: 'CAA · autorités de certification', what: "Les autorités autorisées à émettre un certificat pour ce domaine. Une autorité qui respecte la règle refuse toute demande venant d'ailleurs.", empty: "Aucun enregistrement CAA : n'importe quelle autorité de certification peut émettre un certificat pour ce domaine. C'est une protection que cette zone n'a pas encore." },
+        },
+        txt: {
+            spf: "SPF : les serveurs autorisés à envoyer du courrier pour ce domaine. Un « -all » final demande de rejeter tous les autres.",
+            dmarc: 'DMARC : politique en cas de courrier usurpé',
+            dkim: 'DKIM : clé publique de signature du courrier',
+            verification: "preuve de propriété demandée par un service tiers : elle révèle lequel",
+            other: 'texte libre',
+        },
+        trust: {
+            title: 'DNSSEC',
+            yes: "Cette zone est signée, et les deux résolveurs ont vérifié la signature (indicateur AD). Une réponse falsifiée en chemin serait rejetée au lieu d'être servie.",
+            no: "Aucun résolveur n'a pu valider de signature : sans DNSSEC, un résolveur ne peut pas distinguer une vraie réponse d'une réponse falsifiée.",
+            partial: "Un seul des deux résolveurs annonce une signature validée.",
+            limit: "DNSSEC garantit que la réponse est authentique, pas qu'elle est secrète : la question et la réponse restent lisibles sur le chemin, sauf avec un DNS chiffré (DoH, DoT). Cette page utilise justement DoH.",
+        },
+        ask: {
+            intro: "Interrogez un nom de cette zone. Tout ce qui s'y trouve est public, y compris ce que personne n'a annoncé.",
+            name: 'nom',
+            type: 'type',
+            submit: 'INTERROGER',
+            invalid: "Nom invalide : lettres, chiffres, tirets et tirets bas, à l'intérieur de yatoub.dev.",
+            placeholder: 'www',
+            status: 'statut {rcode}',
+            signed: 'signature validée',
+            local: "Votre propre résolveur n'est pas interrogé ici : une page web n'y a pas accès. Il peut répondre autre chose que ces deux-là, par exemple sur un réseau qui redéfinit certains noms en interne. Pour le savoir : dig {name} {type}, puis la même commande suivie de @1.1.1.1.",
+            nodata: "NOERROR sans réponse : le nom existe, mais pas avec ce type d'enregistrement.",
+            nxdomain: "NXDOMAIN : ce nom n'existe pas du tout dans la zone.",
+        },
+        foot: {
+            ext: '// requêtes externes : chaque interrogation part de votre navigateur vers',
+            and: 'et',
+            zone: '// seuls les noms de la zone yatoub.dev peuvent être interrogés depuis cette page.',
+            more: '// ce que voit un observateur de votre connexion :',
+        },
+    },
+
+    en: {
+        hero: {
+            title: 'DIG',
+            sub: 'DNS is the directory of the Internet, and it is public: anyone can read the records of a domain. Here are those of yatoub.dev, asked just now from your browser to two public resolvers, and what each one gives away.',
+        },
+        sec: { zone: 'ZONE', trust: 'TRUST', query: 'YOUR TURN' },
+        state: { loading: 'querying…', error: 'resolver unreachable', nodata: 'no record of this type', nxdomain: 'this name does not exist' },
+        agree: { yes: 'both resolvers agree', no: 'the two resolvers disagree', one: 'only one resolver answered' },
+        ttl: { label: 'cached {n} {unit}', s: 's', min: 'min', h: 'h', d: 'd' },
+        rec: {
+            A: { name: 'A · IPv4 address', what: 'The address your browser connected to. It is the public address of my own connection: the server sits at home, not at a hosting company.', empty: 'No IPv4 address.' },
+            AAAA: { name: 'AAAA · IPv6 address', what: 'The IPv6 counterpart of the A record.', empty: 'No IPv6 address: this site is reachable over IPv4 only. A choice of simplicity on the firewall side, not a fatality.' },
+            NS: { name: 'NS · name servers', what: 'The servers that are authoritative for the zone: they hold the truth, the others only repeat it. They show where the domain is managed.', empty: 'No name server.' },
+            SOA: { name: 'SOA · start of authority', what: 'The identity card of the zone: primary server, technical contact, and a serial number that grows with every change. Its date often gives away the last edit.', empty: 'No SOA.' },
+            MX: { name: 'MX · incoming mail', what: 'Where to deliver mail addressed to this domain. The number is a priority. It reveals the mail provider without sending a single message.', empty: 'No MX: this domain does not receive mail.' },
+            TXT: { name: 'TXT · text', what: 'Text attached to the domain, readable by anyone. It mostly holds the mail sending policy (SPF) and the ownership proofs requested by third-party services, which list the tools in use along the way.', empty: 'No TXT record: in particular no SPF, so any server can claim to write on behalf of this domain.' },
+            DMARC: { name: 'TXT · DMARC', what: 'The instruction given to recipients when a message fails the SPF and DKIM checks. "p=reject" asks to refuse it outright.', empty: 'No DMARC policy: recipients decide alone what to do with a spoofed message.' },
+            CAA: { name: 'CAA · certificate authorities', what: 'The authorities allowed to issue a certificate for this domain. An authority that follows the rule refuses any request coming from elsewhere.', empty: 'No CAA record: any certificate authority may issue a certificate for this domain. A protection this zone does not have yet.' },
+        },
+        txt: {
+            spf: 'SPF: the servers allowed to send mail for this domain. A final "-all" asks to reject all others.',
+            dmarc: 'DMARC: policy for spoofed mail',
+            dkim: 'DKIM: public key that signs mail',
+            verification: 'ownership proof requested by a third-party service: it reveals which one',
+            other: 'free text',
+        },
+        trust: {
+            title: 'DNSSEC',
+            yes: 'This zone is signed, and both resolvers checked the signature (AD flag). An answer forged on the way would be rejected instead of served.',
+            no: 'No resolver could validate a signature: without DNSSEC, a resolver cannot tell a genuine answer from a forged one.',
+            partial: 'Only one of the two resolvers reports a validated signature.',
+            limit: 'DNSSEC guarantees the answer is authentic, not that it is secret: question and answer stay readable on the path, unless DNS is encrypted (DoH, DoT). This page happens to use DoH.',
+        },
+        ask: {
+            intro: 'Query a name of this zone. Everything in it is public, including what nobody announced.',
+            name: 'name',
+            type: 'type',
+            submit: 'QUERY',
+            invalid: 'Invalid name: letters, digits, hyphens and underscores, inside yatoub.dev.',
+            placeholder: 'www',
+            status: 'status {rcode}',
+            signed: 'signature validated',
+            local: 'Your own resolver is not queried here: a web page has no access to it. It may answer differently from these two, for instance on a network that redefines some names internally. To find out: dig {name} {type}, then the same command followed by @1.1.1.1.',
+            nodata: 'NOERROR without an answer: the name exists, but not with this record type.',
+            nxdomain: 'NXDOMAIN: this name does not exist in the zone at all.',
+        },
+        foot: {
+            ext: '// external requests: each query goes from your browser to',
+            and: 'and',
+            zone: '// only names of the yatoub.dev zone can be queried from this page.',
+            more: '// what an observer of your connection sees:',
+        },
+    },
+};

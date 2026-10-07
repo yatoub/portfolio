@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════
+   YATOUB // DIG — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.dg-records, .dg-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 1rem; }
+.dg-record, .dg-result { min-width: 0; }
+.dg-record-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+.dg-record-head .pg-panel-title { margin-right: auto; }
+
+/* The verdict is spelled out in the tag ; the colour only backs it up */
+.dg-verdict[data-state="ok"]   { color: var(--green-dot); border-color: var(--green-dot); }
+.dg-verdict[data-state="warn"] { color: var(--yellow-dot); border-color: var(--yellow-dot); }
+
+.dg-what { margin: 0.6rem 0 0.9rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+.dg-out { margin: 0; color: var(--amber); background: var(--bg-0); tab-size: 8; }
+.dg-state { font-size: 0.8rem; color: var(--text-3); }
+.dg-empty { padding: 0.6rem 0.9rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); border-left: 3px solid var(--border-bright); background: var(--bg-0); }
+.dg-notes { margin-top: 0.7rem; display: grid; gap: 0.25rem; font-size: 0.75rem; color: var(--text-3); }
+.dg-notes li::before { content: '# '; }
+
+.dg-trust { border-left: 3px solid var(--green); max-width: 90ch; }
+.dg-trust-text { margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.7; color: var(--text-2); }
+
+/* ── Lookup form ── */
+.dg-form {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-left: 3px solid var(--green);
+}
+.dg-prompt { padding-bottom: 0.7rem; font-size: 0.85rem; color: var(--text-3); white-space: nowrap; }
+.dg-field { display: flex; flex-direction: column; gap: 0.3rem; }
+.dg-field:first-of-type { flex: 1; min-width: 14rem; }
+.dg-field-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.dg-name { display: flex; align-items: center; background: var(--bg-2); border: 1px solid var(--border-bright); border-radius: var(--radius); }
+.dg-name:focus-within { border-color: var(--green); box-shadow: 0 0 12px var(--green-glow); }
+.dg-suffix { padding: 0 0.9rem 0 0.2rem; font-size: 0.85rem; color: var(--text-3); white-space: nowrap; }
+.dg-input {
+    padding: 0.7rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-1);
+    background: var(--bg-2);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius);
+    caret-color: var(--green);
+}
+.dg-name .dg-input { flex: 1; min-width: 0; border: none; background: none; padding-right: 0; text-align: right; }
+.dg-input:focus-visible { outline: none; }
+.dg-select:focus-visible { border-color: var(--green); }
+.dg-input::placeholder { color: var(--text-3); }
+
+.dg-msg { min-height: 1.4rem; margin: 0.75rem 0; font-size: 0.8rem; color: var(--red-dot); }
+.dg-results { margin-bottom: 1.5rem; }
+.dg-result .dg-out, .dg-result .dg-empty, .dg-result .dg-state { margin-top: 0.9rem; }
+
+@media (max-width: 768px) {
+    .dg-form { padding: 1rem; }
+    .dg-form .btn { width: 100%; justify-content: center; }
+    .dg-prompt { display: none; }
+}

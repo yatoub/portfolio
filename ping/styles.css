@@ -1,0 +1,41 @@
+/* ═══════════════════════════════════════════
+   YATOUB // PING — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.pn-out { min-height: 17rem; }
+
+/* One bar per request, a single hue ; a lost request is a hatched slot */
+.pn-bars { display: flex; align-items: flex-end; gap: 4px; height: 64px; margin: 1rem 0; }
+.pn-slot { flex: 1; height: 100%; display: flex; align-items: flex-end; background: var(--bg-card); border-radius: 2px; }
+.pn-bar { width: 100%; min-height: 2px; background: var(--green); border-radius: 2px 2px 0 0; transition: height 0.2s ease; }
+.pn-slot[data-state="pending"] .pn-bar { display: none; }
+.pn-slot[data-state="lost"] { background: repeating-linear-gradient(135deg, var(--text-3) 0 2px, transparent 2px 6px); }
+.pn-slot[data-state="lost"] .pn-bar { display: none; }
+
+.pn-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.pn-stats[hidden] { display: none; }
+.pn-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+}
+.pn-stat-num { font-family: var(--font-display); font-size: clamp(1.3rem, 4vw, 1.9rem); line-height: 1.1; color: var(--text-1); font-variant-numeric: tabular-nums; }
+.pn-stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+.pn-again { margin-top: 0.5rem; }
+
+.pn-dist { border-left: 3px solid var(--green); margin-bottom: 1.5rem; }
+.pn-bound { font-family: var(--font-display); font-size: clamp(1rem, 3.4vw, 1.5rem); line-height: 1.4; letter-spacing: 0.03em; color: var(--text-1); margin-bottom: 1rem; }
+.pn-formula { display: inline-block; margin-bottom: 1.25rem; padding: 0.5rem 0.9rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--amber); background: var(--bg-0); border: 1px solid var(--border); }
+.pn-real { margin-bottom: 0; }
+
+.pn-refs { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1.5rem; max-width: 40rem; font-size: 0.8rem; }
+.pn-ref-name { color: var(--text-2); }
+.pn-ref-value { color: var(--text-1); text-align: right; font-variant-numeric: tabular-nums; }
+
+.pn-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; }
+.pn-note-text { margin-top: 0.6rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }

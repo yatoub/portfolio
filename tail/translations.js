@@ -34,8 +34,8 @@ const translations = {
             everyMinutes: 'une toutes les {n} min',
             everyHours: 'une toutes les {n} h',
             none: '—',
-            byIp: "{n} de ces sondes ({pct} %) visaient directement l'adresse IP du serveur, sans connaître le nom du site : ce sont les robots qui balaient tout Internet, adresse après adresse.",
-            other: "S'y ajoutent {n} requêtes en 404 qui ne ressemblent à aucune sonde connue (lien mort, faute de frappe) : elles sont comptées, jamais affichées.",
+            byIp: "Sondes visant directement l'adresse IP du serveur, sans connaître le nom du site : {n}, soit {pct} %. Ce sont les robots qui balaient tout Internet, adresse après adresse.",
+            other: "Requêtes en 404 ne ressemblant à aucune sonde connue (lien mort, faute de frappe) : {n}. Elles sont comptées, jamais affichées.",
         },
         sec: { volume: 'VOLUME', targets: 'CIBLES', origin: 'PROVENANCE' },
         vol: {
@@ -120,8 +120,8 @@ const translations = {
             everyMinutes: 'one every {n} min',
             everyHours: 'one every {n} h',
             none: '—',
-            byIp: '{n} of these probes ({pct}%) were aimed straight at the server IP address, without knowing the site name: those are the bots sweeping the whole Internet, address after address.',
-            other: 'On top of that, {n} requests ended in 404 without looking like any known probe (dead link, typo): they are counted, never shown.',
+            byIp: 'Probes aimed straight at the server IP address, without knowing the site name: {n}, or {pct}%. Those are the bots sweeping the whole Internet, address after address.',
+            other: 'Requests ending in 404 that look like no known probe (dead link, typo): {n}. They are counted, never shown.',
         },
         sec: { volume: 'VOLUME', targets: 'TARGETS', origin: 'ORIGIN' },
         vol: {

@@ -16,8 +16,8 @@ const translations = {
         msg: {
             found: '✓ Drapeau {n} trouvé : {title}',
             already: 'Déjà trouvé : {title}',
-            wrong: "Ce n'est pas un drapeau. Vérifie les accolades et la casse.",
-            empty: 'Colle un drapeau au format YATOUB{...}',
+            wrong: "Ce n'est pas un drapeau. Vérifiez les accolades et la casse.",
+            empty: 'Collez un drapeau au format YATOUB{...}',
             nocrypto: "Ce navigateur n'expose pas crypto.subtle (connexion non sécurisée ?) : impossible de vérifier un drapeau.",
         },
         card: {
@@ -30,7 +30,7 @@ const translations = {
         },
         done: {
             title: 'SIX SUR SIX',
-            text: "Tu as lu un robots.txt, un source, un système de fichiers, des en-têtes et une zone DNS : c'est le début de toute reconnaissance, et rien de tout cela n'a demandé un outil d'attaque. Si tu as aimé l'exercice, écris-moi.",
+            text: "Vous avez lu un robots.txt, un source, un système de fichiers, des en-têtes et une zone DNS : c'est le début de toute reconnaissance, et rien de tout cela n'a demandé un outil d'attaque. Si l'exercice vous a plu, écrivez-moi.",
             contact: 'ME CONTACTER',
         },
         reset: {
@@ -38,13 +38,13 @@ const translations = {
             confirm: 'cliquer encore pour confirmer',
         },
         foot: {
-            local: "// la progression reste dans ton navigateur : rien n'est envoyé au serveur, et les drapeaux saisis ne sont pas conservés.",
+            local: "// la progression reste dans votre navigateur : rien n'est envoyé au serveur, et les drapeaux saisis ne sont pas conservés.",
             scope: '// le périmètre du jeu est ce site. Les services du homelab ne font pas partie du parcours.',
         },
         flags: {
             robots: {
                 title: 'Le plan des zones interdites',
-                hint: "Les robots d'indexation lisent un fichier avant tout le reste. Rien ne t'empêche de le lire aussi.",
+                hint: "Les robots d'indexation lisent un fichier avant tout le reste. Rien ne vous empêche de le lire aussi.",
                 explain: "robots.txt est un fichier public, à une adresse fixe, que les moteurs de recherche consultent pour savoir quoi ignorer. Il ne protège rien : il demande poliment. Pour un attaquant, c'est souvent la première lecture, parce que les lignes Disallow listent précisément ce que le propriétaire préférerait ne pas voir exploré.",
                 defense: "Ne jamais y inscrire un chemin sensible. Ce qui doit rester privé se protège par une authentification, pas par une consigne aux robots.",
             },
@@ -56,13 +56,13 @@ const translations = {
             },
             dotfile: {
                 title: 'Rangé, pas caché',
-                hint: "Ouvre le terminal du site (bouton >_ ou Ctrl+K). Par défaut, ls ne montre pas tout.",
+                hint: "Ouvrez le terminal du site (bouton >_ ou Ctrl+K). Par défaut, ls ne montre pas tout.",
                 explain: "Sous Unix, un fichier dont le nom commence par un point est simplement omis par ls, sauf avec l'option -a. C'est une convention d'affichage, pas une permission. Les fichiers .env, .git ou .ssh sont parmi les plus recherchés sur un serveur web, justement parce qu'on oublie qu'ils sont là.",
                 defense: "Bloquer explicitement les fichiers en point dans le serveur web, et garder les secrets hors du dossier servi. Ici, Caddy renvoie 404 sur /.git et /.github.",
             },
             curl: {
                 title: 'Un visage par visiteur',
-                hint: "Le site ne répond pas la même chose à un navigateur et à un outil en ligne de commande. Essaie /whoami autrement.",
+                hint: "Le site ne répond pas la même chose à un navigateur et à un outil en ligne de commande. Essayez /whoami autrement.",
                 explain: "Le serveur lit l'en-tête User-Agent et adapte sa réponse : curl reçoit du texte brut, un navigateur reçoit la page. Cet en-tête est déclaré par le client et rien ne le vérifie : curl -A permet de se présenter comme n'importe quel navigateur, et l'inverse est vrai aussi.",
                 defense: "Le User-Agent sert au confort (format de la réponse), jamais au contrôle d'accès. Un filtrage fondé dessus se contourne en une option.",
             },
@@ -74,7 +74,7 @@ const translations = {
             },
             dns: {
                 title: "L'annuaire public",
-                hint: "Un nom de domaine porte d'autres enregistrements que son adresse. Cherche du texte sous le nom _ctf.",
+                hint: "Un nom de domaine porte d'autres enregistrements que son adresse. Cherchez du texte sous le nom _ctf.",
                 explain: "Le DNS est un annuaire que n'importe qui peut interroger. En plus des adresses, il contient des enregistrements TXT : validation de domaine, politique de messagerie (SPF, DKIM, DMARC). Les lire renseigne sur les prestataires utilisés et, parfois, sur des sous-domaines que personne n'a annoncés.",
                 defense: "Une zone DNS est une donnée publique : pas de nom interne ni d'information sensible, et un ménage régulier des enregistrements de validation devenus inutiles.",
             },

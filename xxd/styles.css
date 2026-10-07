@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════════════
+   YATOUB // XXD — page styles
+   Shared pieces come from /assets/page.css
+   ═══════════════════════════════════════════ */
+
+.xd-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.xd-tab {
+    padding: 0.55rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--text-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+.xd-tab:hover { color: var(--text-1); border-color: var(--border-bright); }
+.xd-tab[aria-selected="true"] { color: var(--bg-0); background: var(--green); border-color: var(--green); font-weight: 700; }
+.xd-tab:focus-visible { outline: 1px solid var(--text-1); outline-offset: 2px; }
+.xd-tab-desc { min-height: 3.2em; }
+
+.xd-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.xd-dump-wrap { min-width: 0; position: sticky; top: calc(var(--nav-h) + 1rem); }
+
+/* ── Hex dump ── */
+.xd-dump { padding: 1rem; background: var(--bg-card); border: 1px solid var(--border); overflow-x: auto; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.75; }
+.xd-row { display: flex; gap: 1ch; white-space: nowrap; }
+.xd-offset { color: var(--text-3); }
+.xd-hex { display: inline-grid; grid-template-columns: repeat(16, 2.6ch); }
+.xd-ascii { display: inline-grid; grid-template-columns: repeat(16, 1ch); margin-left: 1ch; }
+.xd-byte, .xd-char { color: var(--text-2); cursor: default; border-radius: 1px; }
+.xd-byte { padding-left: 0.3ch; }
+/* Encrypted bytes are dimmed and underlined with dots: readable as such without relying on the hue */
+.xd-byte[data-clear="false"], .xd-char[data-clear="false"] { color: var(--text-3); text-decoration: underline dotted; text-underline-offset: 3px; }
+.xd-byte.on, .xd-char.on { color: var(--bg-0); background: var(--amber); text-decoration: none; }
+
+.xd-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0.75rem 0 1rem; font-size: 0.72rem; color: var(--text-3); list-style: none; }
+.xd-legend li { display: flex; align-items: center; gap: 0.5rem; }
+.xd-legend .xd-byte { font-family: var(--font-mono); padding: 0 0.3ch; }
+
+.xd-detail { min-height: 9.5rem; border-left: 3px solid var(--amber); }
+.xd-detail-hint { font-size: 0.8rem; color: var(--text-3); font-style: italic; }
+.xd-detail-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.6rem; }
+.xd-detail-head .pg-panel-title { margin-right: auto; }
+.xd-detail-head .pg-tag[data-clear="true"] { color: var(--yellow-dot); border-color: var(--yellow-dot); }
+.xd-detail-head .pg-tag[data-clear="false"] { color: var(--green-dot); border-color: var(--green-dot); }
+.xd-detail-range { margin-top: 0.5rem; font-size: 0.72rem; color: var(--text-3); overflow-wrap: anywhere; }
+.xd-detail-value { display: block; margin-top: 0.4rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--amber); overflow-wrap: anywhere; }
+.xd-detail-what { margin-top: 0.5rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+
+/* ── Layers, each one inside the previous: the nesting is the encapsulation ── */
+.xd-layers { display: grid; gap: 0.75rem; min-width: 0; }
+.xd-layer { padding: 0.9rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--border-bright); }
+.xd-layer[data-layer="ip"]  { margin-left: 0.75rem; }
+.xd-layer[data-layer="tcp"] { margin-left: 1.5rem; }
+.xd-layer[data-layer="tls"] { margin-left: 2.25rem; }
+.xd-layer-name { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.06em; color: var(--text-1); }
+.xd-layer-what { margin: 0.3rem 0 0.7rem; font-size: 0.74rem; line-height: 1.5; color: var(--text-3); }
+.xd-fields { display: grid; gap: 2px; list-style: none; }
+.xd-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    text-align: left;
+    color: var(--text-2);
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.xd-field-value { margin-left: auto; font-family: var(--font-mono); color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 55%; }
+.xd-field:hover, .xd-field.on { color: var(--text-1); background: var(--bg-2); }
+.xd-field.on .xd-field-value { color: var(--amber); }
+.xd-field[aria-pressed="true"] { border-color: var(--amber); }
+.xd-field[data-clear="false"] .xd-field-name::after { content: ' ░░'; color: var(--text-3); }
+.xd-field:focus-visible { outline: 1px solid var(--amber); outline-offset: 1px; }
+
+.xd-assumed { display: grid; gap: 0.5rem; max-width: 90ch; margin-bottom: 1.5rem; padding-left: 1.2rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-2); }
+.xd-try { color: var(--green); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (max-width: 1000px) {
+    .xd-layout { grid-template-columns: 1fr; }
+    .xd-dump-wrap { position: static; }
+}
+@media (max-width: 768px) {
+    /* Eight bytes per visual row would need a rebuild ; the dump scrolls sideways instead */
+    .xd-dump { font-size: 0.68rem; padding: 0.75rem; }
+    .xd-layer[data-layer="ip"]  { margin-left: 0.4rem; }
+    .xd-layer[data-layer="tcp"] { margin-left: 0.8rem; }
+    .xd-layer[data-layer="tls"] { margin-left: 1.2rem; }
+}

@@ -183,7 +183,45 @@ function renderRanking(titleKey, items, labelOf) {
     return col;
 }
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function svg(tag, attrs = {}, text) {
+    const node = document.createElementNS(SVG_NS, tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    if (text !== undefined) node.textContent = text;
+    return node;
+}
+
+// Dot-matrix world map: grey dots for land, one marker per country that sent probes
+let landDots = null;    // built once, reused across redraws
+function renderMap(data) {
+    const host = $('#map');
+    const marks = typeof TailMap === 'undefined' ? [] : TailCore.markers(TailMap, data.countries);
+    host.hidden = !marks.length;
+    if (!marks.length) return host.replaceChildren();
+
+    if (!landDots) {
+        landDots = svg('g', { class: 'tl-land' });
+        for (const [col, row] of TailCore.landCells(TailMap)) landDots.append(svg('circle', { cx: col + 0.5, cy: row + 0.5, r: 0.3 }));
+    }
+    const top = [...marks].sort((a, b) => b.count - a.count);
+    const root = svg('svg', { class: 'tl-map-svg', viewBox: `0 0 ${TailMap.cols} ${TailMap.rows}`, role: 'img',
+        'aria-label': tf('geo.mapLabel', { n: marks.length, top: countryName(top[0].cc) }) });
+    const layer = svg('g');
+    for (const m of marks) {
+        const g = svg('g', { class: 'tl-mark' });
+        g.append(svg('title', {}, `${countryName(m.cc)} — ${probes(m.count)}`),
+            svg('circle', { class: 'tl-mark-ring', cx: m.x, cy: m.y, r: m.r }),
+            svg('circle', { class: 'tl-mark-dot', cx: m.x, cy: m.y, r: m.r }));
+        layer.append(g);
+    }
+    // A few of the busiest countries are named on the map ; the others are in the ranking
+    for (const m of TailCore.labelled(marks)) layer.append(svg('text', { class: 'tl-mark-label', x: m.x, y: m.y - m.r - 0.8, 'text-anchor': 'middle' }, m.cc));
+    root.append(landDots, layer);
+    host.replaceChildren(root, el('figcaption', 'tl-meta', t('geo.mapCaption')));
+}
+
 function renderOrigin(data) {
+    renderMap(data);
     const countries = TailCore.ranked(data.countries);
     const networks = TailCore.ranked(data.networks);
     const hasGeo = data.geo !== false && (countries.length || networks.length);

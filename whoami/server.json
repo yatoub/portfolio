@@ -6,6 +6,7 @@
 {{- end -}}
 {{- dict
     "ip" .RemoteIP
+    "port" (placeholder "http.request.remote.port")
     "proto" .Req.Proto
     "tls" (placeholder "http.request.tls.version")
     "cipher" (placeholder "http.request.tls.cipher_suite")

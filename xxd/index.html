@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // XXD</title>
+    <meta name="description" content="Le paquet que votre navigateur envoie pour ouvrir une connexion chiffrée vers yatoub.dev, octet par octet, avec vos vraies adresses.">
+    <link rel="canonical" href="https://yatoub.dev/xxd/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navSize">…</span>
+            </div>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre">$ tcpdump -c 1 -w - host yatoub.dev | xxd</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">XXD</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.packet">PAQUET</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+
+                <div class="xd-tabs" role="tablist" id="tabs"></div>
+                <p class="pg-text xd-tab-desc" id="tabDesc"></p>
+
+                <div class="xd-layout">
+                    <div class="xd-dump-wrap">
+                        <div class="xd-dump" id="dump" role="img"></div>
+                        <ul class="xd-legend">
+                            <li><span class="xd-byte" data-clear="true">61</span><span data-i18n="dump.clear">en clair</span></li>
+                            <li><span class="xd-byte" data-clear="false">9f</span><span data-i18n="dump.encrypted">chiffré</span></li>
+                        </ul>
+                        <div class="pg-panel xd-detail" id="detail" aria-live="polite"></div>
+                    </div>
+                    <div class="xd-layers" id="layers"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.honest">RECONSTITUTION</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="pg-text" data-i18n="honest.intro"></p>
+                <p class="pg-text" data-i18n="honest.simplified"></p>
+                <p class="pg-label" data-i18n="honest.assumedTitle">Valeurs inventées dans ce paquet</p>
+                <ul class="xd-assumed" id="assumed"></ul>
+                <p class="pg-label" data-i18n="honest.try">Pour voir les vrais</p>
+                <pre class="pg-out xd-try">$ sudo tcpdump -i any -c 5 -X host yatoub.dev and port 443
+$ sudo tshark -i any -Y tls.handshake.type==1 -V host yatoub.dev</pre>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p data-i18n="foot.local"></p>
+        <p><span data-i18n="foot.ext"></span> <code>cloudflare-dns.com</code>.</p>
+        <p><span data-i18n="foot.more"></span> <a href="/tcpdump/">/tcpdump/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="/dig/core.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

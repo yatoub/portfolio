@@ -70,7 +70,47 @@ const TailCore = (() => {
         return pct < 1 ? '<1' : String(pct);
     }
 
-    return { STALE_MS, SKEW_MS, HOUR_MS, DAY_MS, summarize, hours, days, heights, peak, rate, ranked, percent };
+    /* ── World map: map is the generated TailMap (tail/map.js) ── */
+    // Land cells of the dot matrix → [[col, row], …]
+    function landCells(map) {
+        const cells = [];
+        map.land.forEach((hex, row) => {
+            [...hex].forEach((digit, i) => {
+                const nibble = parseInt(digit, 16);
+                for (let b = 0; b < 4; b++) if (nibble & (8 >> b)) cells.push([i * 4 + b, row]);
+            });
+        });
+        return cells;
+    }
+
+    // Longitude, latitude → position in grid units, clamped inside the map
+    function project(map, lon, lat) {
+        const clamp = (v, max) => Math.min(Math.max(v, 0), max);
+        return { x: clamp((lon - map.lonLeft) / map.cell, map.cols), y: clamp((map.latTop - lat) / map.cell, map.rows) };
+    }
+
+    // Ranked countries → one marker each, largest first so that small ones are drawn on top.
+    // The area of a marker follows its count ; unknown country codes are left out.
+    function markers(map, countries, { rMin = 0.9, rMax = 3.4 } = {}) {
+        const known = ranked(countries).filter(c => typeof c.cc === 'string' && Object.hasOwn(map.countries, c.cc));
+        return known.map((c) => {
+            const [lon, lat] = map.countries[c.cc];
+            return { cc: c.cc, count: c.count, ...project(map, lon, lat), r: rMin + (rMax - rMin) * Math.sqrt(c.width) };
+        }).sort((a, b) => b.r - a.r);
+    }
+
+    // Which markers get their name written on the map: the busiest first, skipping any that would
+    // sit on a label already placed (neighbouring countries in Europe)
+    function labelled(marks, { max = 3, gap = 7 } = {}) {
+        const out = [];
+        for (const m of [...marks].sort((a, b) => b.count - a.count)) {
+            if (out.length >= max) break;
+            if (out.every(o => Math.hypot(o.x - m.x, o.y - m.y) >= gap)) out.push(m);
+        }
+        return out;
+    }
+
+    return { STALE_MS, SKEW_MS, HOUR_MS, DAY_MS, summarize, hours, days, heights, peak, rate, ranked, percent, landCells, project, markers, labelled };
 })();
 
 if (typeof module !== 'undefined') module.exports = TailCore;

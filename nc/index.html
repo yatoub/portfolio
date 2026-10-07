@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YATOUB // NC</title>
+    <meta name="description" content="Écrivez une requête HTTP à la main, comme avec netcat, et lisez la vraie réponse de yatoub.dev. Six défis pour faire le tour du protocole.">
+    <link rel="canonical" href="https://yatoub.dev/nc/">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/page.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-flicker" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-bracket">[</span>YTB<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span id="navDone">0/6</span>
+            </div>
+            <button class="lang-toggle pg-lang" id="langToggle" type="button" aria-label="Switch language">
+                <span id="langLabel">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pg-main">
+        <header class="container">
+            <p class="pg-pre">$ nc yatoub.dev 80</p>
+            <h1 class="pg-title"><span data-i18n="hero.title">NC</span><span class="title-cursor">_</span></h1>
+            <p class="pg-sub" data-i18n="hero.sub"></p>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">01</span>
+                    <h2 class="sh-title"><span data-i18n="sec.session">SESSION</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="nc-layout">
+                    <div class="nc-session">
+                        <form class="nc-form" id="form">
+                            <label class="pg-label" for="req" data-i18n="form.label">votre requête</label>
+                            <textarea class="nc-input" id="req" name="req" rows="6" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" maxlength="2000"></textarea>
+                            <div class="nc-actions">
+                                <button class="btn btn-primary" type="submit" data-i18n="form.send">ENVOYER</button>
+                                <span class="nc-keys" data-i18n="form.keys">Ctrl+Entrée envoie</span>
+                                <button class="pg-link-btn" id="example" type="button" data-i18n="form.example"></button>
+                            </div>
+                        </form>
+                        <ul class="nc-msgs" id="msgs" role="status" aria-live="polite"></ul>
+                        <ul class="nc-sent" id="sent"></ul>
+                        <pre class="pg-out nc-out" id="out" role="log" aria-live="polite"></pre>
+                    </div>
+
+                    <aside class="pg-panel nc-challenges">
+                        <div class="nc-ch-head">
+                            <h3 class="pg-panel-title" data-i18n="ch.title">DÉFIS</h3>
+                            <span class="pg-tag" id="done">0 sur 6</span>
+                        </div>
+                        <ol class="nc-ch-list" id="challenges"></ol>
+                        <button class="pg-link-btn" id="reset" type="button" hidden></button>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sh-index">02</span>
+                    <h2 class="sh-title"><span data-i18n="sec.honest">ENVERS DU DÉCOR</span><span class="title-cursor">_</span></h2>
+                    <div class="sh-line"></div>
+                </div>
+                <p class="pg-text" data-i18n="honest.intro"></p>
+                <div class="nc-notes" id="notes"></div>
+                <p class="pg-label" data-i18n="honest.real">La version sans filet</p>
+                <pre class="pg-out nc-real">$ printf 'GET /robots.txt HTTP/1.1\r\nHost: yatoub.dev\r\nConnection: close\r\n\r\n' | nc yatoub.dev 80
+$ openssl s_client -quiet -connect yatoub.dev:443      # the same, through TLS</pre>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container pg-foot">
+        <p data-i18n="foot.local"></p>
+        <p><span data-i18n="foot.more"></span> <a href="/curl/">/curl/</a></p>
+        <p>// <a href="/">yatoub.dev</a> · <a href="/man/">man</a></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="/assets/page.js"></script>
+    <script src="core.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

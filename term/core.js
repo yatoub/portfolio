@@ -10,7 +10,7 @@ const TermCore = (() => {
     const HOSTNAME = 'yatoub';
     // Stable file names for experience entries, whatever the display language
     const EXP_SLUGS = { en: 'education-nationale', lp: 'la-poste', mc: 'maincare', cp: 'cpage', dp: 'delpharm' };
-    const SECTIONS = { man: '/man/', lab: '/lab', whoami: '/whoami/', status: '/status/', tcpdump: '/tcpdump/', traceroute: '/traceroute/', ping: '/ping/', dig: '/dig/', curl: '/curl/', tail: '/tail/', ctf: '/ctf/', github: 'https://github.com/yatoub' };
+    const SECTIONS = { man: '/man/', lab: '/lab', whoami: '/whoami/', status: '/status/', tcpdump: '/tcpdump/', traceroute: '/traceroute/', ping: '/ping/', dig: '/dig/', curl: '/curl/', ipcalc: '/ipcalc/', nc: '/nc/', xxd: '/xxd/', nft: '/nft/', tail: '/tail/', ctf: '/ctf/', github: 'https://github.com/yatoub' };
 
     const dir = (children = {}) => ({ dir: children });
     const file = (content, extra = {}) => ({ file: content, ...extra });
@@ -94,6 +94,74 @@ const TermCore = (() => {
     const line = (text, cls = '') => ({ text, cls });
     const err = (text) => line(text, 'err');
     const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
+
+    /* ── ASCII art for the hidden commands ── */
+    const ART_COLS = 64;
+    // Same character set as the paths the noise exporter publishes
+    const PRINTABLE = /^\/[A-Za-z0-9._/-]{1,39}$/;
+    const MATRIX_WORDS = ['/.env', '/wp-login.php', '/.git/config', '/phpmyadmin/', '/admin/', '/xmlrpc.php', '/backup.zip', '/actuator/env', '/cgi-bin/luci', '/shell.php'];
+
+    function cow(text) {
+        const words = text.split(/\s+/).filter(Boolean);
+        const rows = [];
+        let row = '';
+        for (const word of words) {
+            if (row && (row.length + 1 + word.length) > 38) { rows.push(row); row = word; }
+            else row = row ? `${row} ${word}` : word;
+        }
+        if (row) rows.push(row);
+        const width = Math.max(...rows.map(r => r.length));
+        const bubble = rows.length === 1
+            ? [`< ${rows[0]} >`]
+            : rows.map((r, i) => `${i === 0 ? '/' : i === rows.length - 1 ? '\\' : '|'} ${r.padEnd(width)} ${i === 0 ? '\\' : i === rows.length - 1 ? '/' : '|'}`);
+        return [` ${'_'.repeat(width + 2)}`, ...bubble, ` ${'-'.repeat(width + 2)}`,
+            '        \\   ^__^', '         \\  (oo)\\_______', '            (__)\\       )\\/\\', '                ||----w |', '                ||     ||'].join('\n');
+    }
+
+    const TRAIN = [
+        '      ====        ________                ___________ ',
+        '  _D _|  |_______/        \\__I_I_____===__|_________| ',
+        '   |(_)---  |   H\\________/ |   |        =|___ ___|   ',
+        '   /     |  |   H  |  |     |   |         ||_| |_||   ',
+        '  |      |  |   H  |__--------------------| [___] |   ',
+        '  | ________|___H__/__|_____/[][]~\\_______|       |   ',
+        '  |/ |   |-----------I_____I [][] []  D   |=======|__ ',
+        '__/ =| o |=-~~\\  /~~\\  /~~\\  /~~\\ ____Y___________|__ ',
+        ' |/-=|___|=    ||    ||    ||    |_____/~\\___/        ',
+        '  \\_/      \\O=====O=====O=====O_/      \\_/            ',
+    ];
+
+    // The train enters from the right and leaves on the left, clipped to the terminal width
+    function trainFrames(cols = ART_COLS) {
+        const width = Math.max(...TRAIN.map(l => l.length));
+        const frames = [];
+        for (let x = cols; x >= -width; x -= 2) {
+            frames.push(TRAIN.map(l => (x >= 0 ? ' '.repeat(x) + l : l.slice(-x)).slice(0, cols).padEnd(cols)).join('\n'));
+        }
+        return frames;
+    }
+
+    // Each column lets one word fall, letter by letter, at its own pace
+    function matrixFrames(words, random = Math.random, { cols = ART_COLS, rows = 12, count = 48 } = {}) {
+        const lanes = Array.from({ length: Math.floor(cols / 2) }, () => ({
+            word: words[Math.floor(random() * words.length) % words.length],
+            offset: -Math.floor(random() * rows * 2),
+            speed: 1 + Math.floor(random() * 2),
+        }));
+        const frames = [];
+        for (let f = 0; f < count; f++) {
+            const grid = Array.from({ length: rows }, () => Array(cols).fill(' '));
+            lanes.forEach((lane, i) => {
+                const head = lane.offset + f * lane.speed;
+                [...lane.word].forEach((ch, k) => {
+                    const y = head - k;
+                    if (y >= 0 && y < rows) grid[y][i * 2] = ch;
+                });
+            });
+            frames.push(grid.map(r => r.join('')).join('\n'));
+        }
+        return frames;
+    }
 
     /* ── Commands: (args, ctx) → { lines, effects } | Promise of it ──
        ctx: { fs, state, tr (translations[lang].term), io: { json(url), text(url) }, summarize } */
@@ -214,13 +282,38 @@ const TermCore = (() => {
         exit() { return { lines: [], effects: [{ type: 'close' }] }; },
 
         /* ── Easter eggs ── */
+        cowsay(args, { tr }) {
+            return { lines: [line(cow(args.join(' ') || tr.egg.moo), 'art')] };
+        },
+
+        fortune(args, { tr, random = Math.random }) {
+            const list = tr.egg.fortunes;
+            return { lines: [line(list[Math.floor(random() * list.length) % list.length])] };
+        },
+
+        // The train of sl(1), for those who mistype ls
+        sl() {
+            return { lines: [], effects: [{ type: 'animate', frames: trainFrames(), ms: 45, keep: false }] };
+        },
+
+        // Falling columns made of what bots really ask this server for, when the data is there
+        async cmatrix(args, { io, random = Math.random }) {
+            let words = MATRIX_WORDS;
+            try {
+                const noise = await io.json('/data/noise/noise.json');
+                const paths = (noise.families || []).flatMap(f => (f.paths || []).map(p => p.path)).filter(p => typeof p === 'string' && PRINTABLE.test(p));
+                if (paths.length >= 5) words = paths;
+            } catch { /* no export here: generic probes */ }
+            return { lines: [], effects: [{ type: 'animate', frames: matrixFrames(words, random), ms: 90, keep: false }] };
+        },
+
         sudo(args, { tr }) { return { lines: [err(fill(tr.egg.sudo, { user: USER }))] }; },
         rm(args, { tr }) { return { lines: [err(tr.egg.rm)] }; },
         vim(args, { tr }) { return { lines: [line(tr.egg.vim, 'dim')] }; },
     };
     const ALIASES = { ll: 'ls', dir: 'ls', quit: 'exit', logout: 'exit', vi: 'vim', nano: 'vim', emacs: 'vim', '?': 'help', man: 'help' };
     // Hidden from completion and help
-    const HIDDEN = new Set(['sudo', 'rm', 'vim', 'echo', 'date']);
+    const HIDDEN = new Set(['sudo', 'rm', 'vim', 'echo', 'date', 'cowsay', 'fortune', 'sl', 'cmatrix']);
 
     async function exec(input, ctx) {
         const [name, ...args] = tokenize(input);
@@ -269,7 +362,7 @@ const TermCore = (() => {
         return { input: head + base + common, options: common.length > partial.length ? [] : matches.map(m => m.trim()) };
     }
 
-    return { buildFs, resolve, lookup, display, prompt, tokenize, exec, complete, COMMANDS };
+    return { buildFs, resolve, lookup, display, prompt, tokenize, exec, complete, trainFrames, matrixFrames, COMMANDS };
 })();
 
 if (typeof module !== 'undefined') module.exports = TermCore;

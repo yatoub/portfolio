@@ -35,7 +35,8 @@ test('the real exporter output is read as fresh data', () => {
 
 test('every family the exporter can emit is described in both languages', () => {
     // FAMILIES of noise_export.py ; a new family there needs its entry here
-    const ids = ['exploit', 'git', 'secrets', 'wordpress', 'admin', 'device', 'debug', 'backup', 'shell'];
+    // 'scan' is the family of the catch-all log: requests by IP address that match no pattern
+    const ids = ['scan', 'exploit', 'git', 'secrets', 'wordpress', 'admin', 'device', 'debug', 'backup', 'shell'];
     for (const f of real.families) assert.ok(ids.includes(f.id), `fixture family ${f.id}`);
     for (const lang of ['en', 'fr']) {
         assert.deepEqual(Object.keys(translations[lang].families).sort(), [...ids].sort(), lang);

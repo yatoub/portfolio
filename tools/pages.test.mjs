@@ -12,7 +12,7 @@ const read = p => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
 const strings = dir => new Function(`${read(`${dir}/translations.js`)}; return translations;`)();
 const keys = (o, p = '') => Object.entries(o).flatMap(([k, v]) => (v && typeof v === 'object' ? keys(v, `${p}${k}.`) : [`${p}${k}`]));
 
-const SHARED = ['man', 'ping', 'dig', 'curl'];   // pages built on assets/page.js
+const SHARED = ['man', 'ping', 'dig', 'curl', 'traceroute'];   // pages built on assets/page.js
 
 test('the manual lists every indexable page, and only pages that exist', () => {
     const sitemap = [...read('sitemap.xml').matchAll(/<loc>https:\/\/yatoub\.dev(\/[^<]*)<\/loc>/g)].map(m => m[1]);

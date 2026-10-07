@@ -1,0 +1,121 @@
+/* ── i18n translations ──
+   ⚠ Chaînes contenant une apostrophe : délimiteurs "…" obligatoires.
+   {x} = variable injectée par tf().
+   node.* : une entrée par nœud de TracerouteCore.NODES ; trip.* : une par voyage de TracerouteCore.TRIPS. */
+const translations = {
+    fr: {
+        hero: {
+            title: 'TRACEROUTE',
+            sub: "Pour afficher cette page, votre navigateur a envoyé des paquets jusqu'à un serveur posé chez moi, et attendu leur retour. Voici le chemin qu'ils ont pris, et chacun des allers-retours qu'il a fallu, avec sa durée réelle sur votre connexion.",
+        },
+        sec: { path: 'TRAJET', hops: 'SAUTS', real: 'LE VRAI' },
+        side: { you: 'CHEZ VOUS', net: 'INTERNET', server: 'CHEZ MOI' },
+        node: {
+            device: { name: 'Vous', sub: 'navigateur', what: "Votre appareil fabrique le paquet : il y inscrit son adresse, celle du destinataire, et un compteur de sauts (TTL) qui diminuera à chaque routeur." },
+            lan: { name: 'Box', sub: 'réseau local', what: "Votre box ou votre routeur. Elle remplace votre adresse privée par l'adresse publique de la connexion (NAT) et retient la correspondance pour savoir à qui rendre la réponse." },
+            isp: { name: 'Opérateur', sub: 'votre accès', what: "Le réseau de votre fournisseur d'accès. C'est lui qui voit tout votre trafic passer, et souvent lui qui fournit le résolveur DNS." },
+            resolver: { name: 'Résolveur', sub: 'DNS', what: "L'annuaire. Avant de pouvoir écrire à yatoub.dev, il faut son adresse : c'est un détour, pas une étape du chemin vers le serveur." },
+            net: { name: 'Internet', sub: '? ? ?', what: "Une suite de routeurs appartenant à des opérateurs différents, reliés entre eux par des accords d'échange. Leur nombre et leur identité sont invisibles depuis une page web : c'est précisément ce que la vraie commande révèle." },
+            edge: { name: 'Arrivée', sub: 'adresse publique', what: "La connexion Internet de mon domicile et son adresse publique, celle que le DNS vous a donnée. Rien n'est hébergé dans un centre de données." },
+            fw: { name: 'OPNsense', sub: 'pare-feu', what: "Le pare-feu. Il ne laisse entrer que ce qui est explicitement ouvert, et dirige le trafic web vers une seule machine du réseau des serveurs." },
+            proxy: { name: 'Caddy', sub: 'TLS · proxy', what: "Le reverse proxy. C'est ici que s'arrêtent la connexion TCP et le chiffrement TLS : au-delà, la requête est lue en clair pour être aiguillée." },
+            site: { name: 'Fichiers', sub: 'site statique', what: "Le site lui-même : des fichiers servis tels quels, sans base de données ni code exécuté côté serveur." },
+        },
+        trip: {
+            dns: { name: 'Question DNS', what: "« Quelle est l'adresse de yatoub.dev ? » Le paquet s'arrête au résolveur et revient avec la réponse. Rien n'est encore parti vers le serveur." },
+            transport: { name: 'Ouverture TCP', what: "Un premier aller-retour à vide, jusqu'au proxy, pour établir la connexion (SYN, SYN-ACK). Sa durée est la meilleure mesure de la distance entre nous." },
+            quic: { name: 'Ouverture QUIC', what: "HTTP/3 : un seul aller-retour sur UDP établit à la fois la connexion et le chiffrement." },
+            tls: { name: 'Négociation TLS', what: "Votre navigateur et le proxy s'accordent sur le chiffrement et le certificat est vérifié. À partir d'ici, plus personne sur le chemin ne lit le contenu." },
+            http: { name: 'Requête HTTP', what: "La demande de la page elle-même. Elle va cette fois jusqu'aux fichiers, et la réponse commence à revenir." },
+        },
+        panel: {
+            title: 'Allers-retours',
+            summary: '{n} allers-retours, {ms} ms en tout',
+            one: '1 aller-retour, {ms} ms',
+            ms: '{n} ms',
+            reused: 'évité',
+            none: 'sans objet',
+            reusedNote: "Votre navigateur avait déjà une connexion ouverte vers ce serveur : DNS, TCP et TLS n'ont pas été rejoués. Ouvrez la page dans une fenêtre privée pour voir les quatre voyages.",
+            noTls: "Connexion sans TLS : pas de négociation de chiffrement.",
+            replay: '[ rejouer ]',
+            hint: 'Cliquez sur un voyage pour le rejouer seul.',
+            unsupported: "Ce navigateur n'expose pas les durées du chargement : le schéma reste, sans les mesures.",
+            loading: 'mesure en cours…',
+        },
+        meta: { ip: "adresse vue à l'arrivée", proto: 'protocole', tls: 'TLS {v}' },
+        hops: {
+            intro: "Neuf étapes sur le schéma, mais trois propriétaires seulement : votre réseau, Internet, et le mien. Ce que chacune fait au paquet :",
+        },
+        real: {
+            intro: "Cette page ne lance pas la commande traceroute : un navigateur ne peut pas envoyer les paquets qu'elle utilise. Elle montre le chemin connu des deux bouts et mesure les allers-retours complets. Le milieu, lui, ne se découvre qu'avec la vraie commande.",
+            ttl: { name: 'Le compteur de sauts', text: "Chaque paquet porte un compteur, le TTL, que chaque routeur diminue de un. À zéro, le routeur détruit le paquet et prévient l'expéditeur par un message d'erreur. C'est une protection contre les paquets qui tourneraient en rond." },
+            trick: { name: "L'astuce", text: "traceroute détourne cette protection : il envoie un paquet avec un TTL de 1, que le premier routeur détruit en se signalant ; puis un TTL de 2, que le deuxième détruit, et ainsi de suite. Chaque message d'erreur révèle un saut et le temps mis pour l'atteindre." },
+            stars: { name: 'Les étoiles', text: "Trois étoiles sur une ligne signifient qu'un routeur n'a pas répondu. Beaucoup sont configurés pour se taire : le chemin continue quand même, simplement sans témoin." },
+            limits: { name: "Ce qu'il ne dit pas", text: "Le chemin de retour peut être différent de l'aller, et il reste invisible. Deux exécutions de suite peuvent aussi montrer deux routes : les opérateurs répartissent le trafic." },
+            try: 'À lancer chez vous',
+        },
+        foot: {
+            local: "// rien n'est stocké ni envoyé : les durées viennent de l'API de mesure de votre navigateur, le serveur ne sonde pas votre adresse.",
+            roles: '// côté serveur, le schéma montre des rôles : ni adresse interne, ni réseau.',
+            more: '// les mêmes durées, phase par phase :',
+        },
+    },
+
+    en: {
+        hero: {
+            title: 'TRACEROUTE',
+            sub: 'To display this page, your browser sent packets all the way to a server sitting in my home, and waited for them to come back. Here is the path they took, and each of the round trips it required, with its real duration on your connection.',
+        },
+        sec: { path: 'PATH', hops: 'HOPS', real: 'THE REAL ONE' },
+        side: { you: 'YOUR SIDE', net: 'INTERNET', server: 'MY SIDE' },
+        node: {
+            device: { name: 'You', sub: 'browser', what: 'Your device builds the packet: it writes its own address, the recipient address, and a hop counter (TTL) that will drop at every router.' },
+            lan: { name: 'Gateway', sub: 'local network', what: 'Your home gateway or router. It swaps your private address for the public address of the connection (NAT) and remembers the mapping to know who gets the answer.' },
+            isp: { name: 'Provider', sub: 'your access', what: 'The network of your internet provider. It sees all your traffic go by, and often runs the DNS resolver too.' },
+            resolver: { name: 'Resolver', sub: 'DNS', what: 'The directory. Before writing to yatoub.dev you need its address: this is a detour, not a step on the way to the server.' },
+            net: { name: 'Internet', sub: '? ? ?', what: 'A chain of routers owned by different operators, linked by peering agreements. How many and who they are is invisible from a web page: that is precisely what the real command reveals.' },
+            edge: { name: 'Arrival', sub: 'public address', what: 'The internet connection of my home and its public address, the one DNS gave you. Nothing is hosted in a data centre.' },
+            fw: { name: 'OPNsense', sub: 'firewall', what: 'The firewall. It only lets in what is explicitly opened, and forwards web traffic to a single machine of the servers network.' },
+            proxy: { name: 'Caddy', sub: 'TLS · proxy', what: 'The reverse proxy. This is where the TCP connection and TLS encryption end: beyond it, the request is read in clear to be routed.' },
+            site: { name: 'Files', sub: 'static site', what: 'The site itself: files served as they are, with no database and no code run on the server.' },
+        },
+        trip: {
+            dns: { name: 'DNS question', what: '"What is the address of yatoub.dev?" The packet stops at the resolver and comes back with the answer. Nothing has left for the server yet.' },
+            transport: { name: 'TCP handshake', what: 'A first empty round trip, up to the proxy, to establish the connection (SYN, SYN-ACK). Its duration is the best measure of the distance between us.' },
+            quic: { name: 'QUIC handshake', what: 'HTTP/3: a single round trip over UDP sets up both the connection and the encryption.' },
+            tls: { name: 'TLS negotiation', what: 'Your browser and the proxy agree on encryption and the certificate is checked. From here on, nobody on the path reads the content.' },
+            http: { name: 'HTTP request', what: 'The request for the page itself. This time it goes all the way to the files, and the response starts coming back.' },
+        },
+        panel: {
+            title: 'Round trips',
+            summary: '{n} round trips, {ms} ms in total',
+            one: '1 round trip, {ms} ms',
+            ms: '{n} ms',
+            reused: 'skipped',
+            none: 'not applicable',
+            reusedNote: 'Your browser already had a connection open to this server: DNS, TCP and TLS were not replayed. Open the page in a private window to see all four trips.',
+            noTls: 'Connection without TLS: no encryption negotiation.',
+            replay: '[ replay ]',
+            hint: 'Click a trip to replay it alone.',
+            unsupported: 'This browser does not expose load timings: the diagram stays, without the measurements.',
+            loading: 'measuring…',
+        },
+        meta: { ip: 'address seen on arrival', proto: 'protocol', tls: 'TLS {v}' },
+        hops: {
+            intro: 'Nine steps on the diagram, but only three owners: your network, the Internet, and mine. What each one does to the packet:',
+        },
+        real: {
+            intro: 'This page does not run the traceroute command: a browser cannot send the packets it relies on. It shows the path known from both ends and measures full round trips. The middle can only be discovered with the real command.',
+            ttl: { name: 'The hop counter', text: 'Every packet carries a counter, the TTL, which each router lowers by one. At zero, the router destroys the packet and tells the sender with an error message. It is a protection against packets looping forever.' },
+            trick: { name: 'The trick', text: 'traceroute turns that protection around: it sends a packet with a TTL of 1, which the first router destroys while naming itself; then a TTL of 2, destroyed by the second, and so on. Each error message reveals one hop and the time it took to reach it.' },
+            stars: { name: 'The stars', text: 'Three stars on a line mean a router did not answer. Many are configured to stay silent: the path goes on anyway, just without a witness.' },
+            limits: { name: 'What it does not say', text: 'The return path may differ from the way out, and it stays invisible. Two runs in a row can also show two routes: operators spread the traffic.' },
+            try: 'To run at home',
+        },
+        foot: {
+            local: '// nothing is stored or sent: durations come from your browser timing API, the server does not probe your address.',
+            roles: '// on the server side the diagram shows roles: no internal address, no network.',
+            more: '// the same durations, phase by phase:',
+        },
+    },
+};

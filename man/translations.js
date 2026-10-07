@@ -15,6 +15,7 @@ const translations = {
         pages: {
             whoami: "Tout ce qu'un site apprend de vous sans rien demander : navigateur, matériel, empreinte, et ce que le serveur voit avant la moindre ligne de JavaScript.",
             tcpdump: "Votre requête disséquée : la durée réelle de chaque étape du chargement, ce qu'un tiers sur le chemin lit en clair, et la suite cryptographique décodée.",
+            traceroute: "Le chemin de vos paquets jusqu'à ce serveur, dessiné, et chacun des allers-retours du chargement rejoué avec sa durée.",
             ping: "Le temps d'aller-retour entre vous et ce serveur, et la distance maximale qu'il autorise.",
             dig: "Les enregistrements DNS de la zone, interrogés en direct auprès de deux résolveurs publics et expliqués un par un.",
             curl: "Les en-têtes que ce serveur renvoie, ligne par ligne, et l'audit de ceux qui protègent le visiteur.",
@@ -49,6 +50,7 @@ const translations = {
         pages: {
             whoami: 'Everything a site learns about you without asking: browser, hardware, fingerprint, and what the server sees before a single line of JavaScript runs.',
             tcpdump: 'Your request dissected: how long each loading step really took, what a third party on the path reads in clear, and the cipher suite decoded.',
+            traceroute: 'The path your packets take to this server, drawn, and each round trip of the page load replayed with its duration.',
             ping: 'The round-trip time between you and this server, and the maximum distance it allows.',
             dig: 'The DNS records of the zone, queried live from two public resolvers and explained one by one.',
             curl: 'The headers this server sends back, line by line, and the audit of those that protect the visitor.',

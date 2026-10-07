@@ -92,6 +92,40 @@ function renderAudit() {
     }));
 }
 
+function sourceText(directive, source) {
+    const { kind, host, why } = CurlCore.cspSource(source);
+    if (kind !== 'host') return t(`csp.sources.${kind}`);
+    return why ? t(`csp.why.${why}`) : host ? t('csp.unknownHost') : '';
+}
+
+function renderPolicy() {
+    const csp = CurlCore.cspOf(response.headers);
+    const state = $('#cspState');
+    state.hidden = Boolean(csp) && !csp.reportOnly;
+    state.textContent = !csp ? t('csp.none') : csp.reportOnly ? t('csp.reportOnly') : '';
+
+    const directives = csp ? CurlCore.parseCsp(csp.value) : [];
+    $('#policy').replaceChildren(...directives.flatMap((d) => {
+        const def = el('dd', 'cu-directive');
+        def.append(el('p', 'cu-text', has(`csp.directives.${d.name}`) ? t(`csp.directives.${d.name}`) : t('csp.unknownDirective')));
+        const list = el('ul', 'cu-sources');
+        for (const source of d.sources) {
+            const item = el('li', 'cu-source');
+            const kind = CurlCore.cspSource(source).kind;
+            const chip = el('code', 'cu-chip', source);
+            if (kind.startsWith('unsafe') || kind === 'wildcard') chip.dataset.weak = 'true';
+            item.append(chip, el('span', 'cu-source-text', sourceText(d, source)));
+            list.append(item);
+        }
+        if (d.sources.length) def.append(list);
+        return [el('dt', 'cu-name', d.name), def];
+    }));
+
+    const warnings = CurlCore.cspWarnings(directives);
+    $('#cspWarnings').hidden = !warnings.length;
+    $('#cspWarnList').replaceChildren(...warnings.map((id) => el('li', 'cu-warn', t(`csp.warn.${id}`))));
+}
+
 function renderLeaks() {
     const found = CurlCore.leaks(response.headers);
     if (!found.length) return $('#leaks').replaceChildren(el('p', 'pg-note', t('leak.none')));
@@ -117,6 +151,7 @@ function render() {
     $('#out').textContent = CurlCore.output(response.protocol, response.status, response.headers);
     renderHeaders();
     renderAudit();
+    renderPolicy();
     renderLeaks();
 }
 

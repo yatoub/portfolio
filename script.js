@@ -34,7 +34,6 @@ function applyLang(lang) {
 
     document.getElementById('termToggle')?.setAttribute('aria-label', translations[lang].term.open);
 
-    if (typeof window._cookieUpdateLang === 'function') window._cookieUpdateLang(lang);
 }
 
 function detectLang() {
@@ -324,51 +323,30 @@ function initCarousel() {
 // Swiper is loaded before this script ; the load event is only a second chance
 if (!initCarousel()) window.addEventListener('load', initCarousel);
 
-/* ── Cookie consent ── */
+/* ── Analytics consent ──
+   The Matomo snippet of index.html starts with requireConsent: the page view waits in Matomo's
+   queue and nothing is sent. Accepting releases it and is remembered ; declining keeps it held.
+   The banner strings are ordinary [data-i18n] elements, handled by applyLang. */
 (function () {
-    const COOKIE_KEY = 'matomo_consent';
+    const CONSENT_KEY = 'matomo_consent';
     const banner = document.getElementById('cookieBanner');
     if (!banner) return;
-    const consent = localStorage.getItem(COOKIE_KEY);
+    const paq = () => (window._paq = window._paq || []);
 
-    function applyConsent(accepted) {
-        if (!accepted) {
-            window._paq = window._paq || [];
-            window._paq.push(['optUserOut']);
-        }
-    }
+    let stored = null;
+    try { stored = localStorage.getItem(CONSENT_KEY); } catch { /* storage blocked: ask again next time */ }
+    if (stored === 'true') paq().push(['rememberConsentGiven']);
+    else if (stored === null) banner.hidden = false;
 
-    function updateBannerLang(lang) {
-        const c = translations[lang].cookie;
-        const msg = document.getElementById('cookieMsg');
-        const acceptLabel = document.getElementById('cookieAcceptLabel');
-        const declineLabel = document.getElementById('cookieDeclineLabel');
-        if (msg) msg.textContent = c.msg;
-        if (acceptLabel) acceptLabel.textContent = c.accept;
-        if (declineLabel) declineLabel.textContent = c.decline;
-    }
-
-    if (consent === null) {
-        banner.hidden = false;
-    } else {
-        applyConsent(consent === 'true');
-    }
-
-    document.getElementById('cookieAccept')?.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'true');
+    function choose(accepted) {
+        try { localStorage.setItem(CONSENT_KEY, String(accepted)); } catch { /* storage blocked */ }
+        paq().push([accepted ? 'rememberConsentGiven' : 'forgetConsentGiven']);
         banner.hidden = true;
-    });
-
-    document.getElementById('cookieDecline')?.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'false');
-        applyConsent(false);
-        banner.hidden = true;
-    });
+    }
+    document.getElementById('cookieAccept')?.addEventListener('click', () => choose(true));
+    document.getElementById('cookieDecline')?.addEventListener('click', () => choose(false));
 
     const _origApplyLang = applyLang;
-    window._cookieUpdateLang = updateBannerLang;
-
-    updateBannerLang(detectLang());
 })();
 
 /* ── Skill tag hover stagger ── */

@@ -94,7 +94,7 @@ const translations = {
             },
         },
         cookie: {
-            msg: 'This site uses Matomo analytics to measure traffic. No data is shared with third parties.',
+            msg: 'This site measures its traffic with a self-hosted Matomo. Nothing is recorded unless you accept, and no data is shared with third parties.',
             accept: 'ACCEPT',
             decline: 'DECLINE',
         },
@@ -255,7 +255,7 @@ const translations = {
             },
         },
         cookie: {
-            msg: "Ce site utilise Matomo Analytics pour mesurer le trafic. Aucune donnée n'est transmise à des tiers.",
+            msg: "Ce site mesure son audience avec un Matomo auto-hébergé. Rien n'est enregistré sans votre accord, et aucune donnée n'est transmise à des tiers.",
             accept: 'ACCEPTER',
             decline: 'REFUSER',
         },

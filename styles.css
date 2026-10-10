@@ -279,19 +279,21 @@ a.nav-status:hover { color: var(--text-1); }
 }
 
 /* ── Reveal animations ── */
-.reveal {
+/* Sections start hidden only when scripts are on (.js is set by /assets/boot.js in <head>):
+   it is a script that reveals them, so without one they must simply be there. */
+.js .reveal {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.js .reveal.visible { opacity: 1; transform: translateY(0); }
 
-.reveal-child {
+.js .reveal-child {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
-.reveal-child.visible { opacity: 1; transform: translateY(0); }
+.js .reveal-child.visible { opacity: 1; transform: translateY(0); }
 
 /* ── Hero ── */
 .hero {
@@ -756,6 +758,30 @@ a.nav-status:hover { color: var(--text-1); }
     border-radius: var(--radius);
     background: var(--bg-0);
 }
+
+/* ── Hero text held back until script.js types it (class set by /assets/boot.js) ──
+   If script.js never runs, the text shows by itself after three seconds. */
+.js:not(.ready) #heroName,
+.js:not(.ready) #typewriter { visibility: hidden; animation: heroFallback 0s linear 3s forwards; }
+@keyframes heroFallback { to { visibility: visible; } }
+
+/* ── Projects without Swiper: the pre-rendered slides become a scrolling row ── */
+.projects-swiper:not(.swiper-initialized) .swiper-wrapper {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.75rem;
+}
+.projects-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 min(85%, 22rem);
+    width: auto;
+    height: auto;
+    scroll-snap-align: start;
+}
+.projects-swiper:not(.swiper-initialized) .swiper-pagination,
+.projects-swiper:not(.swiper-initialized) .swiper-button-prev,
+.projects-swiper:not(.swiper-initialized) .swiper-button-next { display: none; }
 
 /* ── Projects carousel (Swiper overrides) ── */
 .projects-swiper {
@@ -1243,7 +1269,7 @@ a.nav-status:hover { color: var(--text-1); }
         transition-delay: 0s !important;
     }
     .crt-flicker, .noise { display: none; }
-    .reveal, .reveal-child { opacity: 1; transform: none; }
+    .js .reveal, .js .reveal-child { opacity: 1; transform: none; }
 }
 
 /* ── Print (résumé via Ctrl+P) ── */

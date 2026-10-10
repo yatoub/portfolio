@@ -346,8 +346,11 @@ if (!initCarousel()) window.addEventListener('load', initCarousel);
     document.getElementById('cookieAccept')?.addEventListener('click', () => choose(true));
     document.getElementById('cookieDecline')?.addEventListener('click', () => choose(false));
 
-    const _origApplyLang = applyLang;
 })();
+
+/* ── Footer year ── */
+const footerYear = document.getElementById('footerYear');
+if (footerYear) footerYear.textContent = new Date().getFullYear();
 
 /* ── Skill tag hover stagger ── */
 document.querySelectorAll('.skills-category').forEach(cat => {

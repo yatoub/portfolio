@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════
    YATOUB // MAN — the site's pages, as manual entries
-   Single list of standalone pages: tools/man.test.mjs checks it
+   Single list of standalone pages: tools/pages.test.mjs checks it
    against sitemap.xml, so a new page cannot be forgotten here.
    ═══════════════════════════════════════════ */
 

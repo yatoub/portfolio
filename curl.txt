@@ -17,7 +17,7 @@
   a team of 4 at the French National Education Ministry —
   defining standards, industrializing deployments (GitLab CI,
   Ansible, Rancher) and hardening security (DevSecOps, SAST).
-  Red Hat Certified Ansible Automation Specialist (RH294).
+  Red Hat Certified Ansible Automation Specialist (EX294).
 
   When not running production for 100,000+ users, I maintain my
   own homelab on Proxmox — reverse proxy, SSO, observability

@@ -5,7 +5,7 @@ const translations = {
         hero: { bootok: 'BOOT OK', status: 'AVAILABLE', cta: 'VIEW_PROJECTS' },
         about: {
             title: 'ABOUT',
-            bio1: 'Systems Administrator / DevOps with 10 years of experience on high-volume critical Linux infrastructures. Technical lead of a team of 4 at the French National Education Ministry — defining standards, industrializing deployments (GitLab CI, Ansible, Rancher) and hardening security (DevSecOps, SAST). Red Hat Certified Ansible Automation Specialist (RH294).',
+            bio1: 'Systems Administrator / DevOps with 10 years of experience on high-volume critical Linux infrastructures. Technical lead of a team of 4 at the French National Education Ministry — defining standards, industrializing deployments (GitLab CI, Ansible, Rancher) and hardening security (DevSecOps, SAST). Red Hat Certified Ansible Automation Specialist (EX294).',
             bio2: 'When not running production for 100,000+ users, I maintain my own homelab on Proxmox — reverse proxy, SSO, observability stack, multi-VLAN segmentation. I also build CLI tools in Rust, play CTFs, shoot photos, and do live sound engineering.',
             skills: { systems: '// SYSTEMS & INFRA', scripting: '// SCRIPTING & DEV', cicd: '// CONTAINERS & CI/CD', monitoring: '// MONITORING & SECURITY' },
             stats: { years: 'YEARS EXP', companies: 'COMPANIES', distros: 'DISTROS DAILY DRIVEN', languages: 'LANGUAGES SPOKEN' },
@@ -94,13 +94,14 @@ const translations = {
             },
         },
         cookie: {
-            msg: 'This site uses Matomo analytics to measure traffic. No data is shared with third parties.',
+            msg: 'This site measures its traffic with a self-hosted Matomo. Nothing is recorded unless you accept, and no data is shared with third parties.',
             accept: 'ACCEPT',
             decline: 'DECLINE',
         },
         roles: ['Systems Administrator / DevOps', 'Infrastructure Engineer', 'Linux Enthusiast', 'Tech Lead', 'CTF Player'],
         status: ['ONLINE', 'READY', 'AVAILABLE', 'SYS:OK'],
         live: { up: 'LAB:OK', degraded: 'LAB:DEGRADED', down: 'LAB:DOWN' },
+        tags: { ha: 'High availability', security: 'Security', industry: 'Industry' },
         term: {
             open: 'Open terminal',
             close: 'Close terminal',
@@ -166,7 +167,7 @@ const translations = {
         hero: { bootok: 'DÉMARRAGE OK', status: 'DISPONIBLE', cta: 'VOIR_PROJETS' },
         about: {
             title: 'À PROPOS',
-            bio1: "Administrateur Systèmes / DevOps, 10 ans d'expérience sur des infrastructures Linux critiques à fort volume. Lead technique d'une équipe de 4 au Ministère de l'Éducation Nationale : définition des standards, industrialisation des déploiements (GitLab CI, Ansible, Rancher) et sécurisation (DevSecOps, SAST). Certifié Red Hat Ansible Automation (RH294).",
+            bio1: "Administrateur Systèmes / DevOps, 10 ans d'expérience sur des infrastructures Linux critiques à fort volume. Lead technique d'une équipe de 4 au Ministère de l'Éducation Nationale : définition des standards, industrialisation des déploiements (GitLab CI, Ansible, Rancher) et sécurisation (DevSecOps, SAST). Certifié Red Hat Ansible Automation (EX294).",
             bio2: "Quand je ne maintiens pas de la prod pour 100 000+ utilisateurs, je gère mon homelab sous Proxmox — reverse proxy, SSO, stack d'observabilité, segmentation multi-VLAN. Je développe aussi des outils CLI en Rust, joue des CTF, fais de la photo et de la sono pour des événements live.",
             skills: { systems: '// SYSTÈMES & INFRA', scripting: '// SCRIPTING & DEV', cicd: '// CONTENEURS & CI/CD', monitoring: '// SUPERVISION & SÉCURITÉ' },
             stats: { years: "ANS D'EXP", companies: 'ENTREPRISES', distros: 'DISTROS AU QUOTIDIEN', languages: 'LANGUES PARLÉES' },
@@ -255,13 +256,14 @@ const translations = {
             },
         },
         cookie: {
-            msg: "Ce site utilise Matomo Analytics pour mesurer le trafic. Aucune donnée n'est transmise à des tiers.",
+            msg: "Ce site mesure son audience avec un Matomo auto-hébergé. Rien n'est enregistré sans votre accord, et aucune donnée n'est transmise à des tiers.",
             accept: 'ACCEPTER',
             decline: 'REFUSER',
         },
         roles: ['Administrateur Systèmes / DevOps', 'Ingénieur Infrastructure', 'Passionné Linux', 'Lead Technique', 'CTF Player'],
         status: ['EN LIGNE', 'PRÊT', 'DISPONIBLE', 'SYS:OK'],
         live: { up: 'LAB:OK', degraded: 'LAB:DÉGRADÉ', down: 'LAB:EN PANNE' },
+        tags: { ha: 'Haute dispo', security: 'Sécurité', industry: 'Industrie' },
         term: {
             open: 'Ouvrir le terminal',
             close: 'Fermer le terminal',

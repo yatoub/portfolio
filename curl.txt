@@ -6,19 +6,23 @@
      ██║   ██║  ██║   ██║   ╚██████╔╝╚██████╔╝██████╔╝
      ╚═╝   ╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝ ╚═════╝
 
-  Systems Administrator // Linux // Infrastructure // CTF
+  Systems Administrator / DevOps // Linux // Infrastructure // CTF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ABOUT
   ─────
-  Systems integrator with a long-standing passion for technology
-  and infrastructure. Currently working as a Systems Administrator
-  for the French National Education Ministry, managing production
-  environments across the full application stack.
+  Systems Administrator / DevOps with 10 years of experience on
+  high-volume critical Linux infrastructures. Technical lead of
+  a team of 4 at the French National Education Ministry —
+  defining standards, industrializing deployments (GitLab CI,
+  Ansible, Rancher) and hardening security (DevSecOps, SAST).
+  Red Hat Certified Ansible Automation Specialist (EX294).
 
-  When not keeping servers alive, playing CTFs on TryHackMe and
-  HackTheBox — with a focus on OSINT and web exploitation.
+  When not running production for 100,000+ users, I maintain my
+  own homelab on Proxmox — reverse proxy, SSO, observability
+  stack, multi-VLAN segmentation. I also build CLI tools in
+  Rust, play CTFs, shoot photos, and do live sound engineering.
 
   LOC    : Dijon, France
   WEB    : yatoub.dev
@@ -39,7 +43,7 @@
 
   EXPERIENCE
   ──────────
-  DEC 2021 – PRESENT  │ Systems Administrator
+  DEC 2021 – PRESENT  │ Systems Administrator / DevOps
                        │ French National Education Ministry
                        │ Production infra across OSI layers 5-7,
                        │ deployment, monitoring, incident response.

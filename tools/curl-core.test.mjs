@@ -116,8 +116,9 @@ test('every audited header is explained in both languages, and every fix is a Ca
     assert.deepEqual(C.score(C.audit(fixed)), { ok: 6, total: 6 });
 });
 
-// The policy of yatoub.dev (2026-10-07). font-src data: is for the icon font embedded in Swiper's stylesheet.
-const prodCsp = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://matomo.yatoub.dev; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://matomo.yatoub.dev; font-src 'self' data:; connect-src 'self' https://matomo.yatoub.dev https://ipwho.is https://ipapi.co https://api.ipify.org https://cloudflare-dns.com https://dns.google; frame-ancestors 'none'; base-uri 'self'; form-action 'self'";
+// The policy of yatoub.dev. font-src data: is for the icon font embedded in Swiper's stylesheet,
+// which is served from /assets/vendor/swiper/ since 2026-10-10: no CDN is allowed anymore.
+const prodCsp = "default-src 'self'; script-src 'self' 'unsafe-inline' https://matomo.yatoub.dev; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://matomo.yatoub.dev; font-src 'self' data:; connect-src 'self' https://matomo.yatoub.dev https://ipwho.is https://ipapi.co https://api.ipify.org https://cloudflare-dns.com https://dns.google; frame-ancestors 'none'; base-uri 'self'; form-action 'self'";
 
 test('a policy is split into directives and their sources', () => {
     const d = C.parseCsp(prodCsp);
@@ -140,7 +141,8 @@ test('sources are recognised by what they allow', () => {
     assert.equal(kind('data:'), 'scheme');
     assert.equal(kind('https:'), 'scheme');
     assert.equal(kind('*'), 'wildcard');
-    assert.deepEqual(C.cspSource('https://cdn.jsdelivr.net'), { kind: 'host', host: 'cdn.jsdelivr.net', why: 'jsdelivr' });
+    assert.deepEqual(C.cspSource('https://matomo.yatoub.dev'), { kind: 'host', host: 'matomo.yatoub.dev', why: 'matomo' });
+    assert.deepEqual(C.cspSource('https://cdn.jsdelivr.net'), { kind: 'host', host: 'cdn.jsdelivr.net', why: null }, 'a host the site no longer uses gets no reason');
     assert.deepEqual(C.cspSource('https://DNS.google/resolve'), { kind: 'host', host: 'dns.google', why: 'doh' });
     assert.deepEqual(C.cspSource('example.org:8443'), { kind: 'host', host: 'example.org', why: null });
     assert.equal(C.cspSource('constructor').why, null);

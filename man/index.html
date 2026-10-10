@@ -36,28 +36,70 @@
             </header>
 
             <h1 class="mn-h" data-i18n="sec.name">NOM</h1>
-            <p class="mn-body" data-i18n="name"></p>
+            <p class="mn-body" data-i18n="name">yatoub.dev — portfolio d'un administrateur systèmes, et quelques pages qui montrent le réseau de l'intérieur</p>
 
             <h2 class="mn-h" data-i18n="sec.synopsis">SYNOPSIS</h2>
             <p class="mn-body mn-syn"><strong>https://yatoub.dev/</strong><em>commande</em><strong>/</strong></p>
 
             <h2 class="mn-h" data-i18n="sec.description">DESCRIPTION</h2>
-            <p class="mn-body" data-i18n="desc.p1"></p>
-            <p class="mn-body" data-i18n="desc.p2"></p>
-            <p class="mn-body" data-i18n="desc.p3"></p>
+            <p class="mn-body" data-i18n="desc.p1">Ce site est servi par un Caddy auto-hébergé, sur un homelab Proxmox. Au-delà du portfolio, plusieurs pages portent le nom d'une commande Linux et font ce que fait la commande, sur le site lui-même ou sur votre propre connexion.</p>
+            <p class="mn-body" data-i18n="desc.p2">Les valeurs affichées sont réelles et mesurées à l'instant : rien n'est simulé. Ce qui vous concerne est calculé dans votre navigateur et n'est pas conservé.</p>
+            <p class="mn-body" data-i18n="desc.p3">La page d'accueil embarque aussi un terminal (bouton &gt;_ ou Ctrl+K) : ls, cat et open y parcourent le même contenu.</p>
 
             <h2 class="mn-h" data-i18n="sec.commands">COMMANDES</h2>
-            <dl class="mn-list" id="commands"></dl>
+            <dl class="mn-list" id="commands">
+                <!-- man-commands:start -->
+                <dt class="mn-term"><a href="/whoami/">whoami</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ whoami --verbose</code><p>Tout ce qu'un site apprend de vous sans rien demander : navigateur, matériel, empreinte, et ce que le serveur voit avant la moindre ligne de JavaScript.</p></dd>
+                <dt class="mn-term"><a href="/tcpdump/">tcpdump</a>(8)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ tcpdump -i any -tttt host yatoub.dev</code><p>Votre requête disséquée : la durée réelle de chaque étape du chargement, ce qu'un tiers sur le chemin lit en clair, et la suite cryptographique décodée.</p></dd>
+                <dt class="mn-term"><a href="/traceroute/">traceroute</a>(8)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ traceroute yatoub.dev</code><p>Le chemin de vos paquets jusqu'à ce serveur, dessiné, et chacun des allers-retours du chargement rejoué avec sa durée.</p></dd>
+                <dt class="mn-term"><a href="/ping/">ping</a>(8)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ ping -c 10 yatoub.dev</code><p>Le temps d'aller-retour entre vous et ce serveur, et la distance maximale qu'il autorise.</p></dd>
+                <dt class="mn-term"><a href="/dig/">dig</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ dig +noall +answer yatoub.dev</code><p>Les enregistrements DNS de la zone, interrogés en direct auprès de deux résolveurs publics et expliqués un par un.</p></dd>
+                <dt class="mn-term"><a href="/curl/">curl</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ curl -I https://yatoub.dev</code><p>Les en-têtes que ce serveur renvoie, ligne par ligne, et l'audit de ceux qui protègent le visiteur.</p></dd>
+                <dt class="mn-term"><a href="/ipcalc/">ipcalc</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ ipcalc 203.0.113.7/24</code><p>Votre adresse IPv4 bit par bit : déplacez la coupure du masque et le réseau change de taille.</p></dd>
+                <dt class="mn-term"><a href="/nc/">nc</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ nc yatoub.dev 80</code><p>Une requête HTTP écrite à la main, la vraie réponse du serveur, et six défis pour faire le tour du protocole.</p></dd>
+                <dt class="mn-term"><a href="/xxd/">xxd</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ tcpdump -c 1 -w - host yatoub.dev | xxd</code><p>Le paquet qui ouvre votre connexion chiffrée, octet par octet, avec vos vraies adresses.</p></dd>
+                <dt class="mn-term"><a href="/nft/">nft</a>(8)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ nft -f /etc/nftables.conf</code><p>Un jeu de pare-feu : écrire des règles, lancer le trafic, bloquer les attaques sans couper les visiteurs.</p></dd>
+                <dt class="mn-term"><a href="/tail/">tail</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ tail -f /var/log/caddy/access.log | grep ' 404 '</code><p>Le bruit de fond d'Internet : ce que les robots viennent chercher ici, à quel rythme et d'où.</p></dd>
+                <dt class="mn-term"><a href="/status/">status</a>(1)</dt>
+                <dd class="mn-def"><code class="mn-cmd">$ systemctl status homelab.target</code><p>L'état en direct des services du homelab et leur disponibilité sur 90 jours.</p></dd>
+                <dt class="mn-term"><a href="/lab">lab</a>(8)<span class="pg-tag">authentification requise</span></dt>
+                <dd class="mn-def"><code class="mn-cmd">$ ls /srv</code><p>Les services auto-hébergés et le schéma du trajet des requêtes.</p></dd>
+                <!-- man-commands:end -->
+            </dl>
 
             <h2 class="mn-h" data-i18n="sec.files">FICHIERS</h2>
-            <dl class="mn-list mn-files" id="files"></dl>
+            <dl class="mn-list mn-files" id="files">
+                <!-- man-files:start -->
+                <dt class="mn-term"><a href="/curl.txt">/curl.txt</a></dt>
+                <dd class="mn-def">le CV en texte brut ; aussi renvoyé par curl https://yatoub.dev</dd>
+                <dt class="mn-term"><a href="/robots.txt">/robots.txt</a></dt>
+                <dd class="mn-def">les consignes aux robots</dd>
+                <dt class="mn-term"><a href="/.well-known/security.txt">/.well-known/security.txt</a></dt>
+                <dd class="mn-def">le contact pour signaler une vulnérabilité</dd>
+                <dt class="mn-term"><a href="/sitemap.xml">/sitemap.xml</a></dt>
+                <dd class="mn-def">les pages indexables</dd>
+                <dt class="mn-term"><a href="/homelab.json">/homelab.json</a></dt>
+                <dd class="mn-def">la liste publique des services du homelab</dd>
+                <!-- man-files:end -->
+            </dl>
 
             <h2 class="mn-h" data-i18n="sec.see">VOIR AUSSI</h2>
             <p class="mn-body"><span data-i18n="see.intro">Tout ne figure pas dans un manuel.</span> <strong>ctf</strong>(6)</p>
             <p class="mn-body"><a href="https://github.com/yatoub/portfolio" rel="noopener"><strong>github.com/yatoub/portfolio</strong></a> — <span data-i18n="see.github">le code source de ce site</span></p>
 
             <h2 class="mn-h" data-i18n="sec.author">AUTEUR</h2>
-            <p class="mn-body"><span data-i18n="author"></span> <a href="/">yatoub.dev</a></p>
+            <p class="mn-body"><span data-i18n="author">Yatoub, administrateur systèmes / DevOps.</span> <a href="/">yatoub.dev</a></p>
 
             <footer class="mn-head mn-foot" aria-hidden="true">
                 <span>yatoub.dev</span><span id="buildDate">2026</span><span>YATOUB(7)</span>

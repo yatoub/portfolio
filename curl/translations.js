@@ -95,7 +95,6 @@ const translations = {
                 wildcard: "n'importe quelle origine",
             },
             why: {
-                jsdelivr: 'la bibliothèque Swiper du carrousel de projets',
                 matomo: "la mesure d'audience, auto-hébergée sur le homelab",
                 ipLookup: "la recherche d'adresse IP et de localisation de la page whoami",
                 doh: 'les deux résolveurs DNS interrogés par la page dig',
@@ -214,7 +213,6 @@ const translations = {
                 wildcard: 'any origin',
             },
             why: {
-                jsdelivr: 'the Swiper library of the projects carousel',
                 matomo: 'audience measurement, self-hosted on the homelab',
                 ipLookup: 'the IP address and location lookup of the whoami page',
                 doh: 'the two DNS resolvers queried by the dig page',

@@ -83,7 +83,6 @@ const CurlCore = (() => {
     /* ── Content-Security-Policy ── */
     // Why each external host is allowed: id of the explanation in translations.js (csp.why.*)
     const CSP_HOSTS = {
-        'cdn.jsdelivr.net': 'jsdelivr',
         'matomo.yatoub.dev': 'matomo',
         'ipwho.is': 'ipLookup',
         'ipapi.co': 'ipLookup',

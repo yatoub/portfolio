@@ -1,0 +1,7 @@
+swiper 11.2.10
+source  https://cdn.jsdelivr.net/npm/swiper@11.2.10/ (npm package "swiper")
+files   swiper-bundle.min.css, swiper-bundle.min.js, LICENSE (MIT)
+fetched 2026-10-10
+
+To upgrade: download the same three files of the new version, replace them here,
+update this file, and check the projects carousel of the home page.

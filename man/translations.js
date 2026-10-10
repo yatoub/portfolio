@@ -38,7 +38,7 @@ const translations = {
             intro: 'Tout ne figure pas dans un manuel.',
             github: 'le code source de ce site',
         },
-        author: 'Paul Collin (Yatoub), administrateur systèmes / DevOps.',
+        author: 'Yatoub, administrateur systèmes / DevOps.',
     },
 
     en: {
@@ -77,6 +77,6 @@ const translations = {
             intro: 'Not everything is in a manual.',
             github: 'the source code of this site',
         },
-        author: 'Paul Collin (Yatoub), systems administrator / DevOps.',
+        author: 'Yatoub, systems administrator / DevOps.',
     },
 };

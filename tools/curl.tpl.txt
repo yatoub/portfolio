@@ -6,19 +6,13 @@
      ██║   ██║  ██║   ██║   ╚██████╔╝╚██████╔╝██████╔╝
      ╚═╝   ╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝ ╚═════╝
 
-  Systems Administrator // Linux // Infrastructure // CTF
+  Systems Administrator / DevOps // Linux // Infrastructure // CTF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ABOUT
   ─────
-  Systems integrator with a long-standing passion for technology
-  and infrastructure. Currently working as a Systems Administrator
-  for the French National Education Ministry, managing production
-  environments across the full application stack.
-
-  When not keeping servers alive, playing CTFs on TryHackMe and
-  HackTheBox — with a focus on OSINT and web exploitation.
+{{BIO}}
 
   LOC    : Dijon, France
   WEB    : yatoub.dev
@@ -39,7 +33,7 @@
 
   EXPERIENCE
   ──────────
-  DEC 2021 – PRESENT  │ Systems Administrator
+  DEC 2021 – PRESENT  │ Systems Administrator / DevOps
                        │ French National Education Ministry
                        │ Production infra across OSI layers 5-7,
                        │ deployment, monitoring, incident response.

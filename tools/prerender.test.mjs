@@ -110,3 +110,24 @@ test('the two CTF comments of index.html are untouched', () => {
     assert.ok(index.startsWith('<!DOCTYPE html>\n<!--\n  Reading the source? Good habit.\n  Six flags are hidden on this site: https://yatoub.dev/ctf/\n-->\n'));
     assert.match(index, /<\/main>\n\n    <!-- YATOUB\{[^}]+\} : a comment never shows on screen, but it ships with the page -->\n\n    <!-- Footer -->/);
 });
+
+test('every static surface carries the same positioning as the translations', () => {
+    const role = site.en.exp.en.role;
+    assert.equal(site.en.roles[0], role);
+    // Search and link previews
+    const descriptions = [...index.matchAll(/<meta (?:name|property)="(?:description|og:description|twitter:description)" content="([^"]*)">/g)].map(m => m[1]);
+    assert.equal(descriptions.length, 3);
+    assert.equal(new Set(descriptions).size, 1, 'meta, Open Graph and Twitter descriptions are the same sentence');
+    assert.ok(descriptions[0].startsWith(role), descriptions[0]);
+    assert.ok(index.includes(`"jobTitle": "${role}"`));
+    // The plain-text resume
+    const curl = read('curl.txt');
+    assert.ok(curl.includes(`  ${role} // `));
+    assert.ok(curl.includes(`│ ${role}\n`));
+    const flat = curl.replace(/\s+/g, ' ');
+    assert.ok(flat.includes(site.en.about.bio1.replace(/\s+/g, ' ')), 'the bio of curl.txt is the one of the home page');
+    assert.ok(flat.includes(site.en.about.bio2.replace(/\s+/g, ' ')));
+    const about = curl.slice(curl.indexOf('  ABOUT'), curl.indexOf('━', curl.indexOf('  ABOUT')));
+    assert.ok(about.split('\n').every(line => line.length <= 64), 'the bio is wrapped to the width of the rule above it');
+    for (const file of ['index.html', 'curl.txt', 'tools/curl.tpl.txt']) assert.doesNotMatch(read(file), /Systems integrator/, file);
+});

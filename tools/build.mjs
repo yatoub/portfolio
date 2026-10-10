@@ -2,7 +2,7 @@
 /* ═══════════════════════════════════════════
    Portfolio — tools/build.mjs
    Generates curl.txt, homelab.json and sitemap.xml
-   from projects.json + lab/services.json, and pre-renders
+   from projects.json + lab/services.json + translations.js, and pre-renders
    index.html and man/index.html: cards, manual entries and
    every translated string, so that the served HTML holds the
    content without JavaScript. The page scripts only hydrate.
@@ -23,6 +23,8 @@ const PAGES = ['/', '/whoami/', '/status/', '/tcpdump/', '/tail/', '/man/', '/pi
 const read = p => readFileSync(join(ROOT, p), 'utf8');
 const projects = JSON.parse(read('projects.json'));
 const services = JSON.parse(read('lab/services.json'));
+const loadTranslations = path => new Function(`${read(path)}; return translations;`)();
+const siteStrings = loadTranslations('translations.js');
 
 /* ── Text layout helpers ── */
 
@@ -72,7 +74,14 @@ const homelabBlock = services
     .map(s => row([s.name, s.badge_en], [17, 13], wrap(s.short_en, WIDTH)))
     .join('\n');
 
+// The bio is the one of the home page (translations.js), re-wrapped for a terminal: no third copy to keep in sync
+const BIO_WIDTH = 62;
+const bioBlock = [siteStrings.en.about.bio1, siteStrings.en.about.bio2]
+    .map(paragraph => wrap(paragraph, BIO_WIDTH).map(line => `  ${line}`).join('\n'))
+    .join('\n\n');
+
 const curlTxt = read('tools/curl.tpl.txt')
+    .replace('{{BIO}}', () => bioBlock)
     .replace('{{PROJECTS}}', () => projectsBlock)
     .replace('{{HOMELAB}}', () => homelabBlock);
 
@@ -98,7 +107,6 @@ const sitemap = [
    Running twice changes nothing, and --check fails as soon as a source and the HTML disagree. */
 
 const require = createRequire(import.meta.url);
-const loadTranslations = path => new Function(`${read(path)}; return translations;`)();
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const lookup = (obj, key) => key.split('.').reduce((o, k) => o?.[k], obj);
 
@@ -137,7 +145,6 @@ const langOf = (html, file) => {
 };
 
 /* index.html */
-const siteStrings = loadTranslations('translations.js');
 const homelabPublic = JSON.parse(homelabJson);
 
 // Same markup as the cards script.js used to build. Both languages travel in data-en / data-fr:
